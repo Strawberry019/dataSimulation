@@ -1,0 +1,71 @@
+{
+  "access_points": [
+    {
+      "access_point": "access_point_01"
+    }
+  ],
+  "green_level": 1,
+  "provision_regions": [
+    {
+      "name": "China"
+    }
+  ],
+  "comp_affinity_groups": [
+    {
+      "group_name": "group_01",
+      "delay_circle": "hot",
+      "resource_skus": [
+        {
+          "sku": "ecs.vm.spec-1",
+          "amount": 10,
+          "azs": [
+            {
+              "az_index": 1,
+              "amount": 5
+            },
+            {
+              "az_index": 2,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "sku": "evs.volume.spec-1",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "group_name": "group_02",
+      "delay_circle": "cold",
+      "resource_skus": [
+        {
+          "sku": "ecs.vm.spec-1",
+          "amount": 10
+        },
+        {
+          "sku": "evs.volume.spec-1",
+          "amount": 10
+        }
+      ]
+    }
+  ],
+  "nw_qos_of_affinity_groups": [
+    {
+      "source_group": "group_01",
+      "destination_group": "group_02",
+      "latency": 20.0,
+      "peak_bandwidth": 100.0
+    }
+  ],
+  "disaster_recovery_policies": [
+    {
+      "dr_range": "regional",
+      "affinity_policy": "anti_affinity",
+      "comp_affinity_group_names": [
+        "group_01",
+        "group_02"
+      ]
+    }
+  ]
+}

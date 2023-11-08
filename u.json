@@ -1,0 +1,71 @@
+{
+  "access_point": "access-point-02",
+  "green_level": 2,
+  "provision_groups": [
+    {
+      "name": "provision-area-02"
+    },
+    {
+      "name": "provision-area-01"
+    }
+  ],
+  "comp_affinity_groups": null,
+  "nw_qos_of_affinity_groups": [
+    {
+      "source_group": "group-01",
+      "destination_group": "group-05",
+      "latency": 73.277176,
+      "peak_bandwidth": 20.04161
+    },
+    {
+      "source_group": "group-02",
+      "destination_group": "group-03",
+      "latency": 58.012466,
+      "peak_bandwidth": 797.23267
+    },
+    {
+      "source_group": "group-02",
+      "destination_group": "group-04",
+      "latency": 92.9103,
+      "peak_bandwidth": 200.01619
+    },
+    {
+      "source_group": "group-02",
+      "destination_group": "group-05",
+      "latency": 92.64296,
+      "peak_bandwidth": 124.40888
+    },
+    {
+      "source_group": "group-03",
+      "destination_group": "group-04",
+      "latency": 126.16857,
+      "peak_bandwidth": 559.2265
+    },
+    {
+      "source_group": "group-03",
+      "destination_group": "group-05",
+      "latency": 182.94717,
+      "peak_bandwidth": 759.7436
+    }
+  ],
+  "disaster_recovery_policies": [
+    {
+      "dr_range": "regional",
+      "affinity_policy": "anti_affinity",
+      "comp_affinity_group_names": [
+        [
+          "group-01",
+          "group-01",
+          "group-02",
+          "group-02",
+          "group-03",
+          "group-03",
+          "group-04",
+          "group-04",
+          "group-05",
+          "group-05"
+        ]
+      ]
+    }
+  ]
+}
