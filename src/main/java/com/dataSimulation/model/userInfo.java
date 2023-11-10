@@ -223,21 +223,15 @@ class nw_qos_of_affinity_group implements Serializable {
         this.peak_bandwidth = peak_bandwidth;
     }
 
-    /*public boolean equals(nw_qos_of_affinity_group p1, nw_qos_of_affinity_group p2) {
-        return p1.source_group.equals(p2.source_group) && p1.destination_group.equals(p2.destination_group);
-    }*/
-    public boolean equals(nw_qos_of_affinity_group p) {
-        if (p == this) {
+    public boolean equals(Object obj) {
+        if (obj == this) {
             return true;
         }
-        if (p == null) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (this.source_group.equals(p.source_group) && this.destination_group.equals(p.destination_group)) {
-            return true;
-        } else {
-            return false;
-        }
+        nw_qos_of_affinity_group p = (nw_qos_of_affinity_group) obj;
+        return Objects.equals(source_group, p.source_group) && Objects.equals(destination_group, p.destination_group);
     }
 
     public int hashCode() {
@@ -337,10 +331,6 @@ class provision_group implements Serializable {
 
     }
 
-    /*public boolean equal(provision_group p1, provision_group p2) {
-        return p1.name.equals(p2.name);
-    }*/
-
     public String getName() {
         return name;
     }
@@ -349,18 +339,15 @@ class provision_group implements Serializable {
         this.name = name;
     }
 
-    public boolean equals(provision_group p) {
-        if (p == this) {
+    public boolean equals(Object obj) {
+        if (obj == this) {
             return true;
         }
-        if (p == null) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (this.name.equals(p.name)) {
-            return true;
-        } else {
-            return false;
-        }
+        provision_group p = (provision_group) obj;
+        return Objects.equals(name, p.name);
     }
 
     public int hashCode() {

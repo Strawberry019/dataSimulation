@@ -43,6 +43,7 @@ public class userInfoInit {
         String[] provision_area = {"provision-area-01", "provision-area-02", "provision-area-03", "provision-area-04", "provision-area-05"};
         //用户选择了几个数据安全隐私限定区域，具体是哪几个
         int provision_groups_num = random.nextInt(1, 5);
+        int temp = 0;
         while (u.calSize(u.getProvision_groups()) < provision_groups_num) {
             u.set_provision_groups(provision_area[random.nextInt(provision_groups_num)]);
         }
