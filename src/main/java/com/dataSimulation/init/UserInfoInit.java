@@ -1,16 +1,12 @@
 package com.dataSimulation.init;
 
-import com.dataSimulation.model.userInfo;
-
+import com.dataSimulation.model.*;
 import java.util.*;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class userInfoInit {
+public class UserInfoInit {
     public static void main(String[] args) {
 
         Random random = new Random();
@@ -25,24 +21,24 @@ public class userInfoInit {
         }
 
         //初始化userInfo对象并开始对它进行赋值
-        userInfo u = new userInfo();
+        UserInfo u = new UserInfo();
         //有哪些亲和组
-        u.setGroupLNameList(groupName);
+        //u.setGroupName(groupName);
 
         //已知当前有5个接入参考点并随机选一个
-        final String[] access_point = {"access-point-01", "access-point-02", "access-point-03", "access-point-04", "access-point-05"};
+        final String[] ACCESS_POINT = {"access-point-01", "access-point-02", "access-point-03", "access-point-04", "access-point-05"};
         //用户的接入参考点，目前是单个接入参考点
-        u.setAccess_point(access_point[random.nextInt(access_point.length)]);
+        u.setAccess_point(ACCESS_POINT[random.nextInt(ACCESS_POINT.length)]);
 
         //用户的碳效率等级
         u.setGreen_level(random.nextInt(3) + 1);
 
         //已知当前有5个数据安全隐私限定区域
-        final String[] provision_area = {"provision-area-01", "provision-area-02", "provision-area-03", "provision-area-04", "provision-area-05"};
+        final String[] PROVISION_AREA = {"provision-area-01", "provision-area-02", "provision-area-03", "provision-area-04", "provision-area-05"};
         //用户选择了几个数据安全隐私限定区域，具体是哪几个
         int provision_groups_num = random.nextInt(1, 5);
         while (u.calSize(u.getProvision_groups()) < provision_groups_num) {
-            u.set_provision_groups(provision_area[random.nextInt(provision_groups_num)]);
+            u.set_provision_groups(PROVISION_AREA[random.nextInt(provision_groups_num)]);
         }
 
         //亲和组接入的网络QoS要求，包括两个亲和组之间的带宽要求和延迟要求
@@ -92,20 +88,18 @@ public class userInfoInit {
 
 
         //随机设置每一个亲和组内部的资源需求
-        /*final String[] delay_circle = {"hot", "warm", "cold"};
+        final String[] DELAY_CIRCLE = {"hot", "warm", "cold"};
+        final String[] sku_option = {};
         for(int i = 0; i < group_num; i++){
-            u.set
-            comp_affinity_group g = new comp_affinity_group(groupName[i],delay_circle[random.nextInt(3)],);
-            String group_name = groupName[i];
-            String delay_circle =
-            ArrayList<az> azs = new
-            for(int j = 1; j < random.nextInt(2,4);j++){
+            ArrayList<String> sku = new ArrayList<>();
+            int sku_num = random.nextInt(1,4);
 
-            }
-        }*/
+            /*u.setComp_affinity_groups(new CompAffinityGroup(groupName[i],DELAY_CIRCLE[random.nextInt(3)],));
+            CompAffinityGroup g = new CompAffinityGroup(groupName[i],DELAY_CIRCLE[random.nextInt(3)],);
+            for(int j = 1; j < random.nextInt(1,4);j++){
 
-        //int sku_num = random.nextInt(5)+1;
-
+            }*/
+        }
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -113,17 +107,12 @@ public class userInfoInit {
             String jsonString = objectMapper.writeValueAsString(u);
             //System.out.println(jsonString);
             // 打印JSON字符串
-            FileWriter fileWriter = new FileWriter("u.json");
+            FileWriter fileWriter = new FileWriter("userInfo.json");
             fileWriter.write(jsonString);
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
-
         /*String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder randomString = new StringBuilder();
         int length = 10; // 生成的随机字符串长度
