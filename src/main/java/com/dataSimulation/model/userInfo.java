@@ -1,5 +1,5 @@
 package com.dataSimulation.model;
-
+import com.dataSimulation.model.comp_affinity_group;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,16 +48,6 @@ public class userInfo implements Serializable {
         return provision_groups;
     }
 
-    /*
-        public int Sizeof_provision_groups() {
-            if (provision_groups != null) {
-                return provision_groups.size();
-            } else {
-                return 0;
-            }
-
-        }
-    */
     public void set_provision_groups(String provision_group_name) {
         provision_group p = new provision_group(provision_group_name);
         if (provision_groups == null) {
@@ -74,11 +64,10 @@ public class userInfo implements Serializable {
         return comp_affinity_groups;
     }
 
-    /*public void setComp_affinity_groups(ArrayList<comp_affinity_group> comp_affinity_groups) {
+    public void setComp_affinity_groups(String group_name, String delay_circle) {
+        //comp_affinity_group p = new comp_affinity_group();
 
-        comp_affinity_group p = new comp_affinity_group();
-
-    }*/
+    }
 
     public ArrayList<nw_qos_of_affinity_group> getNw_qos_of_affinity_groups() {
         return nw_qos_of_affinity_groups;
@@ -100,16 +89,6 @@ public class userInfo implements Serializable {
         return disaster_recovery_policies;
     }
 
-    /*
-        public int Sizeof_disaster_recovery_policies() {
-            if (disaster_recovery_policies != null) {
-                return disaster_recovery_policies.size();
-            } else {
-                return 0;
-            }
-
-        }
-    */
     public void setDisaster_recovery_policies(String dr_range, String affinity_policy, ArrayList<ArrayList<String>> comp_affinity_group) {
         disaster_recovery_policy p = new disaster_recovery_policy(dr_range, affinity_policy, comp_affinity_group);
         if (disaster_recovery_policies == null) {
@@ -123,90 +102,36 @@ public class userInfo implements Serializable {
     }
 }
 
-class comp_affinity_group implements Serializable {
-    private String group_name;
-    private String delay_circle;
-    private ArrayList<resource_sku> resource_skus;
 
-    public String getGroup_name() {
-        return group_name;
+class provision_group implements Serializable {
+    private String name;
+
+    public provision_group(String name) {
+        this.name = name;
+
     }
 
-    public void setGroup_name(String group_name) {
-        this.group_name = group_name;
+    public String getName() {
+        return name;
     }
 
-    public String getDelay_circle() {
-        return delay_circle;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setDelay_circle(String delay_circle) {
-        this.delay_circle = delay_circle;
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        provision_group p = (provision_group) obj;
+        return Objects.equals(name, p.name);
     }
 
-    public ArrayList<resource_sku> getResource_skus() {
-        return resource_skus;
-    }
-
-    public void setResource_skus(ArrayList<resource_sku> resource_skus) {
-        this.resource_skus = resource_skus;
-    }
-
-}
-
-class resource_sku implements Serializable {
-    private String sku_name;
-    private int amount;
-    private ArrayList<az> azs;
-
-    public String getSku_name() {
-        return sku_name;
-    }
-
-    public void setSku_name(String sku_name) {
-        this.sku_name = sku_name;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public ArrayList<az> getAzs() {
-        return azs;
-    }
-
-    public void setAzs(ArrayList<az> azs) {
-        this.azs = azs;
-    }
-}
-
-class az implements Serializable {
-    private int az_index;
-    private int amount;
-
-    public az(int az_index, int amount) {
-        this.az_index = az_index;
-        this.amount = amount;
-    }
-
-    public int getAz_index() {
-        return az_index;
-    }
-
-    public void setAz_index(int az_index) {
-        this.az_index = az_index;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
 
@@ -295,6 +220,20 @@ class disaster_recovery_policy implements Serializable {
             return false;
         }
     }*/
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        disaster_recovery_policy p = (disaster_recovery_policy) obj;
+        return Objects.equals(dr_range, p.dr_range) && Objects.equals(affinity_policy, p.affinity_policy) && Objects.equals(comp_affinity_group_names, p.comp_affinity_group_names);
+    }
+
+    public int hashCode() {
+        return Objects.hash(dr_range, affinity_policy , comp_affinity_group_names);
+    }
 
     public String getDr_range() {
         return dr_range;
@@ -323,34 +262,4 @@ class disaster_recovery_policy implements Serializable {
 
 }
 
-class provision_group implements Serializable {
-    private String name;
 
-    public provision_group(String name) {
-        this.name = name;
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        provision_group p = (provision_group) obj;
-        return Objects.equals(name, p.name);
-    }
-
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-}

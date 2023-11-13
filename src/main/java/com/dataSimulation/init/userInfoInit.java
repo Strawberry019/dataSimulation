@@ -11,13 +11,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class userInfoInit {
-    final String[] ACCESS_POINT = {"access-point-01", "access-point-02", "access-point-03", "access-point-04", "access-point-05"};
-
     public static void main(String[] args) {
 
         Random random = new Random();
         //随机设置单个用户请求中的亲和组个数：1~20
-        int group_num = random.nextInt(2, 21);
+        int group_num = random.nextInt(1, 21);
         //按照随机设置的亲和组个数，初始化亲和组名的列表，group1-num
         String[] groupName = new String[group_num + 1];
         for (int i = 1; i <= group_num; i++) {
@@ -32,7 +30,7 @@ public class userInfoInit {
         u.setGroupLNameList(groupName);
 
         //已知当前有5个接入参考点并随机选一个
-        String[] access_point = {"access-point-01", "access-point-02", "access-point-03", "access-point-04", "access-point-05"};
+        final String[] access_point = {"access-point-01", "access-point-02", "access-point-03", "access-point-04", "access-point-05"};
         //用户的接入参考点，目前是单个接入参考点
         u.setAccess_point(access_point[random.nextInt(access_point.length)]);
 
@@ -40,14 +38,12 @@ public class userInfoInit {
         u.setGreen_level(random.nextInt(3) + 1);
 
         //已知当前有5个数据安全隐私限定区域
-        String[] provision_area = {"provision-area-01", "provision-area-02", "provision-area-03", "provision-area-04", "provision-area-05"};
+        final String[] provision_area = {"provision-area-01", "provision-area-02", "provision-area-03", "provision-area-04", "provision-area-05"};
         //用户选择了几个数据安全隐私限定区域，具体是哪几个
         int provision_groups_num = random.nextInt(1, 5);
-        int temp = 0;
         while (u.calSize(u.getProvision_groups()) < provision_groups_num) {
             u.set_provision_groups(provision_area[random.nextInt(provision_groups_num)]);
         }
-
 
         //亲和组接入的网络QoS要求，包括两个亲和组之间的带宽要求和延迟要求
         for (int i = 1; i < group_num; i++) {
@@ -66,32 +62,56 @@ public class userInfoInit {
             }
         }
 
+
         //亲和组的容灾要求，目前前两个属性dr_range和affinity_policy根据huawei文档是默认的，可根据需求再修改.跨区域容灾约束目前设置共有1-5条，每一条约束内包含的亲和组数目<通信亲和组数量的1/5
         String dr_range = "regional";
         String affinity_policy = "anti_affinity";
+        //可能有1~3组存在跨区域容灾需求的通信亲和组组合
         int dr_combination_num = random.nextInt(2) + 1;
-        int dr_comb_inner_num = random.nextInt(2, 6);
+        //每个这样的组合中可能有2~5个通信亲和组
+        int dr_comb_inner_num = random.nextInt(2, Math.min(group_num,6));
         //跨区域容灾：特定的几个亲和组不能放置在同一个Region中，记作一个combination；显然用户的一次请求中可能包含若干个combination,每个combination中有若干个亲和组
         ArrayList<ArrayList<String>> comp_affinity_group = new ArrayList<ArrayList<String>>();
-        ArrayList<String> comb = new ArrayList<>();
-        while (u.calSize(u.getDisaster_recovery_policies()) < dr_combination_num) {
+        while (comp_affinity_group.size() < dr_combination_num) {
+            ArrayList<String> comb = new ArrayList<>();
+            //随机选取几个不重复的通信亲和组进入comb
             List<String> shuffledList = Arrays.asList(Arrays.copyOfRange(groupName, 1, group_num + 1));
             Collections.shuffle(shuffledList);
             for (int j = 0; j < dr_comb_inner_num; j++) {
                 comb.add(shuffledList.get(j));
             }
+            //comb内有序则可以使用ArrayList类重写的equals()方法对不同comb直接比较，无需在disaster_recovery_policy中重写新的equals()方法比较
             Collections.sort(comb);
             if (!comp_affinity_group.contains(comb)) {
                 comp_affinity_group.add(comb);
             }
+            if(comp_affinity_group.size() == dr_combination_num){
+                u.setDisaster_recovery_policies(dr_range, affinity_policy, comp_affinity_group);
+            }
         }
-        u.setDisaster_recovery_policies(dr_range, affinity_policy, comp_affinity_group);
+
+
+        //随机设置每一个亲和组内部的资源需求
+        /*final String[] delay_circle = {"hot", "warm", "cold"};
+        for(int i = 0; i < group_num; i++){
+            u.set
+            comp_affinity_group g = new comp_affinity_group(groupName[i],delay_circle[random.nextInt(3)],);
+            String group_name = groupName[i];
+            String delay_circle =
+            ArrayList<az> azs = new
+            for(int j = 1; j < random.nextInt(2,4);j++){
+
+            }
+        }*/
+
+        //int sku_num = random.nextInt(5)+1;
+
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             // 将对象转换为JSON字符串
             String jsonString = objectMapper.writeValueAsString(u);
-            System.out.println(jsonString);
+            //System.out.println(jsonString);
             // 打印JSON字符串
             FileWriter fileWriter = new FileWriter("u.json");
             fileWriter.write(jsonString);
@@ -99,18 +119,7 @@ public class userInfoInit {
         } catch (IOException e) {
             e.printStackTrace();
         }
-/*
-        //随机设置每一个亲和组
-        for(int i = 0; i < group_num; i++){
-            u.set();
-            ArrayList<az> azs = new
-            for(int j = 1; j < random.nextInt(2,4);j++){
 
-            }
-        }
-
-        //int sku_num = random.nextInt(5)+1;
-*/
 
 
 
