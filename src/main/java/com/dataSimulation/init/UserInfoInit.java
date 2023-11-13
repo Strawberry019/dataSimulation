@@ -8,6 +8,10 @@ import java.io.IOException;
 
 public class UserInfoInit {
     public static void main(String[] args) {
+        //已知当前有5个接入参考点并随机选一个
+        final String[] ACCESS_POINT = {"access-point-01", "access-point-02", "access-point-03", "access-point-04", "access-point-05"};
+        //已知当前有5个数据安全隐私限定区域
+        final String[] PROVISION_AREA = {"provision-area-01", "provision-area-02", "provision-area-03", "provision-area-04", "provision-area-05"};
 
         Random random = new Random();
         //随机设置单个用户请求中的亲和组个数：1~20
@@ -25,16 +29,13 @@ public class UserInfoInit {
         //有哪些亲和组
         //u.setGroupName(groupName);
 
-        //已知当前有5个接入参考点并随机选一个
-        final String[] ACCESS_POINT = {"access-point-01", "access-point-02", "access-point-03", "access-point-04", "access-point-05"};
+
         //用户的接入参考点，目前是单个接入参考点
         u.setAccess_point(ACCESS_POINT[random.nextInt(ACCESS_POINT.length)]);
 
         //用户的碳效率等级
         u.setGreen_level(random.nextInt(3) + 1);
 
-        //已知当前有5个数据安全隐私限定区域
-        final String[] PROVISION_AREA = {"provision-area-01", "provision-area-02", "provision-area-03", "provision-area-04", "provision-area-05"};
         //用户选择了几个数据安全隐私限定区域，具体是哪几个
         int provision_groups_num = random.nextInt(1, 5);
         while (u.calSize(u.getProvision_groups()) < provision_groups_num) {

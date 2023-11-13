@@ -7,10 +7,10 @@ import java.util.Objects;
 
 public class CloudInfo implements Serializable {
 
-	private ArrayList<Region> regions = new ArrayList<>();
-	private ArrayList<DelayCirclesItem> delay_circles = new ArrayList<>();;
-	private ArrayList<NwQosofRegionsItem> nw_qos_of_regions = new ArrayList<>();;
-	private ArrayList<GreenLevelsItem> green_levels = new ArrayList<>();;
+	private ArrayList<Region> regions;
+	private ArrayList<DelayCirclesItem> delay_circles;;
+	private ArrayList<NwQosofRegionsItem> nw_qos_of_regions;;
+	private ArrayList<GreenLevelsItem> green_levels;;
 
 	public ArrayList<Region> getRegions() {
 		return regions;

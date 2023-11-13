@@ -53,11 +53,9 @@ public class UserInfo implements Serializable {
         ProvisionGroupItem p = new ProvisionGroupItem(provision_group_name);
         if (ProvisionGroupItems == null) {
             this.ProvisionGroupItems = new ArrayList<ProvisionGroupItem>();
+        }
+        if (!ProvisionGroupItems.contains(p)) {
             this.ProvisionGroupItems.add(p);
-        } else {
-            if (!ProvisionGroupItems.contains(p)) {
-                this.ProvisionGroupItems.add(p);
-            }
         }
     }
 
@@ -94,11 +92,9 @@ public class UserInfo implements Serializable {
         NwQosofAffinityGroupItem p = new NwQosofAffinityGroupItem(source_group, destination_group, latency, peak_bandwidth);
         if (NwQosofAffinityGroupItems == null) {
             this.NwQosofAffinityGroupItems = new ArrayList<NwQosofAffinityGroupItem>();
+        }
+        if (!NwQosofAffinityGroupItems.contains(p)) {
             this.NwQosofAffinityGroupItems.add(p);
-        } else {
-            if (!NwQosofAffinityGroupItems.contains(p)) {
-                this.NwQosofAffinityGroupItems.add(p);
-            }
         }
     }
 
@@ -110,11 +106,9 @@ public class UserInfo implements Serializable {
         DisasterRecoveryPolicyItem p = new DisasterRecoveryPolicyItem(dr_range, affinity_policy, comp_affinity_group);
         if (disaster_recovery_policies == null) {
             this.disaster_recovery_policies = new ArrayList<DisasterRecoveryPolicyItem>();
+        }
+        if (!disaster_recovery_policies.contains(p)) {
             this.disaster_recovery_policies.add(p);
-        } else {
-            if (!disaster_recovery_policies.contains(p)) {
-                this.disaster_recovery_policies.add(p);
-            }
         }
     }
 

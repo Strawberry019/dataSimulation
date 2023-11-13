@@ -2,6 +2,7 @@ package com.dataSimulation.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Region {
 
@@ -9,13 +10,13 @@ public class Region {
 
     private String region_level;
 
-    private ArrayList<provision_region> provision_regions = new ArrayList<provision_region>();
+    private ArrayList<provision_region> provision_regions;
 
-    private ArrayList<resource_pool> resource_pools= new ArrayList<resource_pool>();
+    private ArrayList<resource_pool> resource_pools;
 
-    private ArrayList<az> azs = new ArrayList<az>();
+    private ArrayList<az> azs;
 
-    private ArrayList<accessDelay> access_delaies = new ArrayList<accessDelay>();
+    private ArrayList<accessDelay> access_delaies;
 
     public String getRegion_id() {
         return region_id;
@@ -33,9 +34,43 @@ public class Region {
         this.region_level = region_level;
     }
 
+    public ArrayList<provision_region> getProvision_regions() {
+        return provision_regions;
+    }
+
+    public void setProvision_regions(ArrayList<String> provision_regions) {
+        if (this.provision_regions == null) {
+            this.provision_regions = new ArrayList<>();
+        }
+        for(int i = 0; i < provision_regions.size(); i++) {
+            provision_region r = new provision_region(provision_regions.get(i));
+            if(!this.provision_regions.contains(r)){
+                this.provision_regions.add(r);
+            }
+        }
+    }
+
     class provision_region{
 
         private String name;
+
+        public provision_region(String name) {
+            this.name = name;
+        }
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            provision_region r = (provision_region) obj;
+            return Objects.equals(name, r.name);
+        }
+
+        public int hashCode() {
+            return Objects.hash(name);
+        }
 
         public void setName(String name){
             this.name = name;
