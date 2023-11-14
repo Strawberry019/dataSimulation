@@ -119,14 +119,21 @@ public class Region {
 
         private float cost;
 
-        private List<resource_sku> resource_skus;
+        private ArrayList<ResourceSku> resource_skus;
 
-        private List<Integer> remain;
+        private ArrayList<Integer> remain;
 
         private String pool_id;
 
         private String pool_level;
 
+        resource_pool(String pool_id,String pool_level,ArrayList<ResourceSku> resource_skus,float cost,ArrayList<Integer> remain){
+            this.pool_id = pool_id;
+            this.pool_level = pool_level;
+            this.resource_skus = resource_skus;
+            this.cost = cost;
+            this.remain = remain;
+        }
         public void setCost(float cost){
             this.cost = cost;
         }
@@ -135,19 +142,24 @@ public class Region {
             return cost;
         }
 
-        public void setResource_skus(List<resource_sku> resource_skus){
-            this.resource_skus = resource_skus;
+        public void setResource_skus(ResourceSku sku) {
+            if(this.resource_skus == null){
+                this.resource_skus = new ArrayList<ResourceSku>();
+            }
+            if(!this.resource_skus.contains(sku)){
+                this.resource_skus.add(sku);
+            }
         }
 
-        public List<resource_sku> getResource_skus(){
+        public ArrayList<ResourceSku> getResource_skus(){
             return resource_skus;
         }
 
-        public void setRemain(List<Integer> remain){
+        public void setRemain(ArrayList<Integer> remain){
             this.remain = remain;
         }
 
-        public List<Integer> getRemain(){
+        public ArrayList<Integer> getRemain(){
             return remain;
         }
 
@@ -168,28 +180,7 @@ public class Region {
         }
     }
 
-    class resource_sku {
 
-        private List<Integer> resources;
-
-        private String sku;
-
-        public void setResources(List<Integer> resources){
-            this.resources = resources;
-        }
-
-        public List<Integer> getResources(){
-            return resources;
-        }
-
-        public void setSku(String sku){
-            this.sku = sku;
-        }
-
-        public String getSku(){
-            return sku;
-        }
-    }
 
     class accessDelay {
 

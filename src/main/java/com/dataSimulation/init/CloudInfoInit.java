@@ -54,6 +54,7 @@ public class CloudInfoInit {
                 //设置区域级别资源池
 
 
+
                 //设置Region中的可用区数量
                 List<List<String>> az_list = new ArrayList<>();
                 int az_per_region = random.nextInt(5) + 2;
