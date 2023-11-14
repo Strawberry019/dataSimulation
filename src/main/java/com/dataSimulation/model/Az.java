@@ -1,0 +1,37 @@
+package com.dataSimulation.model;
+
+import java.util.List;
+
+public class Az {
+    private String az_id;
+
+    private int green_level;
+
+    private List<ResourcePool> ResourcePools;
+
+    public void setAz_id(String az_id){
+        this.az_id = az_id;
+    }
+
+    public String getAz_id(){
+        return az_id;
+    }
+
+    public void setGreen_level(int green_level){
+        this.green_level = green_level;
+    }
+
+    public int getGreen_level(){
+        return green_level;
+    }
+
+    public void setResource_pools(List<ResourcePool> ResourcePools){
+        this.ResourcePools = ResourcePools;
+    }
+
+    public List<ResourcePool> getResource_pools(){
+        return ResourcePools;
+    }
+
+
+}

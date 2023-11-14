@@ -12,9 +12,9 @@ public class Region {
 
     private ArrayList<provision_region> provision_regions;
 
-    private ArrayList<resource_pool> resource_pools;
+    private ArrayList<ResourcePool> ResourcePools;
 
-    private ArrayList<az> azs;
+    private ArrayList<Az> Azs;
 
     private ArrayList<accessDelay> access_delaies;
 
@@ -50,6 +50,31 @@ public class Region {
         }
     }
 
+    public ArrayList<ResourcePool> getResourcePools() {
+        return ResourcePools;
+    }
+    public void setResourcePools(ResourcePool r) {
+        if (this.ResourcePools == null) {
+            this.ResourcePools = new ArrayList<>();
+        }
+        if(!this.ResourcePools.contains(r)){
+            this.ResourcePools.add(r);
+        }
+    }
+
+    public ArrayList<accessDelay> getAccess_delaies() {
+        return access_delaies;
+    }
+    public void setAccess_delaies(String accessPoint,float delayValue) {
+        accessDelay r = new accessDelay(accessPoint, delayValue);
+        if (this.access_delaies == null) {
+            this.access_delaies = new ArrayList<>();
+        }
+        if(!this.access_delaies.contains(r)){
+            this.access_delaies.add(r);
+        }
+    }
+
     class provision_region{
 
         private String name;
@@ -80,119 +105,36 @@ public class Region {
             return name;
         }
     }
-
-    class az{
-        private String az_id;
-
-        private int green_level;
-
-        private List<resource_pool> resource_pools;
-
-        public void setAz_id(String az_id){
-            this.az_id = az_id;
-        }
-
-        public String getAz_id(){
-            return az_id;
-        }
-
-        public void setGreen_level(int green_level){
-            this.green_level = green_level;
-        }
-
-        public int getGreen_level(){
-            return green_level;
-        }
-
-        public void setResource_pools(List<resource_pool> resource_pools){
-            this.resource_pools = resource_pools;
-        }
-
-        public List<resource_pool> getResource_pools(){
-            return resource_pools;
-        }
-
-
-    }
-
-    class resource_pool {
-
-        private float cost;
-
-        private ArrayList<ResourceSku> resource_skus;
-
-        private ArrayList<Integer> remain;
-
-        private String pool_id;
-
-        private String pool_level;
-
-        resource_pool(String pool_id,String pool_level,ArrayList<ResourceSku> resource_skus,float cost,ArrayList<Integer> remain){
-            this.pool_id = pool_id;
-            this.pool_level = pool_level;
-            this.resource_skus = resource_skus;
-            this.cost = cost;
-            this.remain = remain;
-        }
-        public void setCost(float cost){
-            this.cost = cost;
-        }
-
-        public float getCost(){
-            return cost;
-        }
-
-        public void setResource_skus(ResourceSku sku) {
-            if(this.resource_skus == null){
-                this.resource_skus = new ArrayList<ResourceSku>();
-            }
-            if(!this.resource_skus.contains(sku)){
-                this.resource_skus.add(sku);
-            }
-        }
-
-        public ArrayList<ResourceSku> getResource_skus(){
-            return resource_skus;
-        }
-
-        public void setRemain(ArrayList<Integer> remain){
-            this.remain = remain;
-        }
-
-        public ArrayList<Integer> getRemain(){
-            return remain;
-        }
-
-        public void setPool_id(String pool_id){
-            this.pool_id = pool_id;
-        }
-
-        public String getPool_id(){
-            return pool_id;
-        }
-
-        public void setPool_level(String pool_level){
-            this.pool_level = pool_level;
-        }
-
-        public String getPool_level(){
-            return pool_level;
-        }
-    }
-
-
-
     class accessDelay {
 
         private String accessPoint;
 
-        private int delayValue;
+        private float delayValue;
 
-        public void setDelayValue(int delayValue) {
+        public accessDelay(String accessPoint,float delayValue){
+            this.accessPoint = accessPoint;
             this.delayValue = delayValue;
         }
 
-        public int getDelayValue() {
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            accessDelay r = (accessDelay) obj;
+            return Objects.equals(accessPoint, r.accessPoint);
+        }
+
+        public int hashCode() {
+            return Objects.hash(accessPoint);
+        }
+        public void setDelayValue(float delayValue) {
+            this.delayValue = delayValue;
+        }
+
+        public float getDelayValue() {
             return delayValue;
         }
 

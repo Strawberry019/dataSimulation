@@ -75,7 +75,7 @@ public class UserInfo implements Serializable {
         }
     }*/
 
-    public void setComp_affinity_groups(String group_name, String delay_circle, ArrayList<String> sku, ArrayList<Integer> sku_amount, ArrayList<Integer> az_num,ArrayList<Integer> az_amount) {
+    public void setComp_affinity_groups(String group_name, String delay_circle, ArrayList<String> sku, ArrayList<Integer> sku_amount, ArrayList<Integer> az_num,ArrayList<ArrayList<Integer>> az_amount) {
         CompAffinityGroup p = new CompAffinityGroup(group_name, delay_circle, sku, sku_amount, az_num, az_amount);
         if (CompAffinityGroups == null){
             this.CompAffinityGroups = new ArrayList<CompAffinityGroup>();

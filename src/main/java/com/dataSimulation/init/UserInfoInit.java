@@ -12,6 +12,22 @@ public class UserInfoInit {
         final String[] ACCESS_POINT = {"access-point-01", "access-point-02", "access-point-03", "access-point-04", "access-point-05"};
         //已知当前有5个数据安全隐私限定区域
         final String[] PROVISION_AREA = {"provision-area-01", "provision-area-02", "provision-area-03", "provision-area-04", "provision-area-05"};
+        final String[] sku_of_AzLevel = {
+                "ecs.vm.spec-1", "ecs.vm.spec-2", "ecs.vm.spec-3",
+                "bms.pm.spec-1", "bms.pm.spec-2", "bms.pm.spec-3",
+                "evs.volume.spec-1", "evs.volume.spec-2", "evs.volume.spec-3",
+                "elb.instance.spec-1", "elb.instance.spec-2", "elb.instance.spec-3",
+                "rds.instance.spec-1", "rds.instance.spec-2", "rds.instance.spec-3",
+                "dcs.instance.spec-1", "dcs.instance.spec-2", "dcs.instance.spec-3",
+                "dms.instance.spec-1", "dms.instance.spec-2", "dms.instance.spec-3"
+        };
+        final String[] DELAY_CIRCLE = {"hot", "warm", "cold"};
+
+        final String[] sku_of_RegionLevel = {
+                "obs.storage.spec-1", "obs.storage.spec-2", "obs.storage.spec-3",
+                "eip.publicip.spec-1", "eip.publicip.spec-2", "eip.publicip.spec-3",
+                "cbr.vault.spec-1", "cbr.vault.spec-2", "cbr.vault.spec-3"
+        };
 
         Random random = new Random();
         //随机设置单个用户请求中的亲和组个数：1~20
@@ -66,7 +82,7 @@ public class UserInfoInit {
         //可能有1~3组存在跨区域容灾需求的通信亲和组组合
         int dr_combination_num = random.nextInt(2) + 1;
         //每个这样的组合中可能有2~5个通信亲和组
-        int dr_comb_inner_num = random.nextInt(2, Math.min(group_num,6));
+        int dr_comb_inner_num = random.nextInt(2, Math.min(group_num, 6));
         //跨区域容灾：特定的几个亲和组不能放置在同一个Region中，记作一个combination；显然用户的一次请求中可能包含若干个combination,每个combination中有若干个亲和组
         ArrayList<ArrayList<String>> comp_affinity_group = new ArrayList<ArrayList<String>>();
         while (comp_affinity_group.size() < dr_combination_num) {
@@ -82,38 +98,62 @@ public class UserInfoInit {
             if (!comp_affinity_group.contains(comb)) {
                 comp_affinity_group.add(comb);
             }
-            if(comp_affinity_group.size() == dr_combination_num){
+            if (comp_affinity_group.size() == dr_combination_num) {
                 u.setDisaster_recovery_policies(dr_range, affinity_policy, comp_affinity_group);
             }
         }
 
 
         //随机设置每一个亲和组内部的资源需求
-        final String[] DELAY_CIRCLE = {"hot", "warm", "cold"};
-        final String[] sku_option = {};
-        for(int i = 0; i < group_num; i++){
+        for (int i = 1; i <= group_num; i++) {
+            String group_name = groupName[i];
+            String delay_circle = DELAY_CIRCLE[random.nextInt(3)];
             ArrayList<String> sku = new ArrayList<>();
-            int sku_num = random.nextInt(1,4);
+            ArrayList<Integer> sku_amount = new ArrayList<>();
+            int sku_num = random.nextInt(1, 4);
+            ArrayList<Integer> az_num = new ArrayList<>();
+            ArrayList<ArrayList<Integer>> az_amount = new ArrayList<>();
+            //60%的概率选择AzLevel资源，40%的概率选择RegionLevel资源
+            for (int j = 0; j < sku_num; j++) {
+                int res_type = random.nextInt(10);
+                if (res_type < 5) {
+                    sku.add(sku_of_AzLevel[random.nextInt(sku_of_AzLevel.length)]);
+                } else {
+                    sku.add(sku_of_RegionLevel[random.nextInt(sku_of_RegionLevel.length)]);
+                }
+                //跨AZ约束的有意义取值有：1，2，3，其中.表示不需要跨Az
+                int crossAzNum = random.nextInt(3) + 1;
+                az_num.add(crossAzNum);
+                ArrayList<Integer> distribution_of_per_az = new ArrayList<>();
+                //如果不需要跨Az
+                if (crossAzNum > 1) {
+                    int az_sum = 0;
+                    for (int k = 0; k < crossAzNum; k++) {
+                        int amount = random.nextInt(5, 30);
+                        distribution_of_per_az.add(amount);
+                        az_sum += amount;
+                    }
+                    sku_amount.add(az_sum);
+                } else {
+                    sku_amount.add(random.nextInt(5, 100));
+                    distribution_of_per_az.add(0);
+                }
+                az_amount.add(distribution_of_per_az);
+            }
+            CompAffinityGroup g = new CompAffinityGroup(group_name, delay_circle, sku, sku_amount, az_num, az_amount);
 
-            /*u.setComp_affinity_groups(new CompAffinityGroup(groupName[i],DELAY_CIRCLE[random.nextInt(3)],));
-            CompAffinityGroup g = new CompAffinityGroup(groupName[i],DELAY_CIRCLE[random.nextInt(3)],);
-            for(int j = 1; j < random.nextInt(1,4);j++){
-
-            }*/
-        }
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            // 将对象转换为JSON字符串
-            String jsonString = objectMapper.writeValueAsString(u);
-            //System.out.println(jsonString);
-            // 打印JSON字符串
-            FileWriter fileWriter = new FileWriter("userInfo.json");
-            fileWriter.write(jsonString);
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                // 将对象转换为JSON字符串
+                String jsonString = objectMapper.writeValueAsString(u);
+                //System.out.println(jsonString);
+                // 打印JSON字符串
+                FileWriter fileWriter = new FileWriter("userInfo.json");
+                fileWriter.write(jsonString);
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         /*String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder randomString = new StringBuilder();
         int length = 10; // 生成的随机字符串长度
@@ -123,6 +163,7 @@ public class UserInfoInit {
             char randomChar = characters.charAt(index);
             randomString.append(randomChar);
         }*/
+        }
     }
 }
 

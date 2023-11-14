@@ -14,14 +14,16 @@ public class CompAffinityGroup implements Serializable {
         this.resource_skus = resource_skus;
     }*/
 
-    public CompAffinityGroup(String group_name, String delay_circle, ArrayList<String> sku, ArrayList<Integer> sku_amount, ArrayList<Integer> az_num, ArrayList<Integer> az_amount){
+    public CompAffinityGroup(String group_name, String delay_circle, ArrayList<String> sku, ArrayList<Integer> sku_amount, ArrayList<Integer> az_num, ArrayList<ArrayList<Integer>> az_amount){
         this.group_name = group_name;
         this.delay_circle = delay_circle;
         for(int i = 0; i < sku.size(); i++){
             ArrayList<az> emptyList = new ArrayList<az>();
             resource_sku s = new resource_sku(sku.get(i),sku_amount.get(i),emptyList);
             for(int j = 0; j < az_num.get(i) ; j++){
-                s.setAzs(j+1,az_amount.get(j));
+                if(az_num.get(j) > 1){
+                    s.setAzs(j+1,az_amount.get(i).get(j));
+                }
             }
         }
     }
