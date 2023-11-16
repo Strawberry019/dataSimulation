@@ -1,6 +1,7 @@
 package com.dataSimulation.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Az {
     private String az_id;
@@ -8,6 +9,26 @@ public class Az {
     private int green_level;
 
     private List<ResourcePool> ResourcePools;
+
+    public Az(String az_id, int green_level,List<ResourcePool> ResourcePools){
+        this.az_id = az_id;
+        this.green_level = green_level;
+        this.ResourcePools = ResourcePools;
+    }
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Az r = (Az) obj;
+        return Objects.equals(az_id, r.az_id);
+    }
+
+    public int hashCode() {
+        return Objects.hash(az_id);
+    }
 
     public void setAz_id(String az_id){
         this.az_id = az_id;

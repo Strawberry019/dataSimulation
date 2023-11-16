@@ -18,6 +18,21 @@ public class Region {
 
     private ArrayList<accessDelay> access_delaies;
 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Region r = (Region) obj;
+        return Objects.equals(region_id, r.region_id);
+    }
+
+    public int hashCode() {
+        return Objects.hash(region_id);
+    }
+
     public String getRegion_id() {
         return region_id;
     }
@@ -72,6 +87,20 @@ public class Region {
         }
         if(!this.access_delaies.contains(r)){
             this.access_delaies.add(r);
+        }
+    }
+
+    public ArrayList<Az> getAzs() {
+        return Azs;
+    }
+
+    public void setAzs(Az az) {
+        if (this.Azs == null) {
+            this.Azs = new ArrayList<>();
+        }
+
+        if(!this.Azs.contains(az)){
+                this.Azs.add(az);
         }
     }
 

@@ -39,8 +39,8 @@ public class CloudInfoInit {
             for (int i = 1; i <= regionsPerArea; i++) {
                 Region r = new Region();
                 //设置Region ID
-                String region = area  + "-" + i;
-                r.setRegion_id(region);
+                String region_id = area  + "-" + i;
+                r.setRegion_id(region_id);
 
                 // 设置Region为东部/西部Region
                 int level = random.nextInt(10) < 6 ? 1 : 2;
@@ -54,12 +54,11 @@ public class CloudInfoInit {
                 //设置区域级别资源池,随机2-5个
                 List<String> shuffledRegionLevelSku = Arrays.asList(sku_of_RegionLevel);
                 Collections.shuffle(shuffledRegionLevelSku);
-                for(int j = 0; j < random.nextInt(2,6); i++ ){
+                for(int j = 0; j < random.nextInt(2,6); j++ ){
                     String sku_name = shuffledRegionLevelSku.get(j);
                     String pool_id = area + "_" + sku_name +  "_"+"pool";
-                    String pool_level = "region";
+                    String pool_level = "region_id";
                     float cost = random.nextFloat();
-                    //float remain = random.nextFloat();
                     ArrayList<Integer> remain = new ArrayList<>();
                     remain.add(random.nextInt(500,1500));
                     ResourceSku sku = new ResourceSku(sku_name);
@@ -74,22 +73,25 @@ public class CloudInfoInit {
                     r.setAccess_delaies(ACCESS_POINT[j],random.nextFloat(5.0f + random.nextFloat() * (200.0f - 5.0f)));
                 }
 
-                //设置Region内的Az
-
-
-
-
-
                 //设置Region中的可用区数量
                 List<List<String>> az_list = new ArrayList<>();
                 int az_per_region = random.nextInt(5) + 2;
                 List<String> tempAzList = new ArrayList<>();
                 for (int j = 1; j <= az_per_region; j++) {
                     //az级别资源池的id
-                    String formattedString = region + (char) ('a' + j - 1);
+                    String formattedString = region_id + (char) ('a' + j - 1);
                     tempAzList.add(formattedString);
                 }
                 az_list.add(tempAzList);
+                for(int j = 0; j < az_list.size(); j++){
+                    for(int k = 0; k < az_list.get(j).size(); k++){
+                        ArrayList<ResourcePool> pool_of_az = new ArrayList<>();
+                        Az az = new Az(az_list.get(j).get(k), random.nextInt(1,600),pool_of_az);
+                        //pool_of_az.add(ResourcePool());
+
+                    }
+                }
+                //r.setAzs();
             }
         }
 

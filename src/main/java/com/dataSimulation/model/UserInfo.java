@@ -63,20 +63,7 @@ public class UserInfo implements Serializable {
         return CompAffinityGroups;
     }
 
-    /*public void setComp_affinity_groups(String group_name, String delay_circle, ArrayList<resource_sku> resource_skus) {
-        comp_affinity_group p = new comp_affinity_group(group_name,delay_circle,resource_skus);
-        if (comp_affinity_groups == null){
-            this.comp_affinity_groups = new ArrayList<comp_affinity_group>();
-        }
-        else{
-            if(!comp_affinity_groups.contains(p)){
-                this.comp_affinity_groups.add(p);
-            }
-        }
-    }*/
-
-    public void setComp_affinity_groups(String group_name, String delay_circle, ArrayList<String> sku, ArrayList<Integer> sku_amount, ArrayList<Integer> az_num,ArrayList<ArrayList<Integer>> az_amount) {
-        CompAffinityGroup p = new CompAffinityGroup(group_name, delay_circle, sku, sku_amount, az_num, az_amount);
+    public void setComp_affinity_groups(CompAffinityGroup p) {
         if (CompAffinityGroups == null){
             this.CompAffinityGroups = new ArrayList<CompAffinityGroup>();
         }
@@ -84,6 +71,7 @@ public class UserInfo implements Serializable {
             this.CompAffinityGroups.add(p);
         }
     }
+
     public ArrayList<NwQosofAffinityGroupItem> getNw_qos_of_affinity_groups() {
         return NwQosofAffinityGroupItems;
     }
@@ -217,18 +205,7 @@ public class UserInfo implements Serializable {
             this.comp_affinity_group_names = comp_affinity_group_names;
         }
 
-        /*public boolean equals(ArrayList<ArrayList<String>> comp_affinity_group1, ArrayList<ArrayList<String>> comp_affinity_group2) {
-            if (comp_affinity_group1.size() == comp_affinity_group2.size()) {
-                for (int i = 0; i < comp_affinity_group1.size(); i++) {
-                    if (!comp_affinity_group1.get(i).equals(comp_affinity_group2.get(i))) {
-                        return false;
-                    }
-                }
-                return true;
-            } else {
-                return false;
-            }
-        }*/
+
         public boolean equals(Object obj) {
             if (obj == this) {
                 return true;

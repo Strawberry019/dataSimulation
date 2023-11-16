@@ -21,10 +21,11 @@ public class CompAffinityGroup implements Serializable {
             ArrayList<az> emptyList = new ArrayList<az>();
             resource_sku s = new resource_sku(sku.get(i),sku_amount.get(i),emptyList);
             for(int j = 0; j < az_num.get(i) ; j++){
-                if(az_num.get(j) > 1){
+                if(az_num.get(i) > 1){
                     s.setAzs(j+1,az_amount.get(i).get(j));
                 }
             }
+            this.setResource_skus(s);
         }
     }
     public boolean equals(Object obj) {
@@ -62,8 +63,13 @@ public class CompAffinityGroup implements Serializable {
         return resource_skus;
     }
 
-    public void setResource_skus(ArrayList<resource_sku> resource_skus) {
-        this.resource_skus = resource_skus;
+    public void setResource_skus(resource_sku s) {
+        if (this.resource_skus == null){
+            this.resource_skus = new ArrayList<>();
+        }
+        if(!this.resource_skus.contains(s)){
+            this.resource_skus.add(s);
+        }
     }
 
     class az implements Serializable {

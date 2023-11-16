@@ -140,29 +140,22 @@ public class UserInfoInit {
                 }
                 az_amount.add(distribution_of_per_az);
             }
-            CompAffinityGroup g = new CompAffinityGroup(group_name, delay_circle, sku, sku_amount, az_num, az_amount);
+            CompAffinityGroup p = new CompAffinityGroup(group_name, delay_circle, sku, sku_amount, az_num, az_amount);
+            u.setComp_affinity_groups(p);
+        }
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                // 将对象转换为JSON字符串
-                String jsonString = objectMapper.writeValueAsString(u);
-                //System.out.println(jsonString);
-                // 打印JSON字符串
-                FileWriter fileWriter = new FileWriter("userInfo.json");
-                fileWriter.write(jsonString);
-                fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        /*String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder randomString = new StringBuilder();
-        int length = 10; // 生成的随机字符串长度
-
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(characters.length());
-            char randomChar = characters.charAt(index);
-            randomString.append(randomChar);
-        }*/
+        //开始打印json
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // 将对象转换为JSON字符串
+            String jsonString = objectMapper.writeValueAsString(u);
+            //System.out.println(jsonString);
+            // 打印JSON字符串
+            FileWriter fileWriter = new FileWriter("userInfo.json");
+            fileWriter.write(jsonString);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
