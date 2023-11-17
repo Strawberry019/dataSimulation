@@ -5,13 +5,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class UserInfo implements Serializable {
-    //private String[] groupName;
     private String access_point;
     private int green_level;
 
-    private ArrayList<ProvisionGroupItem> ProvisionGroupItems;
-    private ArrayList<CompAffinityGroup> CompAffinityGroups;
-    private ArrayList<NwQosofAffinityGroupItem> NwQosofAffinityGroupItems;
+    private ArrayList<ProvisionRegionItem> provision_regions;
+    private ArrayList<CompAffinityGroup> comp_affinity_groups;
+    private ArrayList<NwQosofAffinityGroupItem> nw_qos_of_affinity_groups;
     private ArrayList<DisasterRecoveryPolicyItem> disaster_recovery_policies;
 
     public <T> int calSize(T obj) {
@@ -21,14 +20,6 @@ public class UserInfo implements Serializable {
             return ((List<?>) obj).size();
         }
     }
-
-    /*public String[] getGroupName() {
-            return groupName;
-        }
-        public void setGroupName(String[] groupName) {
-            this.groupName = groupName;
-        }
-    */
     public String getAccess_point() {
         return access_point;
     }
@@ -45,44 +36,44 @@ public class UserInfo implements Serializable {
         this.green_level = green_level;
     }
 
-    public ArrayList<ProvisionGroupItem> getProvision_groups() {
-        return ProvisionGroupItems;
+    public ArrayList<ProvisionRegionItem> getProvision_groups() {
+        return provision_regions;
     }
 
     public void set_provision_groups(String provision_group_name) {
-        ProvisionGroupItem p = new ProvisionGroupItem(provision_group_name);
-        if (ProvisionGroupItems == null) {
-            this.ProvisionGroupItems = new ArrayList<ProvisionGroupItem>();
+        ProvisionRegionItem p = new ProvisionRegionItem(provision_group_name);
+        if (provision_regions == null) {
+            this.provision_regions = new ArrayList<ProvisionRegionItem>();
         }
-        if (!ProvisionGroupItems.contains(p)) {
-            this.ProvisionGroupItems.add(p);
+        if (!provision_regions.contains(p)) {
+            this.provision_regions.add(p);
         }
     }
 
     public ArrayList<CompAffinityGroup> getComp_affinity_groups() {
-        return CompAffinityGroups;
+        return comp_affinity_groups;
     }
 
     public void setComp_affinity_groups(CompAffinityGroup p) {
-        if (CompAffinityGroups == null){
-            this.CompAffinityGroups = new ArrayList<CompAffinityGroup>();
+        if (comp_affinity_groups == null){
+            this.comp_affinity_groups = new ArrayList<CompAffinityGroup>();
         }
-        if(!CompAffinityGroups.contains(p)){
-            this.CompAffinityGroups.add(p);
+        if(!comp_affinity_groups.contains(p)){
+            this.comp_affinity_groups.add(p);
         }
     }
 
     public ArrayList<NwQosofAffinityGroupItem> getNw_qos_of_affinity_groups() {
-        return NwQosofAffinityGroupItems;
+        return nw_qos_of_affinity_groups;
     }
 
     public void set_nw_qos_of_affinity_group(String source_group, String destination_group, float latency, float peak_bandwidth) {
         NwQosofAffinityGroupItem p = new NwQosofAffinityGroupItem(source_group, destination_group, latency, peak_bandwidth);
-        if (NwQosofAffinityGroupItems == null) {
-            this.NwQosofAffinityGroupItems = new ArrayList<NwQosofAffinityGroupItem>();
+        if (nw_qos_of_affinity_groups == null) {
+            this.nw_qos_of_affinity_groups = new ArrayList<NwQosofAffinityGroupItem>();
         }
-        if (!NwQosofAffinityGroupItems.contains(p)) {
-            this.NwQosofAffinityGroupItems.add(p);
+        if (!nw_qos_of_affinity_groups.contains(p)) {
+            this.nw_qos_of_affinity_groups.add(p);
         }
     }
 
@@ -100,10 +91,10 @@ public class UserInfo implements Serializable {
         }
     }
 
-    class ProvisionGroupItem implements Serializable {
+    class ProvisionRegionItem implements Serializable {
         private String name;
 
-        public ProvisionGroupItem(String name) {
+        public ProvisionRegionItem(String name) {
             this.name = name;
 
         }
@@ -123,7 +114,7 @@ public class UserInfo implements Serializable {
             if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
-            ProvisionGroupItem p = (ProvisionGroupItem) obj;
+            ProvisionRegionItem p = (ProvisionRegionItem) obj;
             return Objects.equals(name, p.name);
         }
 

@@ -1,9 +1,11 @@
 package com.dataSimulation.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResourceSku {
 
     private ArrayList<Integer> resources;

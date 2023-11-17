@@ -16,8 +16,13 @@ public class CloudInfo implements Serializable {
 		return regions;
 	}
 
-	public void setRegions(ArrayList<Region> regions) {
-		this.regions = regions;
+	public void setRegions(Region r) {
+		if (this.regions == null) {
+			this.regions = new ArrayList<>();
+		}
+		if(!this.regions.contains(r)){
+			this.regions.add(r);
+		}
 	}
 
 	public void setDelay_circles(ArrayList<DelayCirclesItem> delay_circles){
@@ -28,8 +33,14 @@ public class CloudInfo implements Serializable {
 		return delay_circles;
 	}
 
-	public void setNw_qos_of_regions(ArrayList<NwQosofRegionsItem> nw_qos_of_regions){
-		this.nw_qos_of_regions = nw_qos_of_regions;
+	public void setNw_qos_of_regions(String source_region, String destination_region, float latency, float peak_bandwidth, float cost){
+		NwQosofRegionsItem r = new NwQosofRegionsItem(source_region, destination_region, latency, peak_bandwidth, cost);
+		if (nw_qos_of_regions == null) {
+			this.nw_qos_of_regions = new ArrayList<>();
+		}
+		if (!nw_qos_of_regions.contains(r)) {
+			this.nw_qos_of_regions.add(r);
+		}
 	}
 
 	public ArrayList<NwQosofRegionsItem> getNw_qos_of_regions(){

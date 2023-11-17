@@ -1,1 +1,268 @@
-{"regions":null,"delay_circles":null,"nw_qos_of_regions":null,"green_levels":null}
+{"regions":[
+  {
+    "access_delaies": [
+      {
+        "accessPoint": "access-point-01",
+        "delayValue": 36.826656
+      },
+      {
+        "accessPoint": "access-point-02",
+        "delayValue": 81.090294
+      },
+      {
+        "accessPoint": "access-point-03",
+        "delayValue": 2.0492184
+      },
+      {
+        "accessPoint": "access-point-04",
+        "delayValue": 48.96614
+      },
+      {
+        "accessPoint": "access-point-05",
+        "delayValue": 44.578983
+      }
+    ],
+    "azs": [
+      {
+        "az_id": "cn-north-1a",
+        "green_level": 68,
+        "resource_pools": [
+          {
+            "cost": 0.2938282,
+            "resource_skus": [
+              {
+                "resources": [
+                  7,
+                  14
+                ],
+                "sku": "obs.storage.spec-1"
+              },
+              {
+                "resources": [
+                  6,
+                  12
+                ],
+                "sku": "obs.storage.spec-1"
+              }
+            ],
+            "remain": [
+              900
+            ],
+            "pool_id": "cn-north-1a_obs.storage.spec-1_pool",
+            "pool_level": "az"
+          },
+          {
+            "cost": 0.4504522,
+            "resource_skus": [
+              {
+                "resources": [
+                  2,
+                  4
+                ],
+                "sku": "eip.publicip.spec-1"
+              },
+              {
+                "resources": [
+                  1,
+                  2
+                ],
+                "sku": "eip.publicip.spec-1"
+              }
+            ],
+            "remain": [
+              1425
+            ],
+            "pool_id": "cn-north-1a_eip.publicip.spec-1_pool",
+            "pool_level": "az"
+          },
+          {
+            "cost": 0.45764846,
+            "resource_skus": [
+              {
+                "resources": [
+                  7,
+                  14
+                ],
+                "sku": "cbr.vault.spec-2"
+              },
+              {
+                "resources": [
+                  7,
+                  14
+                ],
+                "sku": "cbr.vault.spec-2"
+              }
+            ],
+            "remain": [
+              1175
+            ],
+            "pool_id": "cn-north-1a_cbr.vault.spec-2_pool",
+            "pool_level": "az"
+          }
+        ]
+      },
+      {
+        "az_id": "cn-north-1b",
+        "green_level": 127,
+        "resource_pools": [
+          {
+            "cost": 0.98472965,
+            "resource_skus": [
+              {
+                "resources": [
+                  6,
+                  12
+                ],
+                "sku": "eip.publicip.spec-2"
+              },
+              {
+                "resources": [
+                  3,
+                  6
+                ],
+                "sku": "eip.publicip.spec-2"
+              }
+            ],
+            "remain": [
+              988
+            ],
+            "pool_id": "cn-north-1b_eip.publicip.spec-2_pool",
+            "pool_level": "az"
+          },
+          {
+            "cost": 0.61283964,
+            "resource_skus": [
+              {
+                "resources": [
+                  6,
+                  12
+                ],
+                "sku": "cbr.vault.spec-3"
+              },
+              {
+                "resources": [
+                  5,
+                  10
+                ],
+                "sku": "cbr.vault.spec-3"
+              }
+            ],
+            "remain": [
+              773
+            ],
+            "pool_id": "cn-north-1b_cbr.vault.spec-3_pool",
+            "pool_level": "az"
+          },
+          {
+            "cost": 0.8409746,
+            "resource_skus": [
+              {
+                "resources": [
+                  6,
+                  12
+                ],
+                "sku": "obs.storage.spec-2"
+              },
+              {
+                "resources": [
+                  7,
+                  14
+                ],
+                "sku": "obs.storage.spec-2"
+              }
+            ],
+            "remain": [
+              1390
+            ],
+            "pool_id": "cn-north-1b_obs.storage.spec-2_pool",
+            "pool_level": "az"
+          },
+          {
+            "cost": 0.9775034,
+            "resource_skus": [
+              {
+                "resources": [
+                  8,
+                  16
+                ],
+                "sku": "cbr.vault.spec-1"
+              },
+              {
+                "resources": [
+                  4,
+                  8
+                ],
+                "sku": "cbr.vault.spec-1"
+              }
+            ],
+            "remain": [
+              1447
+            ],
+            "pool_id": "cn-north-1b_cbr.vault.spec-1_pool",
+            "pool_level": "az"
+          }
+        ]
+      }
+    ],
+    "provision_regions": [
+      {
+        "name": "provision-area-03"
+      }
+    ],
+    "region_id": "cn-north-1",
+    "region_level": "2",
+    "resourcePools": [
+      {
+        "cost": 0.7789585,
+        "resource_skus": [
+          {
+            "sku": "obs.storage.spec-2"
+          }
+        ],
+        "remain": [
+          854
+        ],
+        "pool_id": "cn-north-1_obs.storage.spec-2_pool",
+        "pool_level": "region"
+      },
+      {
+        "cost": 0.5079627,
+        "resource_skus": [
+          {
+            "sku": "cbr.vault.spec-3"
+          }
+        ],
+        "remain": [
+          635
+        ],
+        "pool_id": "cn-north-1_cbr.vault.spec-3_pool",
+        "pool_level": "region"
+      },
+      {
+        "cost": 0.48188394,
+        "resource_skus": [
+          {
+            "sku": "eip.publicip.spec-3"
+          }
+        ],
+        "remain": [
+          565
+        ],
+        "pool_id": "cn-north-1_eip.publicip.spec-3_pool",
+        "pool_level": "region"
+      },
+      {
+        "cost": 0.4621942,
+        "resource_skus": [
+          {
+            "sku": "eip.publicip.spec-1"
+          }
+        ],
+        "remain": [
+          1026
+        ],
+        "pool_id": "cn-north-1_eip.publicip.spec-1_pool",
+        "pool_level": "region"
+      }
+    ]
+  },{"region_id":"cn-north-2","region_level":"2","provision_regions":[{"name":"provision-area-02"}],"access_delaies":[{"accessPoint":"access-point-01","delayValue":44.259747},{"accessPoint":"access-point-02","delayValue":45.550095},{"accessPoint":"access-point-03","delayValue":10.509674},{"accessPoint":"access-point-04","delayValue":95.245255},{"accessPoint":"access-point-05","delayValue":71.92944}],"azs":[{"az_id":"cn-north-2a","green_level":554,"resource_pools":[{"cost":0.83953327,"resource_skus":[{"resources":[5,10],"sku":"eip.publicip.spec-2"},{"resources":[1,2],"sku":"eip.publicip.spec-2"}],"remain":[1150],"pool_id":"cn-north-2a_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.68241405,"resource_skus":[{"resources":[5,10],"sku":"eip.publicip.spec-1"},{"resources":[5,10],"sku":"eip.publicip.spec-1"}],"remain":[800],"pool_id":"cn-north-2a_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.78893393,"resource_skus":[{"resources":[1,2],"sku":"obs.storage.spec-2"},{"resources":[5,10],"sku":"obs.storage.spec-2"}],"remain":[769],"pool_id":"cn-north-2a_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.16931027,"resource_skus":[{"resources":[6,12],"sku":"cbr.vault.spec-2"},{"resources":[5,10],"sku":"cbr.vault.spec-2"}],"remain":[1055],"pool_id":"cn-north-2a_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.63904405,"resource_skus":[{"resources":[7,14],"sku":"obs.storage.spec-1"},{"resources":[1,2],"sku":"obs.storage.spec-1"}],"remain":[941],"pool_id":"cn-north-2a_obs.storage.spec-1_pool","pool_level":"az"}]},{"az_id":"cn-north-2b","green_level":434,"resource_pools":[{"cost":0.096068025,"resource_skus":[{"resources":[8,16],"sku":"cbr.vault.spec-2"},{"resources":[7,14],"sku":"cbr.vault.spec-2"}],"remain":[1238],"pool_id":"cn-north-2b_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.941293,"resource_skus":[{"resources":[2,4],"sku":"cbr.vault.spec-1"},{"resources":[5,10],"sku":"cbr.vault.spec-1"}],"remain":[516],"pool_id":"cn-north-2b_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.7004192,"resource_skus":[{"resources":[3,6],"sku":"eip.publicip.spec-2"},{"resources":[4,8],"sku":"eip.publicip.spec-2"}],"remain":[735],"pool_id":"cn-north-2b_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.8014107,"resource_skus":[{"resources":[3,6],"sku":"obs.storage.spec-3"},{"resources":[2,4],"sku":"obs.storage.spec-3"}],"remain":[1234],"pool_id":"cn-north-2b_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.49216813,"resource_skus":[{"resources":[7,14],"sku":"obs.storage.spec-1"},{"resources":[7,14],"sku":"obs.storage.spec-1"}],"remain":[1270],"pool_id":"cn-north-2b_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.7652139,"resource_skus":[{"resources":[3,6],"sku":"eip.publicip.spec-3"},{"resources":[2,4],"sku":"eip.publicip.spec-3"}],"remain":[1470],"pool_id":"cn-north-2b_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.9135843,"resource_skus":[{"resources":[2,4],"sku":"obs.storage.spec-2"},{"resources":[2,4],"sku":"obs.storage.spec-2"}],"remain":[901],"pool_id":"cn-north-2b_obs.storage.spec-2_pool","pool_level":"az"}]}],"resourcePools":[{"cost":0.7656906,"resource_skus":[{"sku":"obs.storage.spec-1"}],"remain":[1339],"pool_id":"cn-north-2_obs.storage.spec-1_pool","pool_level":"region"},{"cost":0.7234577,"resource_skus":[{"sku":"eip.publicip.spec-1"}],"remain":[1231],"pool_id":"cn-north-2_eip.publicip.spec-1_pool","pool_level":"region"},{"cost":0.14926803,"resource_skus":[{"sku":"cbr.vault.spec-3"}],"remain":[1217],"pool_id":"cn-north-2_cbr.vault.spec-3_pool","pool_level":"region"}]},{"region_id":"cn-east-1","region_level":"2","provision_regions":[{"name":"provision-area-04"}],"access_delaies":[{"accessPoint":"access-point-01","delayValue":3.4238732},{"accessPoint":"access-point-02","delayValue":146.79385},{"accessPoint":"access-point-03","delayValue":91.33953},{"accessPoint":"access-point-04","delayValue":67.48479},{"accessPoint":"access-point-05","delayValue":80.08804}],"azs":[{"az_id":"cn-east-1a","green_level":473,"resource_pools":[{"cost":0.54297817,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-1"},{"resources":[6,12],"sku":"obs.storage.spec-1"}],"remain":[578],"pool_id":"cn-east-1a_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.627971,"resource_skus":[{"resources":[3,6],"sku":"eip.publicip.spec-2"},{"resources":[1,2],"sku":"eip.publicip.spec-2"}],"remain":[1366],"pool_id":"cn-east-1a_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.3301369,"resource_skus":[{"resources":[3,6],"sku":"eip.publicip.spec-1"},{"resources":[7,14],"sku":"eip.publicip.spec-1"}],"remain":[1026],"pool_id":"cn-east-1a_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.30445844,"resource_skus":[{"resources":[6,12],"sku":"cbr.vault.spec-1"},{"resources":[6,12],"sku":"cbr.vault.spec-1"}],"remain":[1350],"pool_id":"cn-east-1a_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.22372442,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-3"},{"resources":[4,8],"sku":"cbr.vault.spec-3"}],"remain":[547],"pool_id":"cn-east-1a_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.9985047,"resource_skus":[{"resources":[6,12],"sku":"eip.publicip.spec-3"},{"resources":[5,10],"sku":"eip.publicip.spec-3"}],"remain":[918],"pool_id":"cn-east-1a_eip.publicip.spec-3_pool","pool_level":"az"}]},{"az_id":"cn-east-1b","green_level":227,"resource_pools":[{"cost":0.20593584,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-1"},{"resources":[1,2],"sku":"cbr.vault.spec-1"}],"remain":[908],"pool_id":"cn-east-1b_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.22179013,"resource_skus":[{"resources":[7,14],"sku":"eip.publicip.spec-2"},{"resources":[3,6],"sku":"eip.publicip.spec-2"}],"remain":[1361],"pool_id":"cn-east-1b_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.80239147,"resource_skus":[{"resources":[8,16],"sku":"cbr.vault.spec-3"},{"resources":[5,10],"sku":"cbr.vault.spec-3"}],"remain":[979],"pool_id":"cn-east-1b_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.222848,"resource_skus":[{"resources":[5,10],"sku":"obs.storage.spec-3"},{"resources":[7,14],"sku":"obs.storage.spec-3"}],"remain":[1278],"pool_id":"cn-east-1b_obs.storage.spec-3_pool","pool_level":"az"}]},{"az_id":"cn-east-1c","green_level":447,"resource_pools":[{"cost":0.99147856,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-1"},{"resources":[2,4],"sku":"cbr.vault.spec-1"}],"remain":[703],"pool_id":"cn-east-1c_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.62500036,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-2"},{"resources":[1,2],"sku":"cbr.vault.spec-2"}],"remain":[745],"pool_id":"cn-east-1c_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.4790507,"resource_skus":[{"resources":[1,2],"sku":"obs.storage.spec-1"},{"resources":[1,2],"sku":"obs.storage.spec-1"}],"remain":[1126],"pool_id":"cn-east-1c_obs.storage.spec-1_pool","pool_level":"az"}]},{"az_id":"cn-east-1d","green_level":254,"resource_pools":[{"cost":0.59853864,"resource_skus":[{"resources":[2,4],"sku":"obs.storage.spec-1"},{"resources":[8,16],"sku":"obs.storage.spec-1"}],"remain":[524],"pool_id":"cn-east-1d_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.5521433,"resource_skus":[{"resources":[2,4],"sku":"cbr.vault.spec-1"},{"resources":[2,4],"sku":"cbr.vault.spec-1"}],"remain":[1497],"pool_id":"cn-east-1d_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.4738946,"resource_skus":[{"resources":[1,2],"sku":"eip.publicip.spec-1"},{"resources":[6,12],"sku":"eip.publicip.spec-1"}],"remain":[1289],"pool_id":"cn-east-1d_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.8576871,"resource_skus":[{"resources":[2,4],"sku":"obs.storage.spec-2"},{"resources":[6,12],"sku":"obs.storage.spec-2"}],"remain":[1253],"pool_id":"cn-east-1d_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.42238283,"resource_skus":[{"resources":[5,10],"sku":"obs.storage.spec-3"},{"resources":[2,4],"sku":"obs.storage.spec-3"}],"remain":[761],"pool_id":"cn-east-1d_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.40722615,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-2"},{"resources":[6,12],"sku":"cbr.vault.spec-2"}],"remain":[1205],"pool_id":"cn-east-1d_cbr.vault.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-east-1e","green_level":269,"resource_pools":[{"cost":0.9640427,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-1"},{"resources":[3,6],"sku":"cbr.vault.spec-1"}],"remain":[717],"pool_id":"cn-east-1e_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.5927044,"resource_skus":[{"resources":[3,6],"sku":"obs.storage.spec-2"},{"resources":[4,8],"sku":"obs.storage.spec-2"}],"remain":[539],"pool_id":"cn-east-1e_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.9034571,"resource_skus":[{"resources":[5,10],"sku":"eip.publicip.spec-3"},{"resources":[8,16],"sku":"eip.publicip.spec-3"}],"remain":[730],"pool_id":"cn-east-1e_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.67096734,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-2"},{"resources":[1,2],"sku":"cbr.vault.spec-2"}],"remain":[557],"pool_id":"cn-east-1e_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.1599474,"resource_skus":[{"resources":[1,2],"sku":"obs.storage.spec-3"},{"resources":[4,8],"sku":"obs.storage.spec-3"}],"remain":[986],"pool_id":"cn-east-1e_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.76917243,"resource_skus":[{"resources":[6,12],"sku":"cbr.vault.spec-3"},{"resources":[1,2],"sku":"cbr.vault.spec-3"}],"remain":[861],"pool_id":"cn-east-1e_cbr.vault.spec-3_pool","pool_level":"az"}]}],"resourcePools":[{"cost":0.6322384,"resource_skus":[{"sku":"obs.storage.spec-3"}],"remain":[877],"pool_id":"cn-east-1_obs.storage.spec-3_pool","pool_level":"region"},{"cost":0.29369724,"resource_skus":[{"sku":"eip.publicip.spec-1"}],"remain":[724],"pool_id":"cn-east-1_eip.publicip.spec-1_pool","pool_level":"region"},{"cost":0.4040199,"resource_skus":[{"sku":"cbr.vault.spec-1"}],"remain":[1058],"pool_id":"cn-east-1_cbr.vault.spec-1_pool","pool_level":"region"},{"cost":0.27594274,"resource_skus":[{"sku":"cbr.vault.spec-3"}],"remain":[1249],"pool_id":"cn-east-1_cbr.vault.spec-3_pool","pool_level":"region"}]},{"region_id":"cn-east-2","region_level":"1","provision_regions":[{"name":"provision-area-01"}],"access_delaies":[{"accessPoint":"access-point-01","delayValue":42.377895},{"accessPoint":"access-point-02","delayValue":46.28362},{"accessPoint":"access-point-03","delayValue":31.480593},{"accessPoint":"access-point-04","delayValue":126.78866},{"accessPoint":"access-point-05","delayValue":3.1984293}],"azs":[{"az_id":"cn-east-2a","green_level":311,"resource_pools":[{"cost":0.52322906,"resource_skus":[{"resources":[1,2],"sku":"obs.storage.spec-3"},{"resources":[4,8],"sku":"obs.storage.spec-3"}],"remain":[1151],"pool_id":"cn-east-2a_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.54887277,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-1"},{"resources":[1,2],"sku":"cbr.vault.spec-1"}],"remain":[1368],"pool_id":"cn-east-2a_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.8716545,"resource_skus":[{"resources":[6,12],"sku":"eip.publicip.spec-1"},{"resources":[2,4],"sku":"eip.publicip.spec-1"}],"remain":[876],"pool_id":"cn-east-2a_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.24919486,"resource_skus":[{"resources":[7,14],"sku":"obs.storage.spec-2"},{"resources":[2,4],"sku":"obs.storage.spec-2"}],"remain":[724],"pool_id":"cn-east-2a_obs.storage.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-east-2b","green_level":186,"resource_pools":[{"cost":0.719118,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-1"},{"resources":[1,2],"sku":"cbr.vault.spec-1"}],"remain":[594],"pool_id":"cn-east-2b_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.37026983,"resource_skus":[{"resources":[2,4],"sku":"eip.publicip.spec-2"},{"resources":[2,4],"sku":"eip.publicip.spec-2"}],"remain":[911],"pool_id":"cn-east-2b_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.7046304,"resource_skus":[{"resources":[5,10],"sku":"obs.storage.spec-2"},{"resources":[5,10],"sku":"obs.storage.spec-2"}],"remain":[1356],"pool_id":"cn-east-2b_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.6609555,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-2"},{"resources":[7,14],"sku":"cbr.vault.spec-2"}],"remain":[676],"pool_id":"cn-east-2b_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.6207008,"resource_skus":[{"resources":[5,10],"sku":"obs.storage.spec-1"},{"resources":[8,16],"sku":"obs.storage.spec-1"}],"remain":[1299],"pool_id":"cn-east-2b_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.2968756,"resource_skus":[{"resources":[6,12],"sku":"eip.publicip.spec-1"},{"resources":[7,14],"sku":"eip.publicip.spec-1"}],"remain":[516],"pool_id":"cn-east-2b_eip.publicip.spec-1_pool","pool_level":"az"}]},{"az_id":"cn-east-2c","green_level":574,"resource_pools":[{"cost":0.46777815,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-2"},{"resources":[8,16],"sku":"obs.storage.spec-2"}],"remain":[994],"pool_id":"cn-east-2c_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.12957978,"resource_skus":[{"resources":[5,10],"sku":"obs.storage.spec-1"},{"resources":[2,4],"sku":"obs.storage.spec-1"}],"remain":[1297],"pool_id":"cn-east-2c_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.96045893,"resource_skus":[{"resources":[5,10],"sku":"eip.publicip.spec-2"},{"resources":[5,10],"sku":"eip.publicip.spec-2"}],"remain":[1158],"pool_id":"cn-east-2c_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.42997283,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-3"},{"resources":[2,4],"sku":"obs.storage.spec-3"}],"remain":[1413],"pool_id":"cn-east-2c_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.96645755,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-3"},{"resources":[2,4],"sku":"cbr.vault.spec-3"}],"remain":[1031],"pool_id":"cn-east-2c_cbr.vault.spec-3_pool","pool_level":"az"}]},{"az_id":"cn-east-2d","green_level":319,"resource_pools":[{"cost":0.5868412,"resource_skus":[{"resources":[8,16],"sku":"obs.storage.spec-2"},{"resources":[4,8],"sku":"obs.storage.spec-2"}],"remain":[1117],"pool_id":"cn-east-2d_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.07769114,"resource_skus":[{"resources":[7,14],"sku":"obs.storage.spec-1"},{"resources":[6,12],"sku":"obs.storage.spec-1"}],"remain":[1084],"pool_id":"cn-east-2d_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.62263685,"resource_skus":[{"resources":[8,16],"sku":"cbr.vault.spec-2"},{"resources":[7,14],"sku":"cbr.vault.spec-2"}],"remain":[1190],"pool_id":"cn-east-2d_cbr.vault.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-east-2e","green_level":574,"resource_pools":[{"cost":0.35335976,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-1"},{"resources":[2,4],"sku":"cbr.vault.spec-1"}],"remain":[829],"pool_id":"cn-east-2e_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.7575679,"resource_skus":[{"resources":[4,8],"sku":"eip.publicip.spec-3"},{"resources":[7,14],"sku":"eip.publicip.spec-3"}],"remain":[1012],"pool_id":"cn-east-2e_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.9335745,"resource_skus":[{"resources":[1,2],"sku":"obs.storage.spec-2"},{"resources":[4,8],"sku":"obs.storage.spec-2"}],"remain":[1112],"pool_id":"cn-east-2e_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.032554567,"resource_skus":[{"resources":[2,4],"sku":"eip.publicip.spec-2"},{"resources":[3,6],"sku":"eip.publicip.spec-2"}],"remain":[963],"pool_id":"cn-east-2e_eip.publicip.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-east-2f","green_level":503,"resource_pools":[{"cost":0.9527668,"resource_skus":[{"resources":[2,4],"sku":"eip.publicip.spec-2"},{"resources":[7,14],"sku":"eip.publicip.spec-2"}],"remain":[1069],"pool_id":"cn-east-2f_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.68610716,"resource_skus":[{"resources":[2,4],"sku":"obs.storage.spec-3"},{"resources":[4,8],"sku":"obs.storage.spec-3"}],"remain":[1297],"pool_id":"cn-east-2f_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.5241614,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-1"},{"resources":[3,6],"sku":"cbr.vault.spec-1"}],"remain":[793],"pool_id":"cn-east-2f_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.23552,"resource_skus":[{"resources":[7,14],"sku":"obs.storage.spec-1"},{"resources":[8,16],"sku":"obs.storage.spec-1"}],"remain":[943],"pool_id":"cn-east-2f_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.0044884086,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-3"},{"resources":[7,14],"sku":"cbr.vault.spec-3"}],"remain":[1153],"pool_id":"cn-east-2f_cbr.vault.spec-3_pool","pool_level":"az"}]}],"resourcePools":[{"cost":0.88897043,"resource_skus":[{"sku":"obs.storage.spec-1"}],"remain":[1164],"pool_id":"cn-east-2_obs.storage.spec-1_pool","pool_level":"region"},{"cost":0.027167857,"resource_skus":[{"sku":"eip.publicip.spec-3"}],"remain":[1174],"pool_id":"cn-east-2_eip.publicip.spec-3_pool","pool_level":"region"}]},{"region_id":"cn-south-1","region_level":"2","provision_regions":[{"name":"provision-area-01"}],"access_delaies":[{"accessPoint":"access-point-01","delayValue":85.051216},{"accessPoint":"access-point-02","delayValue":46.22195},{"accessPoint":"access-point-03","delayValue":6.831954},{"accessPoint":"access-point-04","delayValue":30.853716},{"accessPoint":"access-point-05","delayValue":3.1033528}],"azs":[{"az_id":"cn-south-1a","green_level":144,"resource_pools":[{"cost":0.2380529,"resource_skus":[{"resources":[4,8],"sku":"obs.storage.spec-1"},{"resources":[7,14],"sku":"obs.storage.spec-1"}],"remain":[660],"pool_id":"cn-south-1a_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.6278603,"resource_skus":[{"resources":[6,12],"sku":"eip.publicip.spec-2"},{"resources":[6,12],"sku":"eip.publicip.spec-2"}],"remain":[740],"pool_id":"cn-south-1a_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.30748826,"resource_skus":[{"resources":[3,6],"sku":"eip.publicip.spec-3"},{"resources":[1,2],"sku":"eip.publicip.spec-3"}],"remain":[927],"pool_id":"cn-south-1a_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.03350413,"resource_skus":[{"resources":[2,4],"sku":"obs.storage.spec-2"},{"resources":[7,14],"sku":"obs.storage.spec-2"}],"remain":[1420],"pool_id":"cn-south-1a_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.71610045,"resource_skus":[{"resources":[8,16],"sku":"eip.publicip.spec-1"},{"resources":[6,12],"sku":"eip.publicip.spec-1"}],"remain":[932],"pool_id":"cn-south-1a_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.8332083,"resource_skus":[{"resources":[2,4],"sku":"cbr.vault.spec-2"},{"resources":[8,16],"sku":"cbr.vault.spec-2"}],"remain":[1178],"pool_id":"cn-south-1a_cbr.vault.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-south-1b","green_level":486,"resource_pools":[{"cost":0.6642873,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-1"},{"resources":[2,4],"sku":"cbr.vault.spec-1"}],"remain":[1297],"pool_id":"cn-south-1b_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.7012253,"resource_skus":[{"resources":[2,4],"sku":"cbr.vault.spec-3"},{"resources":[2,4],"sku":"cbr.vault.spec-3"}],"remain":[858],"pool_id":"cn-south-1b_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.015294194,"resource_skus":[{"resources":[6,12],"sku":"eip.publicip.spec-3"},{"resources":[7,14],"sku":"eip.publicip.spec-3"}],"remain":[1238],"pool_id":"cn-south-1b_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.2101928,"resource_skus":[{"resources":[3,6],"sku":"cbr.vault.spec-2"},{"resources":[4,8],"sku":"cbr.vault.spec-2"}],"remain":[1354],"pool_id":"cn-south-1b_cbr.vault.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-south-1c","green_level":295,"resource_pools":[{"cost":0.69253343,"resource_skus":[{"resources":[8,16],"sku":"eip.publicip.spec-3"},{"resources":[5,10],"sku":"eip.publicip.spec-3"}],"remain":[1323],"pool_id":"cn-south-1c_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.55418366,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-3"},{"resources":[2,4],"sku":"cbr.vault.spec-3"}],"remain":[1414],"pool_id":"cn-south-1c_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.6362593,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-2"},{"resources":[5,10],"sku":"cbr.vault.spec-2"}],"remain":[579],"pool_id":"cn-south-1c_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.13120598,"resource_skus":[{"resources":[2,4],"sku":"eip.publicip.spec-1"},{"resources":[5,10],"sku":"eip.publicip.spec-1"}],"remain":[571],"pool_id":"cn-south-1c_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.23244166,"resource_skus":[{"resources":[7,14],"sku":"obs.storage.spec-1"},{"resources":[7,14],"sku":"obs.storage.spec-1"}],"remain":[937],"pool_id":"cn-south-1c_obs.storage.spec-1_pool","pool_level":"az"}]},{"az_id":"cn-south-1d","green_level":330,"resource_pools":[{"cost":0.008422554,"resource_skus":[{"resources":[7,14],"sku":"eip.publicip.spec-3"},{"resources":[4,8],"sku":"eip.publicip.spec-3"}],"remain":[1031],"pool_id":"cn-south-1d_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.68578345,"resource_skus":[{"resources":[1,2],"sku":"eip.publicip.spec-2"},{"resources":[3,6],"sku":"eip.publicip.spec-2"}],"remain":[943],"pool_id":"cn-south-1d_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.10344142,"resource_skus":[{"resources":[4,8],"sku":"obs.storage.spec-2"},{"resources":[2,4],"sku":"obs.storage.spec-2"}],"remain":[958],"pool_id":"cn-south-1d_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.07299721,"resource_skus":[{"resources":[4,8],"sku":"obs.storage.spec-3"},{"resources":[7,14],"sku":"obs.storage.spec-3"}],"remain":[958],"pool_id":"cn-south-1d_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.070305824,"resource_skus":[{"resources":[6,12],"sku":"cbr.vault.spec-2"},{"resources":[5,10],"sku":"cbr.vault.spec-2"}],"remain":[537],"pool_id":"cn-south-1d_cbr.vault.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-south-1e","green_level":552,"resource_pools":[{"cost":0.5855647,"resource_skus":[{"resources":[8,16],"sku":"eip.publicip.spec-1"},{"resources":[5,10],"sku":"eip.publicip.spec-1"}],"remain":[1108],"pool_id":"cn-south-1e_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.87517303,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-3"},{"resources":[8,16],"sku":"cbr.vault.spec-3"}],"remain":[1155],"pool_id":"cn-south-1e_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.32275623,"resource_skus":[{"resources":[4,8],"sku":"eip.publicip.spec-3"},{"resources":[1,2],"sku":"eip.publicip.spec-3"}],"remain":[1148],"pool_id":"cn-south-1e_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.4507751,"resource_skus":[{"resources":[2,4],"sku":"eip.publicip.spec-2"},{"resources":[4,8],"sku":"eip.publicip.spec-2"}],"remain":[815],"pool_id":"cn-south-1e_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.49270046,"resource_skus":[{"resources":[4,8],"sku":"obs.storage.spec-3"},{"resources":[1,2],"sku":"obs.storage.spec-3"}],"remain":[974],"pool_id":"cn-south-1e_obs.storage.spec-3_pool","pool_level":"az"}]}],"resourcePools":[{"cost":0.86069196,"resource_skus":[{"sku":"eip.publicip.spec-3"}],"remain":[1379],"pool_id":"cn-south-1_eip.publicip.spec-3_pool","pool_level":"region"},{"cost":0.2684592,"resource_skus":[{"sku":"obs.storage.spec-1"}],"remain":[569],"pool_id":"cn-south-1_obs.storage.spec-1_pool","pool_level":"region"},{"cost":0.40562236,"resource_skus":[{"sku":"cbr.vault.spec-2"}],"remain":[668],"pool_id":"cn-south-1_cbr.vault.spec-2_pool","pool_level":"region"},{"cost":0.75753576,"resource_skus":[{"sku":"obs.storage.spec-3"}],"remain":[1023],"pool_id":"cn-south-1_obs.storage.spec-3_pool","pool_level":"region"}]},{"region_id":"cn-south-2","region_level":"1","provision_regions":[{"name":"provision-area-05"}],"access_delaies":[{"accessPoint":"access-point-01","delayValue":4.067779},{"accessPoint":"access-point-02","delayValue":29.223545},{"accessPoint":"access-point-03","delayValue":21.016768},{"accessPoint":"access-point-04","delayValue":47.19561},{"accessPoint":"access-point-05","delayValue":16.008701}],"azs":[{"az_id":"cn-south-2a","green_level":362,"resource_pools":[{"cost":0.2109167,"resource_skus":[{"resources":[5,10],"sku":"eip.publicip.spec-1"},{"resources":[8,16],"sku":"eip.publicip.spec-1"}],"remain":[1366],"pool_id":"cn-south-2a_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.4148695,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-1"},{"resources":[2,4],"sku":"obs.storage.spec-1"}],"remain":[1160],"pool_id":"cn-south-2a_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.81216514,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-3"},{"resources":[1,2],"sku":"cbr.vault.spec-3"}],"remain":[1486],"pool_id":"cn-south-2a_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.65046215,"resource_skus":[{"resources":[6,12],"sku":"eip.publicip.spec-2"},{"resources":[2,4],"sku":"eip.publicip.spec-2"}],"remain":[688],"pool_id":"cn-south-2a_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.9137584,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-1"},{"resources":[7,14],"sku":"cbr.vault.spec-1"}],"remain":[1257],"pool_id":"cn-south-2a_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.38036066,"resource_skus":[{"resources":[8,16],"sku":"cbr.vault.spec-2"},{"resources":[6,12],"sku":"cbr.vault.spec-2"}],"remain":[954],"pool_id":"cn-south-2a_cbr.vault.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-south-2b","green_level":32,"resource_pools":[{"cost":0.5296741,"resource_skus":[{"resources":[7,14],"sku":"obs.storage.spec-1"},{"resources":[5,10],"sku":"obs.storage.spec-1"}],"remain":[1023],"pool_id":"cn-south-2b_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.14134228,"resource_skus":[{"resources":[3,6],"sku":"eip.publicip.spec-2"},{"resources":[2,4],"sku":"eip.publicip.spec-2"}],"remain":[1000],"pool_id":"cn-south-2b_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.8493141,"resource_skus":[{"resources":[6,12],"sku":"cbr.vault.spec-1"},{"resources":[4,8],"sku":"cbr.vault.spec-1"}],"remain":[1134],"pool_id":"cn-south-2b_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.21018505,"resource_skus":[{"resources":[3,6],"sku":"obs.storage.spec-2"},{"resources":[1,2],"sku":"obs.storage.spec-2"}],"remain":[982],"pool_id":"cn-south-2b_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.6630204,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-3"},{"resources":[4,8],"sku":"cbr.vault.spec-3"}],"remain":[1491],"pool_id":"cn-south-2b_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.9253991,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-2"},{"resources":[1,2],"sku":"cbr.vault.spec-2"}],"remain":[1021],"pool_id":"cn-south-2b_cbr.vault.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-south-2c","green_level":363,"resource_pools":[{"cost":0.18491352,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-2"},{"resources":[3,6],"sku":"obs.storage.spec-2"}],"remain":[1117],"pool_id":"cn-south-2c_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.41623664,"resource_skus":[{"resources":[2,4],"sku":"eip.publicip.spec-2"},{"resources":[1,2],"sku":"eip.publicip.spec-2"}],"remain":[993],"pool_id":"cn-south-2c_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.76408064,"resource_skus":[{"resources":[3,6],"sku":"cbr.vault.spec-1"},{"resources":[5,10],"sku":"cbr.vault.spec-1"}],"remain":[1483],"pool_id":"cn-south-2c_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.35378945,"resource_skus":[{"resources":[8,16],"sku":"obs.storage.spec-3"},{"resources":[2,4],"sku":"obs.storage.spec-3"}],"remain":[1157],"pool_id":"cn-south-2c_obs.storage.spec-3_pool","pool_level":"az"}]},{"az_id":"cn-south-2d","green_level":275,"resource_pools":[{"cost":0.4577657,"resource_skus":[{"resources":[8,16],"sku":"obs.storage.spec-1"},{"resources":[1,2],"sku":"obs.storage.spec-1"}],"remain":[823],"pool_id":"cn-south-2d_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.22134691,"resource_skus":[{"resources":[3,6],"sku":"eip.publicip.spec-3"},{"resources":[4,8],"sku":"eip.publicip.spec-3"}],"remain":[1281],"pool_id":"cn-south-2d_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.6445733,"resource_skus":[{"resources":[3,6],"sku":"cbr.vault.spec-3"},{"resources":[4,8],"sku":"cbr.vault.spec-3"}],"remain":[1205],"pool_id":"cn-south-2d_cbr.vault.spec-3_pool","pool_level":"az"}]},{"az_id":"cn-south-2e","green_level":434,"resource_pools":[{"cost":0.38410115,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-1"},{"resources":[3,6],"sku":"cbr.vault.spec-1"}],"remain":[875],"pool_id":"cn-south-2e_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.72397447,"resource_skus":[{"resources":[6,12],"sku":"eip.publicip.spec-3"},{"resources":[6,12],"sku":"eip.publicip.spec-3"}],"remain":[981],"pool_id":"cn-south-2e_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.13048345,"resource_skus":[{"resources":[5,10],"sku":"obs.storage.spec-1"},{"resources":[3,6],"sku":"obs.storage.spec-1"}],"remain":[1218],"pool_id":"cn-south-2e_obs.storage.spec-1_pool","pool_level":"az"}]},{"az_id":"cn-south-2f","green_level":345,"resource_pools":[{"cost":0.7199295,"resource_skus":[{"resources":[3,6],"sku":"cbr.vault.spec-2"},{"resources":[2,4],"sku":"cbr.vault.spec-2"}],"remain":[920],"pool_id":"cn-south-2f_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.4145761,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-3"},{"resources":[1,2],"sku":"cbr.vault.spec-3"}],"remain":[915],"pool_id":"cn-south-2f_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.4367602,"resource_skus":[{"resources":[8,16],"sku":"obs.storage.spec-1"},{"resources":[8,16],"sku":"obs.storage.spec-1"}],"remain":[846],"pool_id":"cn-south-2f_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.08751625,"resource_skus":[{"resources":[8,16],"sku":"eip.publicip.spec-3"},{"resources":[5,10],"sku":"eip.publicip.spec-3"}],"remain":[1402],"pool_id":"cn-south-2f_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.06813377,"resource_skus":[{"resources":[4,8],"sku":"eip.publicip.spec-2"},{"resources":[1,2],"sku":"eip.publicip.spec-2"}],"remain":[608],"pool_id":"cn-south-2f_eip.publicip.spec-2_pool","pool_level":"az"}]}],"resourcePools":[{"cost":0.9340097,"resource_skus":[{"sku":"eip.publicip.spec-2"}],"remain":[1290],"pool_id":"cn-south-2_eip.publicip.spec-2_pool","pool_level":"region"},{"cost":0.6260132,"resource_skus":[{"sku":"cbr.vault.spec-1"}],"remain":[839],"pool_id":"cn-south-2_cbr.vault.spec-1_pool","pool_level":"region"}]},{"region_id":"cn-southeast-1","region_level":"1","provision_regions":[{"name":"provision-area-02"}],"access_delaies":[{"accessPoint":"access-point-01","delayValue":45.27534},{"accessPoint":"access-point-02","delayValue":55.44682},{"accessPoint":"access-point-03","delayValue":23.243935},{"accessPoint":"access-point-04","delayValue":69.5371},{"accessPoint":"access-point-05","delayValue":18.695982}],"azs":[{"az_id":"cn-southeast-1a","green_level":267,"resource_pools":[{"cost":0.28972363,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-1"},{"resources":[4,8],"sku":"obs.storage.spec-1"}],"remain":[773],"pool_id":"cn-southeast-1a_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.64508206,"resource_skus":[{"resources":[1,2],"sku":"obs.storage.spec-2"},{"resources":[8,16],"sku":"obs.storage.spec-2"}],"remain":[765],"pool_id":"cn-southeast-1a_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.49249208,"resource_skus":[{"resources":[8,16],"sku":"eip.publicip.spec-2"},{"resources":[2,4],"sku":"eip.publicip.spec-2"}],"remain":[818],"pool_id":"cn-southeast-1a_eip.publicip.spec-2_pool","pool_level":"az"}]},{"az_id":"cn-southeast-1b","green_level":545,"resource_pools":[{"cost":0.48794234,"resource_skus":[{"resources":[8,16],"sku":"cbr.vault.spec-2"},{"resources":[7,14],"sku":"cbr.vault.spec-2"}],"remain":[826],"pool_id":"cn-southeast-1b_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.8957118,"resource_skus":[{"resources":[4,8],"sku":"obs.storage.spec-1"},{"resources":[6,12],"sku":"obs.storage.spec-1"}],"remain":[1413],"pool_id":"cn-southeast-1b_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.14710313,"resource_skus":[{"resources":[2,4],"sku":"obs.storage.spec-3"},{"resources":[1,2],"sku":"obs.storage.spec-3"}],"remain":[666],"pool_id":"cn-southeast-1b_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.33811212,"resource_skus":[{"resources":[5,10],"sku":"eip.publicip.spec-3"},{"resources":[5,10],"sku":"eip.publicip.spec-3"}],"remain":[761],"pool_id":"cn-southeast-1b_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.44208002,"resource_skus":[{"resources":[2,4],"sku":"eip.publicip.spec-1"},{"resources":[8,16],"sku":"eip.publicip.spec-1"}],"remain":[935],"pool_id":"cn-southeast-1b_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.7459536,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-3"},{"resources":[8,16],"sku":"cbr.vault.spec-3"}],"remain":[1060],"pool_id":"cn-southeast-1b_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.820852,"resource_skus":[{"resources":[7,14],"sku":"obs.storage.spec-2"},{"resources":[2,4],"sku":"obs.storage.spec-2"}],"remain":[1185],"pool_id":"cn-southeast-1b_obs.storage.spec-2_pool","pool_level":"az"}]}],"resourcePools":[{"cost":0.8062305,"resource_skus":[{"sku":"obs.storage.spec-3"}],"remain":[1064],"pool_id":"cn-southeast-1_obs.storage.spec-3_pool","pool_level":"region"},{"cost":0.22306806,"resource_skus":[{"sku":"eip.publicip.spec-1"}],"remain":[1107],"pool_id":"cn-southeast-1_eip.publicip.spec-1_pool","pool_level":"region"},{"cost":0.85456544,"resource_skus":[{"sku":"cbr.vault.spec-2"}],"remain":[897],"pool_id":"cn-southeast-1_cbr.vault.spec-2_pool","pool_level":"region"}]},{"region_id":"cn-southeast-2","region_level":"2","provision_regions":[{"name":"provision-area-01"}],"access_delaies":[{"accessPoint":"access-point-01","delayValue":103.104996},{"accessPoint":"access-point-02","delayValue":65.287415},{"accessPoint":"access-point-03","delayValue":38.351665},{"accessPoint":"access-point-04","delayValue":44.14907},{"accessPoint":"access-point-05","delayValue":68.28266}],"azs":[{"az_id":"cn-southeast-2a","green_level":162,"resource_pools":[{"cost":0.008417308,"resource_skus":[{"resources":[1,2],"sku":"eip.publicip.spec-3"},{"resources":[5,10],"sku":"eip.publicip.spec-3"}],"remain":[1498],"pool_id":"cn-southeast-2a_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.14942497,"resource_skus":[{"resources":[8,16],"sku":"obs.storage.spec-3"},{"resources":[6,12],"sku":"obs.storage.spec-3"}],"remain":[555],"pool_id":"cn-southeast-2a_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.8406571,"resource_skus":[{"resources":[1,2],"sku":"cbr.vault.spec-2"},{"resources":[5,10],"sku":"cbr.vault.spec-2"}],"remain":[1288],"pool_id":"cn-southeast-2a_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.94813794,"resource_skus":[{"resources":[4,8],"sku":"obs.storage.spec-1"},{"resources":[7,14],"sku":"obs.storage.spec-1"}],"remain":[1286],"pool_id":"cn-southeast-2a_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.14942127,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-3"},{"resources":[8,16],"sku":"cbr.vault.spec-3"}],"remain":[841],"pool_id":"cn-southeast-2a_cbr.vault.spec-3_pool","pool_level":"az"}]},{"az_id":"cn-southeast-2b","green_level":240,"resource_pools":[{"cost":0.71927005,"resource_skus":[{"resources":[1,2],"sku":"obs.storage.spec-2"},{"resources":[6,12],"sku":"obs.storage.spec-2"}],"remain":[1091],"pool_id":"cn-southeast-2b_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.85103136,"resource_skus":[{"resources":[4,8],"sku":"eip.publicip.spec-2"},{"resources":[8,16],"sku":"eip.publicip.spec-2"}],"remain":[952],"pool_id":"cn-southeast-2b_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.8384295,"resource_skus":[{"resources":[8,16],"sku":"cbr.vault.spec-1"},{"resources":[3,6],"sku":"cbr.vault.spec-1"}],"remain":[943],"pool_id":"cn-southeast-2b_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.29843616,"resource_skus":[{"resources":[6,12],"sku":"cbr.vault.spec-3"},{"resources":[7,14],"sku":"cbr.vault.spec-3"}],"remain":[1353],"pool_id":"cn-southeast-2b_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.23852623,"resource_skus":[{"resources":[3,6],"sku":"obs.storage.spec-1"},{"resources":[5,10],"sku":"obs.storage.spec-1"}],"remain":[1351],"pool_id":"cn-southeast-2b_obs.storage.spec-1_pool","pool_level":"az"}]},{"az_id":"cn-southeast-2c","green_level":481,"resource_pools":[{"cost":0.14656502,"resource_skus":[{"resources":[4,8],"sku":"eip.publicip.spec-3"},{"resources":[5,10],"sku":"eip.publicip.spec-3"}],"remain":[1057],"pool_id":"cn-southeast-2c_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.009954989,"resource_skus":[{"resources":[7,14],"sku":"eip.publicip.spec-1"},{"resources":[4,8],"sku":"eip.publicip.spec-1"}],"remain":[543],"pool_id":"cn-southeast-2c_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.04841727,"resource_skus":[{"resources":[6,12],"sku":"cbr.vault.spec-3"},{"resources":[1,2],"sku":"cbr.vault.spec-3"}],"remain":[618],"pool_id":"cn-southeast-2c_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.9257617,"resource_skus":[{"resources":[8,16],"sku":"obs.storage.spec-3"},{"resources":[8,16],"sku":"obs.storage.spec-3"}],"remain":[1025],"pool_id":"cn-southeast-2c_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.32793325,"resource_skus":[{"resources":[8,16],"sku":"cbr.vault.spec-1"},{"resources":[3,6],"sku":"cbr.vault.spec-1"}],"remain":[650],"pool_id":"cn-southeast-2c_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.10532606,"resource_skus":[{"resources":[6,12],"sku":"cbr.vault.spec-2"},{"resources":[5,10],"sku":"cbr.vault.spec-2"}],"remain":[904],"pool_id":"cn-southeast-2c_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.14382839,"resource_skus":[{"resources":[8,16],"sku":"obs.storage.spec-1"},{"resources":[2,4],"sku":"obs.storage.spec-1"}],"remain":[705],"pool_id":"cn-southeast-2c_obs.storage.spec-1_pool","pool_level":"az"}]}],"resourcePools":[{"cost":0.14289933,"resource_skus":[{"sku":"cbr.vault.spec-1"}],"remain":[1175],"pool_id":"cn-southeast-2_cbr.vault.spec-1_pool","pool_level":"region"},{"cost":0.19499838,"resource_skus":[{"sku":"obs.storage.spec-2"}],"remain":[720],"pool_id":"cn-southeast-2_obs.storage.spec-2_pool","pool_level":"region"}]},{"region_id":"ap-southeast-1","region_level":"1","provision_regions":[{"name":"provision-area-02"}],"access_delaies":[{"accessPoint":"access-point-01","delayValue":34.99224},{"accessPoint":"access-point-02","delayValue":1.4789518},{"accessPoint":"access-point-03","delayValue":23.943296},{"accessPoint":"access-point-04","delayValue":46.141716},{"accessPoint":"access-point-05","delayValue":42.66531}],"azs":[{"az_id":"ap-southeast-1a","green_level":422,"resource_pools":[{"cost":0.7844179,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-3"},{"resources":[8,16],"sku":"obs.storage.spec-3"}],"remain":[632],"pool_id":"ap-southeast-1a_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.09943402,"resource_skus":[{"resources":[6,12],"sku":"cbr.vault.spec-3"},{"resources":[6,12],"sku":"cbr.vault.spec-3"}],"remain":[896],"pool_id":"ap-southeast-1a_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.5582179,"resource_skus":[{"resources":[4,8],"sku":"eip.publicip.spec-1"},{"resources":[5,10],"sku":"eip.publicip.spec-1"}],"remain":[1224],"pool_id":"ap-southeast-1a_eip.publicip.spec-1_pool","pool_level":"az"}]},{"az_id":"ap-southeast-1b","green_level":440,"resource_pools":[{"cost":0.45590347,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-3"},{"resources":[1,2],"sku":"obs.storage.spec-3"}],"remain":[1076],"pool_id":"ap-southeast-1b_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.14023173,"resource_skus":[{"resources":[3,6],"sku":"eip.publicip.spec-3"},{"resources":[4,8],"sku":"eip.publicip.spec-3"}],"remain":[901],"pool_id":"ap-southeast-1b_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.96747273,"resource_skus":[{"resources":[4,8],"sku":"obs.storage.spec-2"},{"resources":[8,16],"sku":"obs.storage.spec-2"}],"remain":[545],"pool_id":"ap-southeast-1b_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.7448931,"resource_skus":[{"resources":[7,14],"sku":"eip.publicip.spec-1"},{"resources":[1,2],"sku":"eip.publicip.spec-1"}],"remain":[564],"pool_id":"ap-southeast-1b_eip.publicip.spec-1_pool","pool_level":"az"}]},{"az_id":"ap-southeast-1c","green_level":474,"resource_pools":[{"cost":0.8891385,"resource_skus":[{"resources":[1,2],"sku":"eip.publicip.spec-3"},{"resources":[3,6],"sku":"eip.publicip.spec-3"}],"remain":[1141],"pool_id":"ap-southeast-1c_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.68335193,"resource_skus":[{"resources":[1,2],"sku":"eip.publicip.spec-2"},{"resources":[3,6],"sku":"eip.publicip.spec-2"}],"remain":[525],"pool_id":"ap-southeast-1c_eip.publicip.spec-2_pool","pool_level":"az"},{"cost":0.028473914,"resource_skus":[{"resources":[1,2],"sku":"obs.storage.spec-2"},{"resources":[8,16],"sku":"obs.storage.spec-2"}],"remain":[817],"pool_id":"ap-southeast-1c_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.96107554,"resource_skus":[{"resources":[5,10],"sku":"obs.storage.spec-1"},{"resources":[8,16],"sku":"obs.storage.spec-1"}],"remain":[512],"pool_id":"ap-southeast-1c_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.52258325,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-1"},{"resources":[2,4],"sku":"cbr.vault.spec-1"}],"remain":[1197],"pool_id":"ap-southeast-1c_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.3637715,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-3"},{"resources":[7,14],"sku":"obs.storage.spec-3"}],"remain":[686],"pool_id":"ap-southeast-1c_obs.storage.spec-3_pool","pool_level":"az"}]},{"az_id":"ap-southeast-1d","green_level":97,"resource_pools":[{"cost":0.10819751,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-1"},{"resources":[7,14],"sku":"cbr.vault.spec-1"}],"remain":[1042],"pool_id":"ap-southeast-1d_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.66286206,"resource_skus":[{"resources":[8,16],"sku":"cbr.vault.spec-2"},{"resources":[7,14],"sku":"cbr.vault.spec-2"}],"remain":[1075],"pool_id":"ap-southeast-1d_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.5658147,"resource_skus":[{"resources":[4,8],"sku":"eip.publicip.spec-3"},{"resources":[4,8],"sku":"eip.publicip.spec-3"}],"remain":[697],"pool_id":"ap-southeast-1d_eip.publicip.spec-3_pool","pool_level":"az"},{"cost":0.74785,"resource_skus":[{"resources":[8,16],"sku":"obs.storage.spec-1"},{"resources":[5,10],"sku":"obs.storage.spec-1"}],"remain":[713],"pool_id":"ap-southeast-1d_obs.storage.spec-1_pool","pool_level":"az"}]},{"az_id":"ap-southeast-1e","green_level":284,"resource_pools":[{"cost":0.7989922,"resource_skus":[{"resources":[3,6],"sku":"cbr.vault.spec-2"},{"resources":[1,2],"sku":"cbr.vault.spec-2"}],"remain":[507],"pool_id":"ap-southeast-1e_cbr.vault.spec-2_pool","pool_level":"az"},{"cost":0.6200829,"resource_skus":[{"resources":[3,6],"sku":"eip.publicip.spec-1"},{"resources":[1,2],"sku":"eip.publicip.spec-1"}],"remain":[1008],"pool_id":"ap-southeast-1e_eip.publicip.spec-1_pool","pool_level":"az"},{"cost":0.31987256,"resource_skus":[{"resources":[4,8],"sku":"cbr.vault.spec-1"},{"resources":[4,8],"sku":"cbr.vault.spec-1"}],"remain":[997],"pool_id":"ap-southeast-1e_cbr.vault.spec-1_pool","pool_level":"az"},{"cost":0.093873024,"resource_skus":[{"resources":[4,8],"sku":"obs.storage.spec-3"},{"resources":[4,8],"sku":"obs.storage.spec-3"}],"remain":[1031],"pool_id":"ap-southeast-1e_obs.storage.spec-3_pool","pool_level":"az"}]}],"resourcePools":[{"cost":0.841772,"resource_skus":[{"sku":"cbr.vault.spec-2"}],"remain":[769],"pool_id":"ap-southeast-1_cbr.vault.spec-2_pool","pool_level":"region"},{"cost":0.23358762,"resource_skus":[{"sku":"eip.publicip.spec-3"}],"remain":[1011],"pool_id":"ap-southeast-1_eip.publicip.spec-3_pool","pool_level":"region"},{"cost":0.110559165,"resource_skus":[{"sku":"eip.publicip.spec-1"}],"remain":[1340],"pool_id":"ap-southeast-1_eip.publicip.spec-1_pool","pool_level":"region"}]},{"region_id":"ap-southeast-2","region_level":"1","provision_regions":[{"name":"provision-area-03"}],"access_delaies":[{"accessPoint":"access-point-01","delayValue":28.460503},{"accessPoint":"access-point-02","delayValue":17.46353},{"accessPoint":"access-point-03","delayValue":3.148908},{"accessPoint":"access-point-04","delayValue":93.44088},{"accessPoint":"access-point-05","delayValue":47.035805}],"azs":[{"az_id":"ap-southeast-2a","green_level":172,"resource_pools":[{"cost":0.8747375,"resource_skus":[{"resources":[8,16],"sku":"obs.storage.spec-3"},{"resources":[7,14],"sku":"obs.storage.spec-3"}],"remain":[559],"pool_id":"ap-southeast-2a_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.47651464,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-3"},{"resources":[7,14],"sku":"cbr.vault.spec-3"}],"remain":[966],"pool_id":"ap-southeast-2a_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.009220302,"resource_skus":[{"resources":[1,2],"sku":"obs.storage.spec-2"},{"resources":[6,12],"sku":"obs.storage.spec-2"}],"remain":[651],"pool_id":"ap-southeast-2a_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.88127345,"resource_skus":[{"resources":[7,14],"sku":"obs.storage.spec-1"},{"resources":[6,12],"sku":"obs.storage.spec-1"}],"remain":[1062],"pool_id":"ap-southeast-2a_obs.storage.spec-1_pool","pool_level":"az"}]},{"az_id":"ap-southeast-2b","green_level":360,"resource_pools":[{"cost":0.18468153,"resource_skus":[{"resources":[5,10],"sku":"obs.storage.spec-1"},{"resources":[8,16],"sku":"obs.storage.spec-1"}],"remain":[561],"pool_id":"ap-southeast-2b_obs.storage.spec-1_pool","pool_level":"az"},{"cost":0.9490982,"resource_skus":[{"resources":[3,6],"sku":"obs.storage.spec-3"},{"resources":[8,16],"sku":"obs.storage.spec-3"}],"remain":[884],"pool_id":"ap-southeast-2b_obs.storage.spec-3_pool","pool_level":"az"},{"cost":0.9513447,"resource_skus":[{"resources":[5,10],"sku":"cbr.vault.spec-3"},{"resources":[1,2],"sku":"cbr.vault.spec-3"}],"remain":[544],"pool_id":"ap-southeast-2b_cbr.vault.spec-3_pool","pool_level":"az"},{"cost":0.5260276,"resource_skus":[{"resources":[6,12],"sku":"obs.storage.spec-2"},{"resources":[4,8],"sku":"obs.storage.spec-2"}],"remain":[710],"pool_id":"ap-southeast-2b_obs.storage.spec-2_pool","pool_level":"az"},{"cost":0.5734838,"resource_skus":[{"resources":[7,14],"sku":"cbr.vault.spec-2"},{"resources":[6,12],"sku":"cbr.vault.spec-2"}],"remain":[718],"pool_id":"ap-southeast-2b_cbr.vault.spec-2_pool","pool_level":"az"}]}],"resourcePools":[{"cost":0.829362,"resource_skus":[{"sku":"cbr.vault.spec-1"}],"remain":[1336],"pool_id":"ap-southeast-2_cbr.vault.spec-1_pool","pool_level":"region"},{"cost":0.061198413,"resource_skus":[{"sku":"obs.storage.spec-3"}],"remain":[817],"pool_id":"ap-southeast-2_obs.storage.spec-3_pool","pool_level":"region"},{"cost":0.8071122,"resource_skus":[{"sku":"eip.publicip.spec-1"}],"remain":[1120],"pool_id":"ap-southeast-2_eip.publicip.spec-1_pool","pool_level":"region"},{"cost":0.99715406,"resource_skus":[{"sku":"eip.publicip.spec-2"}],"remain":[1142],"pool_id":"ap-southeast-2_eip.publicip.spec-2_pool","pool_level":"region"}]}]}

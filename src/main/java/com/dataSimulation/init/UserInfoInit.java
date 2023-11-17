@@ -33,17 +33,17 @@ public class UserInfoInit {
         //随机设置单个用户请求中的亲和组个数：1~20
         int group_num = random.nextInt(1, 21);
         //按照随机设置的亲和组个数，初始化亲和组名的列表，group1-num
-        String[] groupName = new String[group_num + 1];
+        String[] groupID = new String[group_num + 1];
         for (int i = 1; i <= group_num; i++) {
             String group_seq = (i < 10) ? "0" + Integer.toString(i) : Integer.toString(i);
             String group_id = String.format("group-%s", group_seq);
-            groupName[i] = group_id;
+            groupID[i] = group_id;
         }
 
         //初始化userInfo对象并开始对它进行赋值
         UserInfo u = new UserInfo();
         //有哪些亲和组
-        //u.setGroupName(groupName);
+        //u.setGroupName(groupID);
 
 
         //用户的接入参考点，目前是单个接入参考点
@@ -66,8 +66,8 @@ public class UserInfoInit {
                 if (relax_factor < 0.2)
                     continue;
                 else {
-                    String source_group = groupName[i];
-                    String destination_group = groupName[j];
+                    String source_group = groupID[i];
+                    String destination_group = groupID[j];
                     float latency = 5.0f + random.nextFloat() * (200.0f - 5.0f);
                     float peak_bandwidth = 1.0f + random.nextFloat() * (1000.0f - 1.0f);
                     u.set_nw_qos_of_affinity_group(source_group, destination_group, latency, peak_bandwidth);
@@ -88,7 +88,7 @@ public class UserInfoInit {
         while (comp_affinity_group.size() < dr_combination_num) {
             ArrayList<String> comb = new ArrayList<>();
             //随机选取几个不重复的通信亲和组进入comb
-            List<String> shuffledList = Arrays.asList(Arrays.copyOfRange(groupName, 1, group_num + 1));
+            List<String> shuffledList = Arrays.asList(Arrays.copyOfRange(groupID, 1, group_num + 1));
             Collections.shuffle(shuffledList);
             for (int j = 0; j < dr_comb_inner_num; j++) {
                 comb.add(shuffledList.get(j));
@@ -106,7 +106,7 @@ public class UserInfoInit {
 
         //随机设置每一个亲和组内部的资源需求
         for (int i = 1; i <= group_num; i++) {
-            String group_name = groupName[i];
+            String group_name = groupID[i];
             String delay_circle = DELAY_CIRCLE[random.nextInt(3)];
             ArrayList<String> sku = new ArrayList<>();
             ArrayList<Integer> sku_amount = new ArrayList<>();

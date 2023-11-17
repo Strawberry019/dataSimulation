@@ -2,7 +2,9 @@ package com.dataSimulation.init;
 
 import java.util.*;
 import com.dataSimulation.model.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -27,37 +29,41 @@ public class CloudInfoInit {
                 "cbr.vault.spec-1", "cbr.vault.spec-2", "cbr.vault.spec-3"
         };
 
+        final String[] sku_with_sharedPool = {
+                "ecs.vm.spec","evs.volume.spec"
+        };
+
         CloudInfo c = new CloudInfo();
         Random random = new Random();
-        List<String> regions = new ArrayList<>();
 
         int regionsPerArea = 200;
         String[] areas = {"cn-north", "cn-east", "cn-south", "cn-southeast", "ap-southeast"};
-
-        // Add regions for each area
+        ArrayList<String> regionID = new ArrayList<>();
+        //随机设置每个大的area内的region
         for (String area : areas) {
-            for (int i = 1; i <= regionsPerArea; i++) {
+            for (int i = 1; i <= 2/*regionsPerArea*/; i++) {
                 Region r = new Region();
                 //设置Region ID
                 String region_id = area  + "-" + i;
+                regionID.add(region_id);
                 r.setRegion_id(region_id);
 
-                // 设置Region为东部/西部Region
+                //随机设置Region为东部/西部Region
                 int level = random.nextInt(10) < 6 ? 1 : 2;
                 r.setRegion_level(String.valueOf(level));
 
-                //设置provision区域
+                //随机设置provision区域
                 ArrayList<String> provision_regions = new ArrayList<>();
                 provision_regions.add(PROVISION_AREA[random.nextInt(5)]);
                 r.setProvision_regions(provision_regions);
 
-                //设置区域级别资源池,随机2-5个
+                //随机设置区域级别资源池,随机2-5个
                 List<String> shuffledRegionLevelSku = Arrays.asList(sku_of_RegionLevel);
                 Collections.shuffle(shuffledRegionLevelSku);
                 for(int j = 0; j < random.nextInt(2,6); j++ ){
                     String sku_name = shuffledRegionLevelSku.get(j);
-                    String pool_id = area + "_" + sku_name +  "_"+"pool";
-                    String pool_level = "region_id";
+                    String pool_id = r.getRegion_id() + "_" + sku_name +  "_"+"pool";
+                    String pool_level = "region";
                     float cost = random.nextFloat();
                     ArrayList<Integer> remain = new ArrayList<>();
                     remain.add(random.nextInt(500,1500));
@@ -68,12 +74,12 @@ public class CloudInfoInit {
                     r.setResourcePools(region_level_pool);
                 }
 
-                //设置Region到各个接入参考点的时延
+                //随机设置Region到各个接入参考点的时延
                 for(int j = 0; j < ACCESS_POINT.length; j++){
                     r.setAccess_delaies(ACCESS_POINT[j],random.nextFloat(5.0f + random.nextFloat() * (200.0f - 5.0f)));
                 }
 
-                //设置Region中的可用区数量
+                //随机设置Region中的可用区数量
                 List<List<String>> az_list = new ArrayList<>();
                 int az_per_region = random.nextInt(5) + 2;
                 List<String> tempAzList = new ArrayList<>();
@@ -83,23 +89,80 @@ public class CloudInfoInit {
                     tempAzList.add(formattedString);
                 }
                 az_list.add(tempAzList);
+                //下面的循环处理每个Region中Az的初始化
                 for(int j = 0; j < az_list.size(); j++){
+                    //下面的循环处理每个Az中资源池的初始化
                     for(int k = 0; k < az_list.get(j).size(); k++){
+                        List<String> shuffledAzLevelSku = Arrays.asList(sku_of_RegionLevel);
+                        Collections.shuffle(shuffledAzLevelSku);
                         ArrayList<ResourcePool> pool_of_az = new ArrayList<>();
                         Az az = new Az(az_list.get(j).get(k), random.nextInt(1,600),pool_of_az);
-                        //pool_of_az.add(ResourcePool());
-
+                        //下面的循环处理每个Az级别资源池中sku的初始化
+                        for(int s = 0; s < random.nextInt(3,10); s++){
+                            String sku_name = shuffledAzLevelSku.get(s);
+                            String pool_id = az.getAz_id() + "_" + sku_name +  "_"+"pool";
+                            String pool_level = "az";
+                            float cost = random.nextFloat();
+                            ArrayList<Integer> remain = new ArrayList<>();
+                            remain.add(random.nextInt(500,1500));
+                            //检查该种资源类型是否有共享资源池的设定：待补充
+                            ArrayList<ResourceSku> sku_list = new ArrayList<>();
+                            for(int t = 0; t < sku_with_sharedPool.length; t++){
+                                if(sku_name.contains(sku_with_sharedPool[t])){
+                                    ResourceSku sku = new ResourceSku(sku_name);
+                                    sku_list.add(sku);
+                                }
+                                else{
+                                    ArrayList<Integer> res_representation = new ArrayList<>();
+                                    int cpu_remain = random.nextInt(1,9);
+                                    int mem_remain = cpu_remain * 2;
+                                    res_representation.add(cpu_remain);
+                                    res_representation.add(mem_remain);
+                                    ResourceSku sku =new ResourceSku(sku_name,res_representation);
+                                    sku_list.add(sku);
+                                }
+                            }
+                            ResourcePool az_level_pool = new ResourcePool(pool_id,pool_level,sku_list,cost,remain);
+                            az.setResource_pools(az_level_pool);
+                        }
+                        r.setAzs(az);
                     }
                 }
-                //r.setAzs();
+                c.setRegions(r);
             }
         }
 
+        //随机设置Region之间存在的QoS情况
+        for (int i = 0; i < regionID.size(); i++) {
+            for (int j = i + 1; j <= regionID.size(); j++) {
+                //设置一个松弛因子，它的值表示网络中的region对之间存在专线连接的概率是0.8
+                float relax_factor = random.nextFloat();
+                if (relax_factor < 0.2)
+                    continue;
+                else {
+                    String source_region = regionID.get(i);
+                    String destination_region = regionID.get(j);
+                    float latency = 5.0f + random.nextFloat() * (200.0f - 5.0f);
+                    float peak_bandwidth = 1.0f + random.nextFloat() * (10000.0f - 200.0f);
+                    float cost = random.nextFloat();
+                    c.setNw_qos_of_regions(source_region, destination_region, latency, peak_bandwidth, cost);
+                }
+            }
+        }
+
+        //设置碳效率等级，已经配置好1，2，3级别
+        c.setGreen_levels();
+
+        //随机设置延迟圈
+        c.setDelay_circles();
 
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             // 将对象转换为JSON字符串
+            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            //objectMapper.configure(SerializationFeature.WRITE_NULL_PROPERTIES, false);
+
             String jsonString = objectMapper.writeValueAsString(c);
             // 打印JSON字符串
             System.out.println(jsonString);

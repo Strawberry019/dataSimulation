@@ -1,7 +1,6 @@
 package com.dataSimulation.model;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Region {
@@ -10,13 +9,13 @@ public class Region {
 
     private String region_level;
 
-    private ArrayList<provision_region> provision_regions;
+    private ArrayList<ProvisionRegionItem> ProvisionRegionItems;
 
     private ArrayList<ResourcePool> ResourcePools;
 
     private ArrayList<Az> Azs;
 
-    private ArrayList<accessDelay> access_delaies;
+    private ArrayList<AccessDelayItem> access_delaies;
 
     public boolean equals(Object obj) {
         if (obj == this) {
@@ -49,18 +48,18 @@ public class Region {
         this.region_level = region_level;
     }
 
-    public ArrayList<provision_region> getProvision_regions() {
-        return provision_regions;
+    public ArrayList<ProvisionRegionItem> getProvision_regions() {
+        return ProvisionRegionItems;
     }
 
     public void setProvision_regions(ArrayList<String> provision_regions) {
-        if (this.provision_regions == null) {
-            this.provision_regions = new ArrayList<>();
+        if (this.ProvisionRegionItems == null) {
+            this.ProvisionRegionItems = new ArrayList<>();
         }
         for(int i = 0; i < provision_regions.size(); i++) {
-            provision_region r = new provision_region(provision_regions.get(i));
-            if(!this.provision_regions.contains(r)){
-                this.provision_regions.add(r);
+            ProvisionRegionItem r = new ProvisionRegionItem(provision_regions.get(i));
+            if(!this.ProvisionRegionItems.contains(r)){
+                this.ProvisionRegionItems.add(r);
             }
         }
     }
@@ -77,11 +76,11 @@ public class Region {
         }
     }
 
-    public ArrayList<accessDelay> getAccess_delaies() {
+    public ArrayList<AccessDelayItem> getAccess_delaies() {
         return access_delaies;
     }
     public void setAccess_delaies(String accessPoint,float delayValue) {
-        accessDelay r = new accessDelay(accessPoint, delayValue);
+        AccessDelayItem r = new AccessDelayItem(accessPoint, delayValue);
         if (this.access_delaies == null) {
             this.access_delaies = new ArrayList<>();
         }
@@ -104,11 +103,11 @@ public class Region {
         }
     }
 
-    class provision_region{
+    class ProvisionRegionItem {
 
         private String name;
 
-        public provision_region(String name) {
+        public ProvisionRegionItem(String name) {
             this.name = name;
         }
         public boolean equals(Object obj) {
@@ -118,7 +117,7 @@ public class Region {
             if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
-            provision_region r = (provision_region) obj;
+            ProvisionRegionItem r = (ProvisionRegionItem) obj;
             return Objects.equals(name, r.name);
         }
 
@@ -134,13 +133,13 @@ public class Region {
             return name;
         }
     }
-    class accessDelay {
+    class AccessDelayItem {
 
         private String accessPoint;
 
         private float delayValue;
 
-        public accessDelay(String accessPoint,float delayValue){
+        public AccessDelayItem(String accessPoint, float delayValue){
             this.accessPoint = accessPoint;
             this.delayValue = delayValue;
         }
@@ -152,7 +151,7 @@ public class Region {
             if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
-            accessDelay r = (accessDelay) obj;
+            AccessDelayItem r = (AccessDelayItem) obj;
             return Objects.equals(accessPoint, r.accessPoint);
         }
 

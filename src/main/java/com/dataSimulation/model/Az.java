@@ -1,5 +1,6 @@
 package com.dataSimulation.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,8 +47,13 @@ public class Az {
         return green_level;
     }
 
-    public void setResource_pools(List<ResourcePool> ResourcePools){
-        this.ResourcePools = ResourcePools;
+    public void setResource_pools(ResourcePool r){
+        if (this.ResourcePools == null) {
+            this.ResourcePools = new ArrayList<>();
+        }
+        if(!this.ResourcePools.contains(r)){
+            this.ResourcePools.add(r);
+        }
     }
 
     public List<ResourcePool> getResource_pools(){
