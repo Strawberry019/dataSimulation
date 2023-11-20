@@ -48,7 +48,7 @@ public class CloudInfoInit {
                 regionID.add(region_id);
                 r.setRegion_id(region_id);
 
-                //随机设置Region为东部/西部Region
+                //随机设置Region为东部/西部Region,东部和西部的比例大约是60%：40%
                 int level = random.nextInt(10) < 6 ? 1 : 2;
                 r.setRegion_level(String.valueOf(level));
 
@@ -64,9 +64,17 @@ public class CloudInfoInit {
                     String sku_name = shuffledRegionLevelSku.get(j);
                     String pool_id = r.getRegion_id() + "_" + sku_name +  "_"+"pool";
                     String pool_level = "region";
-                    float cost = random.nextFloat();
+                    float cost;
                     ArrayList<Integer> remain = new ArrayList<>();
-                    remain.add(random.nextInt(500,1500));
+                    //东西部的成本差异化，资源余量差异化
+                    if(r.getRegion_level().equals("2")){
+                        cost =random.nextFloat() * 0.75f;
+                        remain.add(random.nextInt(500,1500)*10);
+                    }
+                    else{
+                        cost =random.nextFloat();
+                        remain.add(random.nextInt(500,1500));
+                    }
                     ResourceSku sku = new ResourceSku(sku_name);
                     ArrayList<ResourceSku> sku_list = new ArrayList<>();
                     sku_list.add(sku);
@@ -93,7 +101,7 @@ public class CloudInfoInit {
                 for(int j = 0; j < az_list.size(); j++){
                     //下面的循环处理每个Az中资源池的初始化
                     for(int k = 0; k < az_list.get(j).size(); k++){
-                        List<String> shuffledAzLevelSku = Arrays.asList(sku_of_RegionLevel);
+                        List<String> shuffledAzLevelSku = Arrays.asList(sku_of_AzLevel);
                         Collections.shuffle(shuffledAzLevelSku);
                         ArrayList<ResourcePool> pool_of_az = new ArrayList<>();
                         Az az = new Az(az_list.get(j).get(k), random.nextInt(1,600),pool_of_az);
@@ -102,23 +110,39 @@ public class CloudInfoInit {
                             String sku_name = shuffledAzLevelSku.get(s);
                             String pool_id = az.getAz_id() + "_" + sku_name +  "_"+"pool";
                             String pool_level = "az";
-                            float cost = random.nextFloat();
+                            float cost;
                             ArrayList<Integer> remain = new ArrayList<>();
-                            remain.add(random.nextInt(500,1500));
+                            //东西部的成本差异化，资源余量差异化
+                            if(r.getRegion_level().equals("2")){
+                                cost =random.nextFloat() * 0.75f;
+                                remain.add(random.nextInt(500,1500)*10);
+                            }
+                            else{
+                                cost =random.nextFloat();
+                                remain.add(random.nextInt(500,1500));
+                            }
                             //检查该种资源类型是否有共享资源池的设定：待补充
                             ArrayList<ResourceSku> sku_list = new ArrayList<>();
-                            for(int t = 0; t < sku_with_sharedPool.length; t++){
-                                if(sku_name.contains(sku_with_sharedPool[t])){
-                                    ResourceSku sku = new ResourceSku(sku_name);
-                                    sku_list.add(sku);
-                                }
-                                else{
-                                    ArrayList<Integer> res_representation = new ArrayList<>();
-                                    int cpu_remain = random.nextInt(1,9);
-                                    int mem_remain = cpu_remain * 2;
-                                    res_representation.add(cpu_remain);
-                                    res_representation.add(mem_remain);
-                                    ResourceSku sku =new ResourceSku(sku_name,res_representation);
+                            //该资源有特殊的共享资源池，具体的包括ecs和evs两种，三种sku对应一个池
+                            if(Arrays.asList(sku_with_sharedPool).contains(sku_name.substring(0,sku_name.length()-2))){
+                                //ArrayList<Integer> res_representation = new ArrayList<>();
+                                pool_id = az.getAz_id() + "_" + sku_name.substring(0,sku_name.length()-2) +  "_"+ "pool";
+                                    if(sku_name.contains("ecs.vm.spec")){
+                                        //特别的，该种资源有"资源表示数组"
+                                        sku_list.add(new ResourceSku("ecs.vm.spec-1",Arrays.asList(2,4)));
+                                        sku_list.add(new ResourceSku("ecs.vm.spec-2",Arrays.asList(4,8)));
+                                        sku_list.add(new ResourceSku("ecs.vm.spec-3",Arrays.asList(8,16)));
+                                    }
+                                    else{
+                                        for(int v = 0; v < 3; v++){
+                                            sku_list.add(new ResourceSku(sku_name.substring(0,sku_name.length()-2) + "-" + String.valueOf(v+1)));
+                                        }
+                                    }
+                            }
+                            //普通资源池，一种sku对应一个池
+                            else{
+                                ResourceSku sku = new ResourceSku(sku_name);
+                                if(!sku_list.contains(sku)){
                                     sku_list.add(sku);
                                 }
                             }
@@ -134,7 +158,7 @@ public class CloudInfoInit {
 
         //随机设置Region之间存在的QoS情况
         for (int i = 0; i < regionID.size(); i++) {
-            for (int j = i + 1; j <= regionID.size(); j++) {
+            for (int j = i + 1; j < regionID.size(); j++) {
                 //设置一个松弛因子，它的值表示网络中的region对之间存在专线连接的概率是0.8
                 float relax_factor = random.nextFloat();
                 if (relax_factor < 0.2)
@@ -151,21 +175,23 @@ public class CloudInfoInit {
         }
 
         //设置碳效率等级，已经配置好1，2，3级别
-        c.setGreen_levels();
+        c.setGreen_levels(1,new ArrayList<Integer>(Arrays.asList(0,100)));
+        c.setGreen_levels(2,new ArrayList<Integer>(Arrays.asList(0,500)));
+        c.setGreen_levels(3,new ArrayList<Integer>());
 
         //随机设置延迟圈
-        c.setDelay_circles();
+        c.setDelay_circles("hot",new ArrayList<Integer>(Arrays.asList(0,15)));
+        c.setDelay_circles("warm",new ArrayList<Integer>(Arrays.asList(0,50)));
+        c.setDelay_circles("cold",new ArrayList<Integer>(Arrays.asList(0,200)));
 
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             // 将对象转换为JSON字符串
             objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-            //objectMapper.configure(SerializationFeature.WRITE_NULL_PROPERTIES, false);
-
             String jsonString = objectMapper.writeValueAsString(c);
             // 打印JSON字符串
-            System.out.println(jsonString);
+           //System.out.println(jsonString);
 
             // 将JSON字符串写入文件
             FileWriter fileWriter = new FileWriter("cloudInfo.json");

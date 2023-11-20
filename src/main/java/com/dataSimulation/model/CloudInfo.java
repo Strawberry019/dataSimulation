@@ -25,8 +25,14 @@ public class CloudInfo implements Serializable {
 		}
 	}
 
-	public void setDelay_circles(ArrayList<DelayCirclesItem> delay_circles){
-		this.delay_circles = delay_circles;
+	public void setDelay_circles(String delay_circle, List<Integer> delay_range){
+		DelayCirclesItem r = new DelayCirclesItem(delay_circle, delay_range);
+		if (this.delay_circles == null) {
+			this.delay_circles = new ArrayList<>();
+		}
+		if (!this.delay_circles.contains(r)) {
+			this.delay_circles.add(r);
+		}
 	}
 
 	public ArrayList<DelayCirclesItem> getDelay_circles(){
@@ -35,10 +41,10 @@ public class CloudInfo implements Serializable {
 
 	public void setNw_qos_of_regions(String source_region, String destination_region, float latency, float peak_bandwidth, float cost){
 		NwQosofRegionsItem r = new NwQosofRegionsItem(source_region, destination_region, latency, peak_bandwidth, cost);
-		if (nw_qos_of_regions == null) {
+		if (this.nw_qos_of_regions == null) {
 			this.nw_qos_of_regions = new ArrayList<>();
 		}
-		if (!nw_qos_of_regions.contains(r)) {
+		if (!this.nw_qos_of_regions.contains(r)) {
 			this.nw_qos_of_regions.add(r);
 		}
 	}
@@ -47,8 +53,14 @@ public class CloudInfo implements Serializable {
 		return nw_qos_of_regions;
 	}
 
-	public void setGreen_levels(ArrayList<GreenLevelsItem> green_levels){
-		this.green_levels = green_levels;
+	public void setGreen_levels(int green_level, List<Integer> carbon_intencity_range){
+		GreenLevelsItem r = new GreenLevelsItem(green_level, carbon_intencity_range);
+		if (this.green_levels == null) {
+			this.green_levels = new ArrayList<>();
+		}
+		if (!this.green_levels.contains(r)) {
+			this.green_levels.add(r);
+		}
 	}
 
 	public ArrayList<GreenLevelsItem> getGreen_levels(){
@@ -136,6 +148,17 @@ public class CloudInfo implements Serializable {
 			this.carbon_intencity_range = carbon_intencity_range;
 		}
 
+		public boolean equals(Object obj) {
+			if (obj == this) {
+				return true;
+			}
+			if (obj == null || getClass() != obj.getClass()) {
+				return false;
+			}
+			GreenLevelsItem r = (GreenLevelsItem) obj;
+			return Objects.equals(green_level, r.green_level);
+		}
+
 		public void setCarbon_intencity_range(List<Integer> carbon_intencity_range){
 			this.carbon_intencity_range = carbon_intencity_range;
 		}
@@ -163,6 +186,16 @@ public class CloudInfo implements Serializable {
 			this.delay_circle = delay_circle;
 		}
 
+		public boolean equals(Object obj) {
+			if (obj == this) {
+				return true;
+			}
+			if (obj == null || getClass() != obj.getClass()) {
+				return false;
+			}
+			DelayCirclesItem r = (DelayCirclesItem) obj;
+			return Objects.equals(delay_circle, r.delay_circle);
+		}
 		public void setDelay_range(List<Integer> delay_range){
 			this.delay_range = delay_range;
 		}

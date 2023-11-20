@@ -164,7 +164,7 @@ public class CompAffinityGroup implements Serializable {
             if(this.azs == null){
                 ArrayList<az> azs = new ArrayList<>();
             }
-            if(!azs.contains(z)) {
+            if(!this.azs.contains(z)) {
                 this.azs.add(z);
             }
         }

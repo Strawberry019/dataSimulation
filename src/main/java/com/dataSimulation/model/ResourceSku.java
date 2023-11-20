@@ -8,7 +8,7 @@ import java.util.Objects;
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResourceSku {
 
-    private ArrayList<Integer> resources;
+    private List<Integer> resources;
 
     private String sku;
 
@@ -17,12 +17,12 @@ public class ResourceSku {
         this.sku = sku;
     }
     //az级别的资源池，对应的构造方法
-    public ResourceSku (String sku, ArrayList<Integer> resources){
+    public ResourceSku (String sku, List<Integer> resources){
         this.sku = sku;
         this.resources = resources;
     }
 
-    public void setResources(ArrayList<Integer> resources){
+    public void setResources(List<Integer> resources){
         this.resources = resources;
     }
 
