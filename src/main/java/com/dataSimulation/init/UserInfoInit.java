@@ -29,7 +29,10 @@ public class UserInfoInit {
                 "cbr.vault.spec-1", "cbr.vault.spec-2", "cbr.vault.spec-3"
         };
 
+        //计算程序用时
+        long stime = System.currentTimeMillis();
         Random random = new Random();
+
         //随机设置单个用户请求中的亲和组个数：1~20
         int group_num = random.nextInt(1, 21);
         //按照随机设置的亲和组个数，初始化亲和组名的列表，group1-num
@@ -157,6 +160,8 @@ public class UserInfoInit {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        long etime = System.currentTimeMillis();
+        System.out.printf("执行时长: %d毫秒", (etime - stime));
     }
 }
 

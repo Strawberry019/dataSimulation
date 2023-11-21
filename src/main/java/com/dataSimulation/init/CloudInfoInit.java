@@ -33,6 +33,8 @@ public class CloudInfoInit {
                 "ecs.vm.spec","evs.volume.spec"
         };
 
+        //计算程序用时
+        long stime = System.currentTimeMillis();
         CloudInfo c = new CloudInfo();
         Random random = new Random();
 
@@ -41,7 +43,7 @@ public class CloudInfoInit {
         ArrayList<String> regionID = new ArrayList<>();
         //随机设置每个大的area内的region
         for (String area : areas) {
-            for (int i = 1; i <= 2/*regionsPerArea*/; i++) {
+            for (int i = 1; i <= regionsPerArea; i++) {
                 Region r = new Region();
                 //设置Region ID
                 String region_id = area  + "-" + i;
@@ -200,6 +202,8 @@ public class CloudInfoInit {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        long etime = System.currentTimeMillis();
+        System.out.printf("执行时长: %d毫秒", (etime - stime));
     }
 
 }
