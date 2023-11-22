@@ -40,9 +40,9 @@ public abstract class Filter {
         }
         return null;
     }
-    public static boolean matchProperty(JsonNode node1, JsonNode node2, String property1, String property2) {
-        String value1 = node1.get(property1).asText();
-        String value2 = node2.get(property2).asText();
+    public static boolean matchProperty(JsonNode userPropertyNode, JsonNode cloudPropertyNode, String property1, String property2) {
+        String value1 = userPropertyNode.get(property1).asText();
+        String value2 = cloudPropertyNode.get(property2).asText();
 
         return value1.equals(value2);
     }

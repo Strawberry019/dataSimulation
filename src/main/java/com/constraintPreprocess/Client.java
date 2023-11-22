@@ -1,4 +1,5 @@
 package com.constraintPreprocess;
+import com.dataSimulation.model.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,6 +8,8 @@ import java.util.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import static java.util.Collections.sort;
 
 public class Client {
     public static void main(String[] args){
@@ -33,12 +36,19 @@ public class Client {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
+
         try {
             // 解析userInfo.json
             JsonNode userInfoJsonNode = objectMapper.readTree(userInfoFile);
 
             // 解析cloudInfo.json
             JsonNode cloudInfoJsonNode = objectMapper.readTree(cloudInfoFile);
+
+            //测试是否能成功的反序列化得到java对象
+            //UserInfo u = objectMapper.treeToValue(userInfoJsonNode, UserInfo.class);
+            //UserInfo u = objectMapper.readValue(userInfoFile, UserInfo.class);
+            //System.out.println(u.getGreen_level());
+
 
             //根据cloudInfo.json中的“region_ID”创建Region列表
             List<String> regionList = new ArrayList<>();
@@ -78,9 +88,11 @@ public class Client {
                 result.put(groupName,available_region);
             }
 
+
             //输出字典中的内容到新的json文件中
             String json = objectMapper.writeValueAsString(result);
-            System.out.println(json);
+            //System.out.println(json);
+            //System.out.println(result.keySet());
 
             FileWriter fileWriter = new FileWriter("filter_result.json");
             fileWriter.write(json);
