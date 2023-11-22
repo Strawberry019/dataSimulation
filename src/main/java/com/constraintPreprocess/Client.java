@@ -1,8 +1,9 @@
 package com.constraintPreprocess;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,6 +21,7 @@ public class Client {
         filter2.setNext(filter3);
         filter3.setNext(filter4);
         filter4.setNext(filter5);
+
         //从Json文件中读取用户侧数据用于创建请求
         //String userInfo = readJsonFile("userInfo.json");
 
@@ -30,7 +32,7 @@ public class Client {
         File cloudInfoFile = new File("cloudInfo.json");
 
         ObjectMapper objectMapper = new ObjectMapper();
-        String propertyToCompare = "C";
+
         try {
             // 解析userInfo.json
             JsonNode userInfoJsonNode = objectMapper.readTree(userInfoFile);
@@ -38,55 +40,64 @@ public class Client {
             // 解析cloudInfo.json
             JsonNode cloudInfoJsonNode = objectMapper.readTree(cloudInfoFile);
 
-
-            // 查找指定属性
-            JsonNode userInfoProperty = findProperty(userInfoJsonNode, propertyToCompare);
-            JsonNode cloudInfoProperty = findProperty(cloudInfoJsonNode, propertyToCompare);
-
-            // 进行比较
-            if (userInfoProperty != null && cloudInfoProperty != null) {
-                if (userInfoProperty.equals(cloudInfoProperty)) {
-                    System.out.println("Property values are equal.");
-                } else {
-                    System.out.println("Property values are not equal.");
-                }
-            } else {
-                System.out.println("Property not found in one or both JSON files.");
+            //根据cloudInfo.json中的“region_ID”创建Region列表
+            List<String> regionList = new ArrayList<>();
+            JsonNode regionsNode = cloudInfoJsonNode.get("regions");
+            for (JsonNode regionNode : regionsNode) {
+                String regionId = regionNode.get("region_id").asText();
+                regionList.add(regionId);
             }
+
+
+            //根据userInfo.json中的“group_name”创建Group列表
+            JsonNode compAffinityGroupsNode = userInfoJsonNode.get("comp_affinity_groups");
+            List<String> groupList = new ArrayList<>();
+
+            for (JsonNode groupNode : compAffinityGroupsNode) {
+                String groupName = groupNode.get("group_name").asText();
+                groupList.add(groupName);
+            }
+
+            //声明最终的Group-Region字典，一个Group对应一组Region
+            Map<String, List<String>> result = new HashMap<>();
+
+
+            // 遍历groupList和regionList，调用filter1.ConstraintFilter()方法，通过责任链上的每个Filter处理，返回布尔变量值表示该（group,region）是否可行
+            for (String groupName : groupList) {
+                //创建和Region列表等长，对应的全True布尔数组,取值为True的表示满足所有该Group的约束
+                boolean[] check = new boolean[regionList.size()];
+                Arrays.fill(check, true);
+                //每次创建一个当前Group的可行Region列表，ps:不使用clear方法防止由于引用传递导致所有的available_region都是最后一次创建的内容
+                List<String> available_region = new ArrayList<>();
+                for (int i = 0; i < regionList.size(); i++) {
+                    check[i] = filter1.ConstraintFilter(userInfoJsonNode, cloudInfoJsonNode, groupName, regionList.get(i),check[i]);
+                    if(check[i]){
+                        available_region.add(regionList.get(i));
+                    }
+                }
+                result.put(groupName,available_region);
+            }
+
+            //输出字典中的内容到新的json文件中
+            String json = objectMapper.writeValueAsString(result);
+            System.out.println(json);
+
+            FileWriter fileWriter = new FileWriter("filter_result.json");
+            fileWriter.write(json);
+            fileWriter.close();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
-        //根据cloudInfo.json中的“region_ID”创建Region列表,创建和列表等长，对应的全True布尔数组
-        //通过责任链上的每个Filter处理，返回布尔变量值，取值为True的表示满足所有约束的Region
-        //输出可用的Region列表，具体的，针对每个通信亲和组也列出可用的Region(显然它们也满足应用层级的约束，比如Provision Regions约束)
 
-    public static JsonNode findProperty(JsonNode jsonNode, String propertyName) {
-        if (jsonNode.isObject()) {
-            Iterator<String> fieldNames = jsonNode.fieldNames();
-            while (fieldNames.hasNext()) {
-                String fieldName = fieldNames.next();
-                JsonNode propertyNode = jsonNode.get(fieldName);
-                if (fieldName.equals(propertyName)) {
-                    return propertyNode;
-                } else {
-                    JsonNode foundNode = findProperty(propertyNode, propertyName);
-                    if (foundNode != null) {
-                        return foundNode;
-                    }
-                }
-            }
-        } else if (jsonNode.isArray()) {
-            for (JsonNode arrayNode : jsonNode) {
-                JsonNode foundNode = findProperty(arrayNode, propertyName);
-                if (foundNode != null) {
-                    return foundNode;
-                }
-            }
-        }
-        return null;
-    }
+
+
+
+    //下面的方法将json转为字符串
     public static String readJsonFile(String filePath) {
         File file = new File(filePath);
         StringBuilder content = new StringBuilder();
@@ -103,3 +114,5 @@ public class Client {
         return content.toString();
     }
 }
+
+
