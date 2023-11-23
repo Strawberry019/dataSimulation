@@ -1,4 +1,6 @@
 package com.dataSimulation.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,8 @@ public class UserInfo implements Serializable {
     private int green_level;
 
     private ArrayList<ProvisionRegionItem> provision_regions;
+
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     private ArrayList<CompAffinityGroup> comp_affinity_groups;
     private ArrayList<NwQosofAffinityGroupItem> nw_qos_of_affinity_groups;
     private ArrayList<DisasterRecoveryPolicyItem> disaster_recovery_policies;
