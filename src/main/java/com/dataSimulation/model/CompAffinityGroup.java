@@ -1,19 +1,28 @@
 package com.dataSimulation.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class CompAffinityGroup implements Serializable {
     private String group_name;
     private String delay_circle;
-    private ArrayList<resource_sku> resource_skus;
-    /*public comp_affinity_group(String group_name, String delay_circle,ArrayList<resource_sku> resource_skus){
+    private List<resource_sku> resource_skus;
+
+    @JsonCreator
+    public CompAffinityGroup(){
+
+    }
+    /*@JsonCreator
+    public CompAffinityGroup(@JsonProperty("group_name") String group_name, @JsonProperty("delay_circle")String delay_circle, @JsonProperty("resource_skus")ArrayList<resource_sku> resource_skus){
         this.group_name = group_name;
         this.delay_circle = delay_circle;
         this.resource_skus = resource_skus;
     }*/
-
     public CompAffinityGroup(String group_name, String delay_circle, ArrayList<String> sku, ArrayList<Integer> sku_amount, ArrayList<Integer> az_num, ArrayList<ArrayList<Integer>> az_amount){
         this.group_name = group_name;
         this.delay_circle = delay_circle;
@@ -59,7 +68,7 @@ public class CompAffinityGroup implements Serializable {
         this.delay_circle = delay_circle;
     }
 
-    public ArrayList<resource_sku> getResource_skus() {
+    public List<resource_sku> getResource_skus() {
         return resource_skus;
     }
 
@@ -71,10 +80,18 @@ public class CompAffinityGroup implements Serializable {
             this.resource_skus.add(s);
         }
     }
+    @JsonProperty("resource_skus")
+    public void setResource_skus(List<resource_sku> resource_skus){
+        this.resource_skus = resource_skus;
+    }
 
-    class az implements Serializable {
+    public static class az implements Serializable {
         private int az_index;
         private int amount;
+        @JsonCreator
+        public az(){
+
+        }
 
         public az(int az_index, int amount) {
             this.az_index = az_index;
@@ -113,10 +130,14 @@ public class CompAffinityGroup implements Serializable {
         }
     }
 
-    class resource_sku implements Serializable {
+    public static class resource_sku implements Serializable {
         private String sku_name;
         private int amount;
         private ArrayList<az> azs;
+        @JsonCreator
+        public resource_sku(){
+
+        }
 
         public resource_sku(String sku_name,int amount,ArrayList<az> azs){
             this.sku_name = sku_name;

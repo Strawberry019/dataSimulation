@@ -1,5 +1,7 @@
 package com.dataSimulation.model;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,12 +12,12 @@ public class UserInfo implements Serializable {
     private String access_point;
     private int green_level;
 
-    private ArrayList<ProvisionRegionItem> provision_regions;
+    private List<ProvisionRegionItem> provision_regions;
 
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-    private ArrayList<CompAffinityGroup> comp_affinity_groups;
-    private ArrayList<NwQosofAffinityGroupItem> nw_qos_of_affinity_groups;
-    private ArrayList<DisasterRecoveryPolicyItem> disaster_recovery_policies;
+    private List<CompAffinityGroup> comp_affinity_groups;
+    private List<NwQosofAffinityGroupItem> nw_qos_of_affinity_groups;
+    private List<DisasterRecoveryPolicyItem> disaster_recovery_policies;
 
     public <T> int calSize(T obj) {
         if (obj == null) {
@@ -40,12 +42,12 @@ public class UserInfo implements Serializable {
         this.green_level = green_level;
     }
 
-    public ArrayList<ProvisionRegionItem> getProvision_groups() {
+    public List<ProvisionRegionItem> getProvision_regions() {
         return provision_regions;
     }
 
-    public void set_provision_groups(String provision_group_name) {
-        ProvisionRegionItem p = new ProvisionRegionItem(provision_group_name);
+    public void set_provision_regions(String provision_region_name) {
+        ProvisionRegionItem p = new ProvisionRegionItem(provision_region_name);
         if (provision_regions == null) {
             this.provision_regions = new ArrayList<ProvisionRegionItem>();
         }
@@ -54,7 +56,7 @@ public class UserInfo implements Serializable {
         }
     }
 
-    public ArrayList<CompAffinityGroup> getComp_affinity_groups() {
+    public List<CompAffinityGroup> getComp_affinity_groups() {
         return comp_affinity_groups;
     }
 
@@ -66,8 +68,12 @@ public class UserInfo implements Serializable {
             this.comp_affinity_groups.add(p);
         }
     }
+    @JsonProperty("comp_affinity_groups")
+    public void setComp_affinity_groups(List<CompAffinityGroup> comp_affinity_groups){
+        this.comp_affinity_groups = comp_affinity_groups;
+    }
 
-    public ArrayList<NwQosofAffinityGroupItem> getNw_qos_of_affinity_groups() {
+    public List<NwQosofAffinityGroupItem> getNw_qos_of_affinity_groups() {
         return nw_qos_of_affinity_groups;
     }
 
@@ -81,11 +87,11 @@ public class UserInfo implements Serializable {
         }
     }
 
-    public ArrayList<DisasterRecoveryPolicyItem> getDisaster_recovery_policies() {
+    public List<DisasterRecoveryPolicyItem> getDisaster_recovery_policies() {
         return disaster_recovery_policies;
     }
 
-    public void setDisaster_recovery_policies(String dr_range, String affinity_policy, ArrayList<ArrayList<String>> comp_affinity_group) {
+    public void setDisaster_recovery_policies(String dr_range, String affinity_policy, List<List<String>> comp_affinity_group) {
         DisasterRecoveryPolicyItem p = new DisasterRecoveryPolicyItem(dr_range, affinity_policy, comp_affinity_group);
         if (disaster_recovery_policies == null) {
             this.disaster_recovery_policies = new ArrayList<DisasterRecoveryPolicyItem>();
@@ -95,9 +101,12 @@ public class UserInfo implements Serializable {
         }
     }
 
-    class ProvisionRegionItem implements Serializable {
+    public static class ProvisionRegionItem implements Serializable {
         private String name;
+        @JsonCreator
+        public ProvisionRegionItem() {
 
+        }
         public ProvisionRegionItem(String name) {
             this.name = name;
 
@@ -127,11 +136,16 @@ public class UserInfo implements Serializable {
         }
     }
 
-    class NwQosofAffinityGroupItem implements Serializable {
+    public static class NwQosofAffinityGroupItem implements Serializable {
         private String source_group;
         private String destination_group;
         private float latency;
         private float peak_bandwidth;
+
+        @JsonCreator
+        public  NwQosofAffinityGroupItem(){
+
+        }
 
         public NwQosofAffinityGroupItem(String source_group, String destination_group, float latency, float peak_bandwidth) {
             this.source_group = source_group;
@@ -189,12 +203,15 @@ public class UserInfo implements Serializable {
         }
     }
 
-    class DisasterRecoveryPolicyItem implements Serializable {
+    public static class DisasterRecoveryPolicyItem implements Serializable {
         private String dr_range;
         private String affinity_policy;
-        private ArrayList<ArrayList<String>> comp_affinity_group_names;
+        private List<List<String>> comp_affinity_group_names;
+        @JsonCreator
+        public DisasterRecoveryPolicyItem(){
 
-        public DisasterRecoveryPolicyItem(String dr_range, String affinity_policy, ArrayList<ArrayList<String>> comp_affinity_group_names) {
+        }
+        public DisasterRecoveryPolicyItem(String dr_range, String affinity_policy, List<List<String>> comp_affinity_group_names) {
             this.dr_range = dr_range;
             this.affinity_policy = affinity_policy;
             this.comp_affinity_group_names = comp_affinity_group_names;
@@ -232,11 +249,11 @@ public class UserInfo implements Serializable {
             this.affinity_policy = affinity_policy;
         }
 
-        public ArrayList<ArrayList<String>> getComp_affinity_group_names() {
+        public List<List<String>> getComp_affinity_group_names() {
             return comp_affinity_group_names;
         }
 
-        public void setComp_affinity_group_names(ArrayList<ArrayList<String>> comp_affinity_group_names) {
+        public void setComp_affinity_group_names(List<List<String>> comp_affinity_group_names) {
             this.comp_affinity_group_names = comp_affinity_group_names;
         }
 

@@ -56,9 +56,9 @@ public class UserInfoInit {
         u.setGreen_level(random.nextInt(3) + 1);
 
         //用户选择了几个数据安全隐私限定区域，具体是哪几个
-        int provision_groups_num = random.nextInt(1, 5);
-        while (u.calSize(u.getProvision_groups()) < provision_groups_num) {
-            u.set_provision_groups(PROVISION_AREA[random.nextInt(provision_groups_num)]);
+        int provision_regions_num = random.nextInt(1, 5);
+        while (u.calSize(u.getProvision_regions()) < provision_regions_num) {
+            u.set_provision_regions(PROVISION_AREA[random.nextInt(provision_regions_num)]);
         }
 
         //亲和组接入的网络QoS要求，包括两个亲和组之间的带宽要求和延迟要求
@@ -87,7 +87,7 @@ public class UserInfoInit {
         //每个这样的组合中可能有2~5个通信亲和组
         int dr_comb_inner_num = random.nextInt(2, Math.min(group_num, 6));
         //跨区域容灾：特定的几个亲和组不能放置在同一个Region中，记作一个combination；显然用户的一次请求中可能包含若干个combination,每个combination中有若干个亲和组
-        ArrayList<ArrayList<String>> comp_affinity_group = new ArrayList<ArrayList<String>>();
+        List<List<String>> comp_affinity_group = new ArrayList<List<String>>();
         while (comp_affinity_group.size() < dr_combination_num) {
             ArrayList<String> comb = new ArrayList<>();
             //随机选取几个不重复的通信亲和组进入comb
