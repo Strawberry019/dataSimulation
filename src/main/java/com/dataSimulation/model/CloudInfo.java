@@ -1,5 +1,8 @@
 package com.dataSimulation.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,15 +10,19 @@ import java.util.Objects;
 
 public class CloudInfo implements Serializable {
 
-	private ArrayList<Region> regions;
-	private ArrayList<DelayCirclesItem> delay_circles;;
-	private ArrayList<NwQosofRegionsItem> nw_qos_of_regions;;
-	private ArrayList<GreenLevelsItem> green_levels;;
+	private List<Region> regions;
+	private List<DelayCirclesItem> delay_circles;;
+	private List<NwQosofRegionsItem> nw_qos_of_regions;;
+	private List<GreenLevelsItem> green_levels;;
 
-	public ArrayList<Region> getRegions() {
+	public List<Region> getRegions() {
 		return regions;
 	}
 
+	@JsonProperty("regions")
+	public void setRegions(List<Region> regions){
+		this.regions = regions;
+	}
 	public void setRegions(Region r) {
 		if (this.regions == null) {
 			this.regions = new ArrayList<>();
@@ -24,6 +31,7 @@ public class CloudInfo implements Serializable {
 			this.regions.add(r);
 		}
 	}
+
 
 	public void setDelay_circles(String delay_circle, List<Integer> delay_range){
 		DelayCirclesItem r = new DelayCirclesItem(delay_circle, delay_range);
@@ -35,7 +43,7 @@ public class CloudInfo implements Serializable {
 		}
 	}
 
-	public ArrayList<DelayCirclesItem> getDelay_circles(){
+	public List<DelayCirclesItem> getDelay_circles(){
 		return delay_circles;
 	}
 
@@ -49,7 +57,7 @@ public class CloudInfo implements Serializable {
 		}
 	}
 
-	public ArrayList<NwQosofRegionsItem> getNw_qos_of_regions(){
+	public List<NwQosofRegionsItem> getNw_qos_of_regions(){
 		return nw_qos_of_regions;
 	}
 
@@ -63,17 +71,19 @@ public class CloudInfo implements Serializable {
 		}
 	}
 
-	public ArrayList<GreenLevelsItem> getGreen_levels(){
+	public List<GreenLevelsItem> getGreen_levels(){
 		return green_levels;
 	}
 
-	class NwQosofRegionsItem implements Serializable {
+	public static class NwQosofRegionsItem implements Serializable {
 
 		private float cost;
 		private float peak_bandwidth;
 		private float latency;
 		private String destination_region;
 		private String source_region;
+		@JsonCreator
+		public NwQosofRegionsItem(){}
 
 		public NwQosofRegionsItem(String source_region, String destination_region, float latency, float peak_bandwidth,float cost) {
 			this.source_region = source_region;
@@ -137,11 +147,13 @@ public class CloudInfo implements Serializable {
 			return source_region;
 		}
 	}
-	class GreenLevelsItem implements Serializable{
+	public static class GreenLevelsItem implements Serializable{
 
 		private List<Integer> carbon_intencity_range;
 
 		private int green_level;
+		@JsonCreator
+		GreenLevelsItem(){}
 
 		GreenLevelsItem(int green_level, List<Integer> carbon_intencity_range){
 			this.green_level = green_level;
@@ -175,11 +187,14 @@ public class CloudInfo implements Serializable {
 			return green_level;
 		}
 	}
-	class DelayCirclesItem implements Serializable{
+	public static class DelayCirclesItem implements Serializable{
 
 		private List<Integer> delay_range;
 
 		private String delay_circle;
+
+		@JsonCreator
+		public DelayCirclesItem(){}
 
 		public DelayCirclesItem(String delay_circle, List<Integer> delay_range) {
 			this.delay_range = delay_range;

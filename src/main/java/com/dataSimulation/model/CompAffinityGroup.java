@@ -17,12 +17,7 @@ public class CompAffinityGroup implements Serializable {
     public CompAffinityGroup(){
 
     }
-    /*@JsonCreator
-    public CompAffinityGroup(@JsonProperty("group_name") String group_name, @JsonProperty("delay_circle")String delay_circle, @JsonProperty("resource_skus")ArrayList<resource_sku> resource_skus){
-        this.group_name = group_name;
-        this.delay_circle = delay_circle;
-        this.resource_skus = resource_skus;
-    }*/
+
     public CompAffinityGroup(String group_name, String delay_circle, ArrayList<String> sku, ArrayList<Integer> sku_amount, ArrayList<Integer> az_num, ArrayList<ArrayList<Integer>> az_amount){
         this.group_name = group_name;
         this.delay_circle = delay_circle;

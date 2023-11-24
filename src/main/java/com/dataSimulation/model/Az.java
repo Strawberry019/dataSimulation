@@ -1,5 +1,8 @@
 package com.dataSimulation.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +13,8 @@ public class Az {
     private int green_level;
 
     private List<ResourcePool> ResourcePools;
+    @JsonCreator
+    public Az(){}
 
     public Az(String az_id, int green_level,List<ResourcePool> ResourcePools){
         this.az_id = az_id;
@@ -45,6 +50,11 @@ public class Az {
 
     public int getGreen_level(){
         return green_level;
+    }
+
+    @JsonProperty("resource_pools")
+    public void setResourcePools(List<ResourcePool> ResourcePools){
+        this.ResourcePools = ResourcePools;
     }
 
     public void setResource_pools(ResourcePool r){

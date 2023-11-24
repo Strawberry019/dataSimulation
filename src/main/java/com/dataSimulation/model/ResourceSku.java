@@ -1,13 +1,18 @@
 package com.dataSimulation.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.List;
 import java.util.Objects;
-//@JsonInclude(JsonInclude.Include.NON_NULL)
+
 public class ResourceSku {
 
     private List<Integer> resources;
 
     private String sku;
+
+    @JsonCreator
+    public ResourceSku(){}
 
     //region级别的资源池，对应的构造方法
     public ResourceSku (String sku){

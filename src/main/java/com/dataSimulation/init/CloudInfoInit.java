@@ -55,9 +55,7 @@ public class CloudInfoInit {
                 r.setRegion_level(String.valueOf(level));
 
                 //随机设置provision区域
-                ArrayList<String> provision_regions = new ArrayList<>();
-                provision_regions.add(PROVISION_AREA[random.nextInt(5)]);
-                r.setProvision_regions(provision_regions);
+                r.setProvision_regions(PROVISION_AREA[random.nextInt(5)]);
 
                 //随机设置区域级别资源池,随机2-5个
                 List<String> shuffledRegionLevelSku = Arrays.asList(sku_of_RegionLevel);

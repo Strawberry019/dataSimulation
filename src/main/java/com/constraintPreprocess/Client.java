@@ -25,10 +25,7 @@ public class Client {
         filter4.setNext(filter5);
 
         //从Json文件中读取用户侧数据用于创建请求
-        //String userInfo = readJsonFile("userInfo.json");
-
         //从Json文件中读取云服务商侧数据，用于检查满足业务约束的Region哪些
-        //String cloudInfo = readJsonFile("cloudInfo.json");
 
         File userInfoFile = new File("userInfo.json");
         File cloudInfoFile = new File("cloudInfo.json");
@@ -42,12 +39,6 @@ public class Client {
 
             // 解析cloudInfo.json
             JsonNode cloudInfoJsonNode = objectMapper.readTree(cloudInfoFile);
-
-            //测试是否能成功的反序列化得到java对象
-            //UserInfo u = objectMapper.treeToValue(userInfoJsonNode, UserInfo.class);
-            //UserInfo u = objectMapper.readValue(userInfoFile, UserInfo.class);
-            //System.out.println(u.getGreen_level());
-
 
             //根据cloudInfo.json中的“region_ID”创建Region列表
             List<String> regionList = new ArrayList<>();
@@ -91,7 +82,6 @@ public class Client {
             //输出字典中的内容到新的json文件中
             String json = objectMapper.writeValueAsString(result);
             //System.out.println(json);
-            //System.out.println(result.keySet());
 
             FileWriter fileWriter = new FileWriter("filter_result.json");
             fileWriter.write(json);

@@ -1,6 +1,10 @@
 package com.dataSimulation.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Region {
@@ -9,13 +13,16 @@ public class Region {
 
     private String region_level;
 
-    private ArrayList<ProvisionRegionItem> ProvisionRegionItems;
+    private List<ProvisionRegionItem> provision_regions;
 
-    private ArrayList<ResourcePool> ResourcePools;
+    private List<ResourcePool> resource_pools;
 
-    private ArrayList<Az> Azs;
+    private List<Az> azs;
 
-    private ArrayList<AccessDelayItem> access_delaies;
+    private List<AccessDelayItem> access_delaies;
+
+    @JsonCreator
+    public Region(){}
 
     public boolean equals(Object obj) {
         if (obj == this) {
@@ -48,35 +55,42 @@ public class Region {
         this.region_level = region_level;
     }
 
-    public ArrayList<ProvisionRegionItem> getProvision_regions() {
-        return ProvisionRegionItems;
+    public List<ProvisionRegionItem> getProvision_regions() {
+        return provision_regions;
     }
 
-    public void setProvision_regions(ArrayList<String> provision_regions) {
-        if (this.ProvisionRegionItems == null) {
-            this.ProvisionRegionItems = new ArrayList<>();
+    @JsonProperty("provision_regions")
+    public void setProvision_regions(List<ProvisionRegionItem> provision_regions){
+        this.provision_regions = provision_regions;
+    }
+    public void setProvision_regions(String provision_region) {
+        if (this.provision_regions == null) {
+            this.provision_regions = new ArrayList<>();
         }
-        for(int i = 0; i < provision_regions.size(); i++) {
-            ProvisionRegionItem r = new ProvisionRegionItem(provision_regions.get(i));
-            if(!this.ProvisionRegionItems.contains(r)){
-                this.ProvisionRegionItems.add(r);
-            }
+        ProvisionRegionItem r = new ProvisionRegionItem(provision_region);
+        if(!this.provision_regions.contains(r)){
+            this.provision_regions.add(r);
         }
+
     }
 
-    public ArrayList<ResourcePool> getResourcePools() {
-        return ResourcePools;
+    public List<ResourcePool> getResource_pools() {
+        return resource_pools;
+    }
+    @JsonProperty("resource_pools")
+    public void setResource_pools(List<ResourcePool> ResourcePools){
+        this.resource_pools = ResourcePools;
     }
     public void setResourcePools(ResourcePool r) {
-        if (this.ResourcePools == null) {
-            this.ResourcePools = new ArrayList<>();
+        if (this.resource_pools == null) {
+            this.resource_pools = new ArrayList<>();
         }
-        if(!this.ResourcePools.contains(r)){
-            this.ResourcePools.add(r);
+        if(!this.resource_pools.contains(r)){
+            this.resource_pools.add(r);
         }
     }
 
-    public ArrayList<AccessDelayItem> getAccess_delaies() {
+    public List<AccessDelayItem> getAccess_delaies() {
         return access_delaies;
     }
     public void setAccess_delaies(String accessPoint,float delayValue) {
@@ -89,24 +103,29 @@ public class Region {
         }
     }
 
-    public ArrayList<Az> getAzs() {
-        return Azs;
+    public List<Az> getAzs() {
+        return azs;
     }
-
+    @JsonProperty("azs")
+    public void setAzs(List<Az> Azs){
+        this.azs = Azs;
+    }
     public void setAzs(Az az) {
-        if (this.Azs == null) {
-            this.Azs = new ArrayList<>();
+        if (this.azs == null) {
+            this.azs = new ArrayList<>();
         }
 
-        if(!this.Azs.contains(az)){
-                this.Azs.add(az);
+        if(!this.azs.contains(az)){
+                this.azs.add(az);
         }
     }
 
-    class ProvisionRegionItem {
+    public static class ProvisionRegionItem {
 
         private String name;
 
+        @JsonCreator
+        public ProvisionRegionItem(){}
         public ProvisionRegionItem(String name) {
             this.name = name;
         }
@@ -133,12 +152,14 @@ public class Region {
             return name;
         }
     }
-    class AccessDelayItem {
+    public static class AccessDelayItem {
 
         private String accessPoint;
 
         private float delayValue;
 
+        @JsonCreator
+        public AccessDelayItem(){}
         public AccessDelayItem(String accessPoint, float delayValue){
             this.accessPoint = accessPoint;
             this.delayValue = delayValue;
