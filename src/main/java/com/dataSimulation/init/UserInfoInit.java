@@ -2,6 +2,8 @@ package com.dataSimulation.init;
 
 import com.dataSimulation.model.*;
 import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -113,7 +115,7 @@ public class UserInfoInit {
             String delay_circle = DELAY_CIRCLE[random.nextInt(3)];
             ArrayList<String> sku = new ArrayList<>();
             ArrayList<Integer> sku_amount = new ArrayList<>();
-            int sku_num = random.nextInt(1, 4);
+            int sku_num = random.nextInt(1, 3);
             ArrayList<Integer> az_num = new ArrayList<>();
             ArrayList<ArrayList<Integer>> az_amount = new ArrayList<>();
             //60%的概率选择AzLevel资源，40%的概率选择RegionLevel资源
@@ -121,27 +123,34 @@ public class UserInfoInit {
                 int res_type = random.nextInt(10);
                 if (res_type < 5) {
                     sku.add(sku_of_AzLevel[random.nextInt(sku_of_AzLevel.length)]);
+
+                    //跨AZ约束的有意义取值有：1，2，3，其中1表示不需要跨Az
+                    int crossAzNum = random.nextInt(3) + 1;
+                    az_num.add(crossAzNum);
+                    ArrayList<Integer> distribution_of_per_az = new ArrayList<>();
+                    //如果不需要跨Az
+                    if (crossAzNum > 1) {
+                        int az_sum = 0;
+                        for (int k = 0; k < crossAzNum; k++) {
+                            int amount = random.nextInt(5, 30);
+                            distribution_of_per_az.add(amount);
+                            az_sum += amount;
+                        }
+                        sku_amount.add(az_sum);
+                    } else {
+                        sku_amount.add(random.nextInt(5, 100));
+                        distribution_of_per_az.add(0);
+                    }
+                    az_amount.add(distribution_of_per_az);
+
                 } else {
                     sku.add(sku_of_RegionLevel[random.nextInt(sku_of_RegionLevel.length)]);
+                    int sku_total = random.nextInt(5, 100);
+                    sku_amount.add(sku_total);
+                    az_num.add(1);
+                    az_amount.add(new ArrayList<>(sku_total));
                 }
-                //跨AZ约束的有意义取值有：1，2，3，其中1表示不需要跨Az
-                int crossAzNum = random.nextInt(3) + 1;
-                az_num.add(crossAzNum);
-                ArrayList<Integer> distribution_of_per_az = new ArrayList<>();
-                //如果不需要跨Az
-                if (crossAzNum > 1) {
-                    int az_sum = 0;
-                    for (int k = 0; k < crossAzNum; k++) {
-                        int amount = random.nextInt(5, 30);
-                        distribution_of_per_az.add(amount);
-                        az_sum += amount;
-                    }
-                    sku_amount.add(az_sum);
-                } else {
-                    sku_amount.add(random.nextInt(5, 100));
-                    distribution_of_per_az.add(0);
-                }
-                az_amount.add(distribution_of_per_az);
+
             }
             CompAffinityGroup p = new CompAffinityGroup(group_name, delay_circle, sku, sku_amount, az_num, az_amount);
             u.setComp_affinity_groups(p);
@@ -151,6 +160,7 @@ public class UserInfoInit {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             // 将对象转换为JSON字符串
+            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             String jsonString = objectMapper.writeValueAsString(u);
             //System.out.println(jsonString);
             // 打印JSON字符串

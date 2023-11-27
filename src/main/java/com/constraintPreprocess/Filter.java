@@ -73,7 +73,7 @@ public abstract class Filter {
 
     public static JsonNode findGroup(JsonNode jsonNode, String group_name){
         for(JsonNode groupNode : jsonNode.get("comp_affinity_groups")){
-            if(groupNode.get("group_name").equals(group_name)){
+            if(groupNode.get("group_name").asText().equals(group_name)){
                 return groupNode;
             }
         }

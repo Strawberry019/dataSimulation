@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import static java.util.Collections.sort;
 
 public class Client {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
 
         //组装责任链
@@ -63,36 +63,47 @@ public class Client {
             //声明最终的Group-Region字典，一个Group对应一组Region
             Map<String, List<String>> result = new HashMap<>();
 
-            //List<String> removeRegionList = new ArrayList<>();
+            //*****
+            List<String> removeRegionList = new ArrayList<>();
 
             // 遍历groupList和regionList，调用filter1.ConstraintFilter()方法，通过责任链上的每个Filter处理，返回布尔变量值表示该（group,region）是否可行
             for (String groupName : groupList) {
                 //创建和Region列表等长，对应的全True布尔数组,取值为True的表示满足所有该Group的约束
                 boolean[] check = new boolean[regionList.size()];
                 Arrays.fill(check, true);
-                //每次创建一个当前Group的可行Region列表，ps:不使用clear方法防止由于引用传递导致所有的available_region都是最后一次创建的内容
+                //每次创建一个当前Group的可行Region列表available_region
+                //传递到词典之前要创建一个available_region的副本，ps:不使用clear方法防止由于引用传递，导致available_region不断递增，且不清空之前元素
                 List<String> available_region = new ArrayList<>();
                 for (int i = 0; i < regionList.size(); i++) {
+
                     check[i] = filter1.ConstraintFilter(userInfoJsonNode, cloudInfoJsonNode, groupName, regionList.get(i));
-                    if(check[i]){
+                    if (check[i]) {
                         available_region.add(regionList.get(i));
                     }
-                }
-                result.put(groupName,available_region);
+                    System.out.printf(groupName + " " + regionList.get(i) + " ," + "匹配情况" + check[i] + "\n");
 
-                /*removeRegionList = regionList;
+                }
+
+                List<String> available_region_copy = new ArrayList<>();
+                available_region_copy.addAll(available_region);
+
+                result.put(groupName, available_region_copy);
+
+                //*****
+                removeRegionList = regionList;
                 removeRegionList.removeAll(available_region);
-                break;*/
+                break;
 
             }
 
+            //*****
             //删去不可用region
-            /*for(int i = 0; i < removeRegionList.size(); i++){
+            for(int i = 0; i < removeRegionList.size(); i++){
                 JsonNode regionsChangedNode = removeRegionById(regionsNode,removeRegionList.get(i));
                 if(i == regionsChangedNode.size()-1){
                     writeJsonChanged(cloudInfoJsonNode,regionsChangedNode);
                 }
-            }*/
+            }
 
 
             //输出字典,group-region对应关系，到新的json文件中
@@ -102,14 +113,13 @@ public class Client {
             fileWriter.close();
 
 
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
+    //*****
     //根据布尔数组删除不符合条件的Region和Az
     public static JsonNode removeRegionById(JsonNode regionsNode, String region_id) {
         ArrayNode regionsArray = (ArrayNode) regionsNode;
@@ -124,7 +134,7 @@ public class Client {
         return regionsArray;
     }
 
-    public static void writeJsonChanged(JsonNode cloudInfoJsonNode,JsonNode regionsNode) throws IOException {
+    public static void writeJsonChanged(JsonNode cloudInfoJsonNode, JsonNode regionsNode) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         //用新写的regions去替换原来的regions对象
         ((ObjectNode) cloudInfoJsonNode).set("regions", regionsNode);
@@ -133,24 +143,9 @@ public class Client {
         fileWriter.write(cloudInfo_remove_invalid_regions_json);
         fileWriter.close();
     }
-
-
-    //下面的方法将json转为字符串
-    public static String readJsonFile(String filePath) {
-        File file = new File(filePath);
-        StringBuilder content = new StringBuilder();
-
-        try (FileReader reader = new FileReader(file)) {
-            int character;
-            while ((character = reader.read()) != -1) {
-                content.append((char) character);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return content.toString();
-    }
 }
+
+
+
 
 

@@ -60,7 +60,7 @@ public class CloudInfoInit {
                 //随机设置区域级别资源池,随机2-5个
                 List<String> shuffledRegionLevelSku = Arrays.asList(sku_of_RegionLevel);
                 Collections.shuffle(shuffledRegionLevelSku);
-                for(int j = 0; j < random.nextInt(2,6); j++ ){
+                for(int j = 0; j < random.nextInt(4,10); j++ ){
                     String sku_name = shuffledRegionLevelSku.get(j);
                     String pool_id = r.getRegion_id() + "_" + sku_name +  "_"+"pool";
                     String pool_level = "region";

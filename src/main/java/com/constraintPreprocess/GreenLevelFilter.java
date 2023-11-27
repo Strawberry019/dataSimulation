@@ -9,30 +9,32 @@ public class GreenLevelFilter extends Filter{
 
         JsonNode userGreenLevelNode = findProperty(userInfoJsonNode,"green_level");
         int green_level_request = userGreenLevelNode.asInt();
-        JsonNode cloudAzsNode = findProperty(findRegion(cloudInfoJsonNode,region_id),"azs");
+
+        JsonNode cloudAzsNode = findRegion(cloudInfoJsonNode,region_id).get("azs");
         for(JsonNode azNode : cloudAzsNode){
-            if((azNode.get("green_level").asInt()) == green_level_request){
-                return true;
+            int green_level_supply = matchGreenLevel(cloudInfoJsonNode.get("green_levels"), azNode.get("green_level").asInt());
+            if(green_level_supply == green_level_request){
+                if(this.getNext() != null){
+                    return this.getNext().ConstraintFilter(userInfoJsonNode, cloudInfoJsonNode, group_name, region_id);
+                }
+                else{
+                    return true;
+                }
             }
         }
-        if(this.getNext() != null){
-            return this.getNext().ConstraintFilter(userInfoJsonNode, cloudInfoJsonNode, group_name, region_id);
-        }
-        else{
-            return true;
-        }
+        return false;
     }
 
-    /*private int matchGreenLevel(JsonNode greenLevelsNode, int green_level_value){
+    private int matchGreenLevel(JsonNode greenLevelsNode, int greenLevelValue){
         for(JsonNode greenLevelNode : greenLevelsNode){
-            if(greenLevelNode.get("carbon_intencity_range").size() != 0){
+            if(!greenLevelNode.get("carbon_intencity_range").isEmpty()){
                 int leftBound = greenLevelNode.get("carbon_intencity_range").get(0).asInt();
                 int rightBound = greenLevelNode.get("carbon_intencity_range").get(1).asInt();
-                if(green_level_value >= leftBound && green_level_value < rightBound ){
+                if(greenLevelValue >= leftBound && greenLevelValue < rightBound ){
                     return greenLevelNode.get("green_level").asInt();
                 }
             }
         }
         return 3;
-    }*/
+    }
 }
