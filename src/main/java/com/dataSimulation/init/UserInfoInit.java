@@ -124,7 +124,7 @@ public class UserInfoInit {
                 } else {
                     sku.add(sku_of_RegionLevel[random.nextInt(sku_of_RegionLevel.length)]);
                 }
-                //跨AZ约束的有意义取值有：1，2，3，其中.表示不需要跨Az
+                //跨AZ约束的有意义取值有：1，2，3，其中1表示不需要跨Az
                 int crossAzNum = random.nextInt(3) + 1;
                 az_num.add(crossAzNum);
                 ArrayList<Integer> distribution_of_per_az = new ArrayList<>();
