@@ -35,8 +35,8 @@ public class UserInfoInit {
         long stime = System.currentTimeMillis();
         Random random = new Random();
 
-        //随机设置单个用户请求中的亲和组个数：1~20
-        int group_num = random.nextInt(1, 21);
+        //随机设置单个用户请求中的亲和组个数：2~20
+        int group_num = random.nextInt(2, 21);
         //按照随机设置的亲和组个数，初始化亲和组名的列表，group1-num
         String[] groupID = new String[group_num + 1];
         for (int i = 1; i <= group_num; i++) {

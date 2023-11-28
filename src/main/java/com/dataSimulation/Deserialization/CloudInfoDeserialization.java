@@ -22,7 +22,7 @@ public class CloudInfoDeserialization {
         CloudInfo c = deserializeCloudInfo(objectMapper, cloudInfoJsonNode);
 
         //检查
-        System.out.println(c.getRegions().get(1).getResource_pools().get(0).getCost());
+        //System.out.println(c.getRegions().get(1).getResource_pools().get(0).getCost());
 
     }
 

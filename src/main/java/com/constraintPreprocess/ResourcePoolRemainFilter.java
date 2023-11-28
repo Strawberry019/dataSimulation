@@ -65,6 +65,9 @@ public class ResourcePoolRemainFilter extends Filter{
                         String cloud_sku_name_trim = cloud_sku_name.substring(0,cloud_sku_name.length()-2);
                         if(cloud_sku_name_trim.equals(user_sku_name_trim)){
                             sku_resPool_remain += resPoolNode.get("remain").get(0).asInt();
+                            if( sku_resPool_remain > sku_amount ){
+                                return true;
+                            }
                         }
                         else{
                             break;

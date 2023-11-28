@@ -55,11 +55,10 @@ public class Client_customized {
             JsonNode compAffinityGroupsNode = userInfoJsonNode.get("comp_affinity_groups");
             List<String> groupList = new ArrayList<>();
 
-            //*****
             //存放要删去的region_id
             List<String> removeRegionList = new ArrayList<>();
 
-            // 调用filter1.ConstraintFilter()方法，通过责任链上的每个Filter处理，返回布尔变量值表示该（group,region）是否可行
+            //调用filter1.ConstraintFilter()方法，通过责任链上的每个Filter处理，返回布尔变量值表示该（group,region）是否可行
 
             //创建和Region列表等长，对应的全True布尔数组,取值为True的表示满足所有该Group的约束
             boolean[] check = new boolean[regionList.size()];
@@ -77,14 +76,10 @@ public class Client_customized {
 
             }
 
-            //*****
             removeRegionList = regionList;
             removeRegionList.removeAll(available_region);
 
-
-
-            //*****
-            //删去不可用region
+            //从Json文件中删去不可用region
             for(int i = 0; i < removeRegionList.size(); i++){
                 JsonNode regionsChangedNode = removeRegionById(regionsNode,removeRegionList.get(i));
                 if(i == regionsChangedNode.size()-1){
@@ -98,8 +93,7 @@ public class Client_customized {
     }
 
 
-    //*****
-    //根据布尔数组删除不符合条件的Region和Az
+    //根据布尔数组删除不符合条件的Region
     public static JsonNode removeRegionById(JsonNode regionsNode, String region_id) {
         ArrayNode regionsArray = (ArrayNode) regionsNode;
 

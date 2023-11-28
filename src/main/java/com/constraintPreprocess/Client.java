@@ -87,7 +87,7 @@ public class Client {
 
             //输出字典,group-region对应关系，到新的json文件中
             String json = objectMapper.writeValueAsString(result);
-            FileWriter fileWriter = new FileWriter("filter_result.json");
+            FileWriter fileWriter = new FileWriter("group_regions_mapping_filter_result.json");
             fileWriter.write(json);
             fileWriter.close();
 
