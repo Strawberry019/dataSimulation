@@ -1,6 +1,5 @@
 package com.constraintPreprocess;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -8,7 +7,6 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import static java.util.Collections.sort;
 
 public class Client {
@@ -63,9 +61,6 @@ public class Client {
             //声明最终的Group-Region字典，一个Group对应一组Region
             Map<String, List<String>> result = new HashMap<>();
 
-            //*****
-            List<String> removeRegionList = new ArrayList<>();
-
             // 遍历groupList和regionList，调用filter1.ConstraintFilter()方法，通过责任链上的每个Filter处理，返回布尔变量值表示该（group,region）是否可行
             for (String groupName : groupList) {
                 //创建和Region列表等长，对应的全True布尔数组,取值为True的表示满足所有该Group的约束
@@ -86,25 +81,9 @@ public class Client {
 
                 List<String> available_region_copy = new ArrayList<>();
                 available_region_copy.addAll(available_region);
-
                 result.put(groupName, available_region_copy);
 
-                //*****
-                removeRegionList = regionList;
-                removeRegionList.removeAll(available_region);
-                break;
-
             }
-
-            //*****
-            //删去不可用region
-            for(int i = 0; i < removeRegionList.size(); i++){
-                JsonNode regionsChangedNode = removeRegionById(regionsNode,removeRegionList.get(i));
-                if(i == regionsChangedNode.size()-1){
-                    writeJsonChanged(cloudInfoJsonNode,regionsChangedNode);
-                }
-            }
-
 
             //输出字典,group-region对应关系，到新的json文件中
             String json = objectMapper.writeValueAsString(result);
@@ -116,32 +95,6 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    //*****
-    //根据布尔数组删除不符合条件的Region和Az
-    public static JsonNode removeRegionById(JsonNode regionsNode, String region_id) {
-        ArrayNode regionsArray = (ArrayNode) regionsNode;
-
-        for (int i = 0; i < regionsArray.size(); i++) {
-            JsonNode region = regionsArray.get(i);
-            if (region.get("region_id").asText().equals(region_id)) {
-                regionsArray.remove(i);
-                break;
-            }
-        }
-        return regionsArray;
-    }
-
-    public static void writeJsonChanged(JsonNode cloudInfoJsonNode, JsonNode regionsNode) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        //用新写的regions去替换原来的regions对象
-        ((ObjectNode) cloudInfoJsonNode).set("regions", regionsNode);
-        String cloudInfo_remove_invalid_regions_json = objectMapper.writeValueAsString(cloudInfoJsonNode);
-        FileWriter fileWriter = new FileWriter("cloudInfo_remove_invalid_regions.json");
-        fileWriter.write(cloudInfo_remove_invalid_regions_json);
-        fileWriter.close();
     }
 }
 

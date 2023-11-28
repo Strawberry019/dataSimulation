@@ -115,7 +115,7 @@ public class UserInfoInit {
             String delay_circle = DELAY_CIRCLE[random.nextInt(3)];
             ArrayList<String> sku = new ArrayList<>();
             ArrayList<Integer> sku_amount = new ArrayList<>();
-            int sku_num = random.nextInt(1, 3);
+            int sku_num = 1/*random.nextInt(1, 3)*/;
             ArrayList<Integer> az_num = new ArrayList<>();
             ArrayList<ArrayList<Integer>> az_amount = new ArrayList<>();
             //60%的概率选择AzLevel资源，40%的概率选择RegionLevel资源

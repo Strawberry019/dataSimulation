@@ -3,19 +3,23 @@
   "comp_affinity_groups": [
     {
       "group_name": "group-01",
-      "delay_circle": "warm",
+      "delay_circle": "cold",
       "resource_skus": [
         {
-          "sku_name": "dms.instance.spec-2",
-          "amount": 28,
+          "sku_name": "elb.instance.spec-2",
+          "amount": 39,
           "azs": [
             {
               "az_index": 1,
-              "amount": 10
+              "amount": 14
             },
             {
               "az_index": 2,
-              "amount": 18
+              "amount": 16
+            },
+            {
+              "az_index": 3,
+              "amount": 9
             }
           ]
         }
@@ -23,11 +27,11 @@
     },
     {
       "group_name": "group-02",
-      "delay_circle": "warm",
+      "delay_circle": "cold",
       "resource_skus": [
         {
-          "sku_name": "cbr.vault.spec-3",
-          "amount": 9,
+          "sku_name": "cbr.vault.spec-2",
+          "amount": 11,
           "azs": []
         }
       ]
@@ -37,8 +41,8 @@
       "delay_circle": "hot",
       "resource_skus": [
         {
-          "sku_name": "eip.publicip.spec-1",
-          "amount": 78,
+          "sku_name": "evs.volume.spec-3",
+          "amount": 39,
           "azs": []
         }
       ]
@@ -48,19 +52,28 @@
       "delay_circle": "hot",
       "resource_skus": [
         {
-          "sku_name": "cbr.vault.spec-3",
-          "amount": 16,
-          "azs": []
+          "sku_name": "dms.instance.spec-3",
+          "amount": 40,
+          "azs": [
+            {
+              "az_index": 1,
+              "amount": 16
+            },
+            {
+              "az_index": 2,
+              "amount": 24
+            }
+          ]
         }
       ]
     },
     {
       "group_name": "group-05",
-      "delay_circle": "warm",
+      "delay_circle": "hot",
       "resource_skus": [
         {
-          "sku_name": "obs.storage.spec-2",
-          "amount": 29,
+          "sku_name": "obs.storage.spec-1",
+          "amount": 66,
           "azs": []
         }
       ]
@@ -70,9 +83,18 @@
       "delay_circle": "warm",
       "resource_skus": [
         {
-          "sku_name": "obs.storage.spec-2",
-          "amount": 72,
-          "azs": []
+          "sku_name": "rds.instance.spec-3",
+          "amount": 23,
+          "azs": [
+            {
+              "az_index": 1,
+              "amount": 9
+            },
+            {
+              "az_index": 2,
+              "amount": 14
+            }
+          ]
         }
       ]
     },
@@ -81,8 +103,8 @@
       "delay_circle": "hot",
       "resource_skus": [
         {
-          "sku_name": "evs.volume.spec-3",
-          "amount": 48,
+          "sku_name": "elb.instance.spec-1",
+          "amount": 41,
           "azs": [
             {
               "az_index": 1,
@@ -90,11 +112,7 @@
             },
             {
               "az_index": 2,
-              "amount": 23
-            },
-            {
-              "az_index": 3,
-              "amount": 6
+              "amount": 22
             }
           ]
         }
@@ -102,156 +120,141 @@
     },
     {
       "group_name": "group-08",
-      "delay_circle": "warm",
+      "delay_circle": "cold",
       "resource_skus": [
         {
-          "sku_name": "obs.storage.spec-2",
-          "amount": 25,
+          "sku_name": "eip.publicip.spec-2",
+          "amount": 14,
           "azs": []
         }
       ]
     },
     {
       "group_name": "group-09",
-      "delay_circle": "warm",
+      "delay_circle": "hot",
       "resource_skus": [
         {
-          "sku_name": "bms.pm.spec-1",
-          "amount": 65,
-          "azs": []
+          "sku_name": "elb.instance.spec-2",
+          "amount": 24,
+          "azs": [
+            {
+              "az_index": 1,
+              "amount": 5
+            },
+            {
+              "az_index": 2,
+              "amount": 19
+            }
+          ]
         }
       ]
     },
     {
       "group_name": "group-10",
-      "delay_circle": "warm",
+      "delay_circle": "cold",
       "resource_skus": [
         {
-          "sku_name": "cbr.vault.spec-2",
-          "amount": 54,
+          "sku_name": "obs.storage.spec-1",
+          "amount": 45,
           "azs": []
         }
       ]
     },
     {
       "group_name": "group-11",
-      "delay_circle": "cold",
+      "delay_circle": "warm",
       "resource_skus": [
         {
-          "sku_name": "dms.instance.spec-3",
-          "amount": 43,
-          "azs": [
-            {
-              "az_index": 1,
-              "amount": 27
-            },
-            {
-              "az_index": 2,
-              "amount": 16
-            }
-          ]
+          "sku_name": "obs.storage.spec-1",
+          "amount": 48,
+          "azs": []
         }
       ]
     },
     {
       "group_name": "group-12",
-      "delay_circle": "warm",
+      "delay_circle": "hot",
       "resource_skus": [
         {
-          "sku_name": "ecs.vm.spec-3",
-          "amount": 37,
+          "sku_name": "dcs.instance.spec-1",
+          "amount": 41,
           "azs": [
             {
               "az_index": 1,
-              "amount": 9
+              "amount": 22
             },
             {
               "az_index": 2,
-              "amount": 28
+              "amount": 19
             }
           ]
-        },
-        {
-          "sku_name": "cbr.vault.spec-1",
-          "amount": 50,
-          "azs": []
         }
       ]
     },
     {
       "group_name": "group-13",
+      "delay_circle": "warm",
+      "resource_skus": [
+        {
+          "sku_name": "eip.publicip.spec-2",
+          "amount": 70,
+          "azs": []
+        }
+      ]
+    },
+    {
+      "group_name": "group-14",
       "delay_circle": "hot",
       "resource_skus": [
         {
-          "sku_name": "bms.pm.spec-1",
-          "amount": 18,
+          "sku_name": "dms.instance.spec-2",
+          "amount": 37,
           "azs": [
             {
               "az_index": 1,
-              "amount": 11
+              "amount": 18
             },
             {
               "az_index": 2,
-              "amount": 7
+              "amount": 19
             }
           ]
         }
       ]
     },
     {
-      "group_name": "group-14",
-      "delay_circle": "cold",
-      "resource_skus": [
-        {
-          "sku_name": "cbr.vault.spec-1",
-          "amount": 6,
-          "azs": []
-        }
-      ]
-    },
-    {
       "group_name": "group-15",
-      "delay_circle": "cold",
-      "resource_skus": [
-        {
-          "sku_name": "obs.storage.spec-2",
-          "amount": 92,
-          "azs": []
-        }
-      ]
-    },
-    {
-      "group_name": "group-16",
-      "delay_circle": "cold",
+      "delay_circle": "warm",
       "resource_skus": [
         {
           "sku_name": "cbr.vault.spec-3",
-          "amount": 66,
-          "azs": []
-        },
-        {
-          "sku_name": "obs.storage.spec-2",
           "amount": 38,
           "azs": []
         }
       ]
     },
     {
-      "group_name": "group-17",
-      "delay_circle": "hot",
+      "group_name": "group-16",
+      "delay_circle": "warm",
       "resource_skus": [
         {
-          "sku_name": "eip.publicip.spec-3",
-          "amount": 57,
+          "sku_name": "evs.volume.spec-3",
+          "amount": 26,
           "azs": []
-        },
+        }
+      ]
+    },
+    {
+      "group_name": "group-17",
+      "delay_circle": "warm",
+      "resource_skus": [
         {
-          "sku_name": "ecs.vm.spec-1",
-          "amount": 35,
+          "sku_name": "rds.instance.spec-2",
+          "amount": 39,
           "azs": [
             {
               "az_index": 1,
-              "amount": 22
+              "amount": 26
             },
             {
               "az_index": 2,
@@ -263,19 +266,23 @@
     },
     {
       "group_name": "group-18",
-      "delay_circle": "warm",
+      "delay_circle": "cold",
       "resource_skus": [
         {
-          "sku_name": "evs.volume.spec-2",
-          "amount": 28,
+          "sku_name": "dcs.instance.spec-2",
+          "amount": 40,
           "azs": [
             {
               "az_index": 1,
-              "amount": 22
+              "amount": 6
             },
             {
               "az_index": 2,
-              "amount": 6
+              "amount": 15
+            },
+            {
+              "az_index": 3,
+              "amount": 19
             }
           ]
         }
@@ -286,43 +293,9 @@
       "delay_circle": "warm",
       "resource_skus": [
         {
-          "sku_name": "rds.instance.spec-3",
-          "amount": 55,
+          "sku_name": "cbr.vault.spec-1",
+          "amount": 58,
           "azs": []
-        },
-        {
-          "sku_name": "rds.instance.spec-1",
-          "amount": 37,
-          "azs": [
-            {
-              "az_index": 1,
-              "amount": 26
-            },
-            {
-              "az_index": 2,
-              "amount": 11
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "group_name": "group-20",
-      "delay_circle": "cold",
-      "resource_skus": [
-        {
-          "sku_name": "dms.instance.spec-1",
-          "amount": 26,
-          "azs": [
-            {
-              "az_index": 1,
-              "amount": 15
-            },
-            {
-              "az_index": 2,
-              "amount": 11
-            }
-          ]
         }
       ]
     }
@@ -333,956 +306,837 @@
       "affinity_policy": "anti_affinity",
       "comp_affinity_group_names": [
         [
-          "group-01",
+          "group-05",
           "group-07",
-          "group-19"
+          "group-09",
+          "group-16"
         ]
       ]
     }
   ],
-  "green_level": 2,
+  "green_level": 1,
   "nw_qos_of_affinity_groups": [
     {
       "source_group": "group-01",
       "destination_group": "group-02",
-      "latency": 170.43948,
-      "peak_bandwidth": 70.688896
+      "latency": 177.7421,
+      "peak_bandwidth": 638.33606
     },
     {
       "source_group": "group-01",
       "destination_group": "group-03",
-      "latency": 187.09685,
-      "peak_bandwidth": 867.04315
+      "latency": 75.482254,
+      "peak_bandwidth": 349.40677
     },
     {
       "source_group": "group-01",
       "destination_group": "group-04",
-      "latency": 32.894753,
-      "peak_bandwidth": 650.0213
-    },
-    {
-      "source_group": "group-01",
-      "destination_group": "group-05",
-      "latency": 151.14091,
-      "peak_bandwidth": 93.063
+      "latency": 56.032646,
+      "peak_bandwidth": 131.49278
     },
     {
       "source_group": "group-01",
       "destination_group": "group-06",
-      "latency": 12.331705,
-      "peak_bandwidth": 737.6487
+      "latency": 16.103863,
+      "peak_bandwidth": 90.96708
     },
     {
       "source_group": "group-01",
       "destination_group": "group-07",
-      "latency": 129.64166,
-      "peak_bandwidth": 148.3863
+      "latency": 173.06764,
+      "peak_bandwidth": 478.09827
     },
     {
       "source_group": "group-01",
       "destination_group": "group-08",
-      "latency": 70.74567,
-      "peak_bandwidth": 171.2707
+      "latency": 85.40354,
+      "peak_bandwidth": 278.2654
     },
     {
       "source_group": "group-01",
       "destination_group": "group-10",
-      "latency": 6.5789833,
-      "peak_bandwidth": 530.2005
+      "latency": 49.412632,
+      "peak_bandwidth": 243.65384
     },
     {
       "source_group": "group-01",
       "destination_group": "group-11",
-      "latency": 182.42488,
-      "peak_bandwidth": 763.60547
+      "latency": 81.608,
+      "peak_bandwidth": 550.3374
     },
     {
       "source_group": "group-01",
       "destination_group": "group-12",
-      "latency": 177.73502,
-      "peak_bandwidth": 713.41504
+      "latency": 80.20459,
+      "peak_bandwidth": 968.3555
     },
     {
       "source_group": "group-01",
       "destination_group": "group-13",
-      "latency": 111.86412,
-      "peak_bandwidth": 753.8399
+      "latency": 35.674973,
+      "peak_bandwidth": 998.357
     },
     {
       "source_group": "group-01",
       "destination_group": "group-14",
-      "latency": 80.22827,
-      "peak_bandwidth": 92.60623
+      "latency": 76.92549,
+      "peak_bandwidth": 719.62006
     },
     {
       "source_group": "group-01",
       "destination_group": "group-15",
-      "latency": 181.83472,
-      "peak_bandwidth": 547.1733
+      "latency": 56.830246,
+      "peak_bandwidth": 163.5367
+    },
+    {
+      "source_group": "group-01",
+      "destination_group": "group-16",
+      "latency": 179.49808,
+      "peak_bandwidth": 869.31885
     },
     {
       "source_group": "group-01",
       "destination_group": "group-17",
-      "latency": 56.043537,
-      "peak_bandwidth": 335.075
+      "latency": 99.65728,
+      "peak_bandwidth": 672.63727
     },
     {
       "source_group": "group-01",
       "destination_group": "group-18",
-      "latency": 89.237465,
-      "peak_bandwidth": 977.7818
+      "latency": 34.46489,
+      "peak_bandwidth": 255.20076
     },
     {
       "source_group": "group-01",
       "destination_group": "group-19",
-      "latency": 25.537884,
-      "peak_bandwidth": 338.86557
-    },
-    {
-      "source_group": "group-01",
-      "destination_group": "group-20",
-      "latency": 129.8148,
-      "peak_bandwidth": 555.9214
+      "latency": 27.51065,
+      "peak_bandwidth": 194.92128
     },
     {
       "source_group": "group-02",
-      "destination_group": "group-03",
-      "latency": 29.50213,
-      "peak_bandwidth": 954.21454
-    },
-    {
-      "source_group": "group-02",
-      "destination_group": "group-04",
-      "latency": 145.63245,
-      "peak_bandwidth": 972.36383
+      "destination_group": "group-05",
+      "latency": 69.44734,
+      "peak_bandwidth": 998.78784
     },
     {
       "source_group": "group-02",
       "destination_group": "group-06",
-      "latency": 132.0447,
-      "peak_bandwidth": 495.66275
+      "latency": 161.70358,
+      "peak_bandwidth": 704.5616
     },
     {
       "source_group": "group-02",
-      "destination_group": "group-07",
-      "latency": 165.23134,
-      "peak_bandwidth": 356.54504
-    },
-    {
-      "source_group": "group-02",
-      "destination_group": "group-08",
-      "latency": 112.210915,
-      "peak_bandwidth": 962.89636
+      "destination_group": "group-09",
+      "latency": 166.1146,
+      "peak_bandwidth": 282.1125
     },
     {
       "source_group": "group-02",
       "destination_group": "group-10",
-      "latency": 101.51996,
-      "peak_bandwidth": 279.24802
+      "latency": 45.246357,
+      "peak_bandwidth": 398.44928
     },
     {
       "source_group": "group-02",
-      "destination_group": "group-12",
-      "latency": 161.77815,
-      "peak_bandwidth": 855.6496
+      "destination_group": "group-11",
+      "latency": 140.02376,
+      "peak_bandwidth": 437.38864
     },
     {
       "source_group": "group-02",
       "destination_group": "group-13",
-      "latency": 64.67954,
-      "peak_bandwidth": 413.8154
+      "latency": 135.10619,
+      "peak_bandwidth": 399.89795
     },
     {
       "source_group": "group-02",
       "destination_group": "group-14",
-      "latency": 107.3852,
-      "peak_bandwidth": 703.9389
+      "latency": 87.73339,
+      "peak_bandwidth": 663.5515
     },
     {
       "source_group": "group-02",
       "destination_group": "group-15",
-      "latency": 39.94739,
-      "peak_bandwidth": 11.460575
-    },
-    {
-      "source_group": "group-02",
-      "destination_group": "group-16",
-      "latency": 155.40868,
-      "peak_bandwidth": 446.71576
-    },
-    {
-      "source_group": "group-02",
-      "destination_group": "group-17",
-      "latency": 23.111277,
-      "peak_bandwidth": 341.97168
+      "latency": 147.47777,
+      "peak_bandwidth": 871.8824
     },
     {
       "source_group": "group-02",
       "destination_group": "group-18",
-      "latency": 70.91343,
-      "peak_bandwidth": 609.31195
+      "latency": 24.409334,
+      "peak_bandwidth": 780.69934
     },
     {
       "source_group": "group-02",
       "destination_group": "group-19",
-      "latency": 152.41739,
-      "peak_bandwidth": 564.6368
-    },
-    {
-      "source_group": "group-02",
-      "destination_group": "group-20",
-      "latency": 56.237602,
-      "peak_bandwidth": 251.76537
+      "latency": 172.15842,
+      "peak_bandwidth": 936.04626
     },
     {
       "source_group": "group-03",
       "destination_group": "group-04",
-      "latency": 176.44884,
-      "peak_bandwidth": 828.60297
+      "latency": 143.61546,
+      "peak_bandwidth": 65.47793
     },
     {
       "source_group": "group-03",
-      "destination_group": "group-05",
-      "latency": 98.67195,
-      "peak_bandwidth": 681.9721
+      "destination_group": "group-06",
+      "latency": 67.97575,
+      "peak_bandwidth": 155.79942
     },
     {
       "source_group": "group-03",
       "destination_group": "group-07",
-      "latency": 176.92566,
-      "peak_bandwidth": 697.9919
-    },
-    {
-      "source_group": "group-03",
-      "destination_group": "group-08",
-      "latency": 30.047455,
-      "peak_bandwidth": 313.43573
+      "latency": 112.06103,
+      "peak_bandwidth": 140.88362
     },
     {
       "source_group": "group-03",
       "destination_group": "group-09",
-      "latency": 88.54033,
-      "peak_bandwidth": 251.1118
+      "latency": 40.809242,
+      "peak_bandwidth": 481.81125
     },
     {
       "source_group": "group-03",
       "destination_group": "group-10",
-      "latency": 131.08737,
-      "peak_bandwidth": 195.30148
+      "latency": 166.82379,
+      "peak_bandwidth": 836.0557
     },
     {
       "source_group": "group-03",
       "destination_group": "group-11",
-      "latency": 134.52534,
-      "peak_bandwidth": 218.21817
+      "latency": 40.454082,
+      "peak_bandwidth": 90.38431
     },
     {
       "source_group": "group-03",
       "destination_group": "group-12",
-      "latency": 131.72205,
-      "peak_bandwidth": 223.68619
+      "latency": 172.95926,
+      "peak_bandwidth": 191.85948
     },
     {
       "source_group": "group-03",
       "destination_group": "group-13",
-      "latency": 148.04955,
-      "peak_bandwidth": 233.81146
+      "latency": 48.60076,
+      "peak_bandwidth": 449.0419
     },
     {
       "source_group": "group-03",
       "destination_group": "group-14",
-      "latency": 128.62228,
-      "peak_bandwidth": 260.89767
+      "latency": 106.86154,
+      "peak_bandwidth": 373.31055
     },
     {
       "source_group": "group-03",
       "destination_group": "group-15",
-      "latency": 79.00138,
-      "peak_bandwidth": 961.94727
+      "latency": 85.9544,
+      "peak_bandwidth": 827.18604
     },
     {
       "source_group": "group-03",
       "destination_group": "group-16",
-      "latency": 168.09438,
-      "peak_bandwidth": 548.48267
+      "latency": 162.60323,
+      "peak_bandwidth": 660.5021
     },
     {
       "source_group": "group-03",
       "destination_group": "group-18",
-      "latency": 111.87184,
-      "peak_bandwidth": 259.21005
+      "latency": 70.08603,
+      "peak_bandwidth": 830.48914
     },
     {
       "source_group": "group-03",
       "destination_group": "group-19",
-      "latency": 73.8191,
-      "peak_bandwidth": 295.35477
-    },
-    {
-      "source_group": "group-03",
-      "destination_group": "group-20",
-      "latency": 173.84752,
-      "peak_bandwidth": 349.05017
+      "latency": 24.472889,
+      "peak_bandwidth": 518.60187
     },
     {
       "source_group": "group-04",
       "destination_group": "group-05",
-      "latency": 147.61066,
-      "peak_bandwidth": 567.85034
+      "latency": 86.87677,
+      "peak_bandwidth": 457.2619
+    },
+    {
+      "source_group": "group-04",
+      "destination_group": "group-06",
+      "latency": 45.52683,
+      "peak_bandwidth": 976.625
     },
     {
       "source_group": "group-04",
       "destination_group": "group-07",
-      "latency": 108.0941,
-      "peak_bandwidth": 236.35701
+      "latency": 17.509304,
+      "peak_bandwidth": 138.78365
     },
     {
       "source_group": "group-04",
       "destination_group": "group-08",
-      "latency": 38.724606,
-      "peak_bandwidth": 81.255165
+      "latency": 57.071083,
+      "peak_bandwidth": 227.96039
     },
     {
       "source_group": "group-04",
       "destination_group": "group-09",
-      "latency": 148.87286,
-      "peak_bandwidth": 339.25095
-    },
-    {
-      "source_group": "group-04",
-      "destination_group": "group-10",
-      "latency": 142.49132,
-      "peak_bandwidth": 745.5419
+      "latency": 195.05234,
+      "peak_bandwidth": 693.2989
     },
     {
       "source_group": "group-04",
       "destination_group": "group-11",
-      "latency": 43.34872,
-      "peak_bandwidth": 471.4504
+      "latency": 57.76497,
+      "peak_bandwidth": 468.7378
     },
     {
       "source_group": "group-04",
       "destination_group": "group-12",
-      "latency": 131.50775,
-      "peak_bandwidth": 34.70023
+      "latency": 191.72331,
+      "peak_bandwidth": 692.6995
     },
     {
       "source_group": "group-04",
       "destination_group": "group-13",
-      "latency": 95.34741,
-      "peak_bandwidth": 546.93567
+      "latency": 37.10488,
+      "peak_bandwidth": 493.1978
+    },
+    {
+      "source_group": "group-04",
+      "destination_group": "group-14",
+      "latency": 129.66727,
+      "peak_bandwidth": 837.6593
     },
     {
       "source_group": "group-04",
       "destination_group": "group-15",
-      "latency": 139.95312,
-      "peak_bandwidth": 224.12384
+      "latency": 29.91313,
+      "peak_bandwidth": 486.83643
     },
     {
       "source_group": "group-04",
       "destination_group": "group-17",
-      "latency": 196.65501,
-      "peak_bandwidth": 981.946
+      "latency": 176.76668,
+      "peak_bandwidth": 83.56093
     },
     {
       "source_group": "group-04",
-      "destination_group": "group-20",
-      "latency": 92.89465,
-      "peak_bandwidth": 795.056
+      "destination_group": "group-18",
+      "latency": 77.71938,
+      "peak_bandwidth": 7.8999004
+    },
+    {
+      "source_group": "group-04",
+      "destination_group": "group-19",
+      "latency": 152.17169,
+      "peak_bandwidth": 610.6341
     },
     {
       "source_group": "group-05",
       "destination_group": "group-06",
-      "latency": 21.035007,
-      "peak_bandwidth": 608.0085
+      "latency": 91.919716,
+      "peak_bandwidth": 492.87253
     },
     {
       "source_group": "group-05",
       "destination_group": "group-07",
-      "latency": 71.91916,
-      "peak_bandwidth": 810.46
+      "latency": 49.93834,
+      "peak_bandwidth": 902.528
     },
     {
       "source_group": "group-05",
       "destination_group": "group-08",
-      "latency": 149.63982,
-      "peak_bandwidth": 506.75635
-    },
-    {
-      "source_group": "group-05",
-      "destination_group": "group-09",
-      "latency": 12.612178,
-      "peak_bandwidth": 95.48351
+      "latency": 116.406075,
+      "peak_bandwidth": 106.816124
     },
     {
       "source_group": "group-05",
       "destination_group": "group-10",
-      "latency": 52.588966,
-      "peak_bandwidth": 917.1033
+      "latency": 136.60567,
+      "peak_bandwidth": 482.68173
     },
     {
       "source_group": "group-05",
       "destination_group": "group-11",
-      "latency": 149.15211,
-      "peak_bandwidth": 533.8705
+      "latency": 112.750984,
+      "peak_bandwidth": 303.1431
     },
     {
       "source_group": "group-05",
       "destination_group": "group-12",
-      "latency": 53.258804,
-      "peak_bandwidth": 796.55536
+      "latency": 25.68574,
+      "peak_bandwidth": 303.70657
     },
     {
       "source_group": "group-05",
       "destination_group": "group-13",
-      "latency": 91.72287,
-      "peak_bandwidth": 756.40314
+      "latency": 22.926682,
+      "peak_bandwidth": 856.4305
     },
     {
       "source_group": "group-05",
       "destination_group": "group-14",
-      "latency": 95.52334,
-      "peak_bandwidth": 557.87506
+      "latency": 34.837524,
+      "peak_bandwidth": 698.8068
     },
     {
       "source_group": "group-05",
       "destination_group": "group-15",
-      "latency": 151.47247,
-      "peak_bandwidth": 287.62988
+      "latency": 134.74232,
+      "peak_bandwidth": 875.29175
     },
     {
       "source_group": "group-05",
       "destination_group": "group-16",
-      "latency": 124.430885,
-      "peak_bandwidth": 888.9958
-    },
-    {
-      "source_group": "group-05",
-      "destination_group": "group-17",
-      "latency": 139.08435,
-      "peak_bandwidth": 119.53053
+      "latency": 117.861404,
+      "peak_bandwidth": 630.43787
     },
     {
       "source_group": "group-05",
       "destination_group": "group-18",
-      "latency": 174.93672,
-      "peak_bandwidth": 553.9824
+      "latency": 84.08768,
+      "peak_bandwidth": 215.45497
     },
     {
       "source_group": "group-05",
-      "destination_group": "group-20",
-      "latency": 87.155716,
-      "peak_bandwidth": 393.9397
+      "destination_group": "group-19",
+      "latency": 84.09672,
+      "peak_bandwidth": 176.48674
     },
     {
       "source_group": "group-06",
       "destination_group": "group-07",
-      "latency": 81.80927,
-      "peak_bandwidth": 609.28296
+      "latency": 48.471947,
+      "peak_bandwidth": 192.66388
     },
     {
       "source_group": "group-06",
       "destination_group": "group-08",
-      "latency": 55.202106,
-      "peak_bandwidth": 796.2913
+      "latency": 144.434,
+      "peak_bandwidth": 609.03516
     },
     {
       "source_group": "group-06",
       "destination_group": "group-09",
-      "latency": 146.19998,
-      "peak_bandwidth": 549.01105
+      "latency": 120.984764,
+      "peak_bandwidth": 577.5055
     },
     {
       "source_group": "group-06",
       "destination_group": "group-10",
-      "latency": 54.204525,
-      "peak_bandwidth": 652.99744
+      "latency": 146.07155,
+      "peak_bandwidth": 240.00075
     },
     {
       "source_group": "group-06",
       "destination_group": "group-11",
-      "latency": 18.605621,
-      "peak_bandwidth": 62.129177
+      "latency": 141.5614,
+      "peak_bandwidth": 180.52258
+    },
+    {
+      "source_group": "group-06",
+      "destination_group": "group-12",
+      "latency": 33.910294,
+      "peak_bandwidth": 726.80273
     },
     {
       "source_group": "group-06",
       "destination_group": "group-13",
-      "latency": 54.906376,
-      "peak_bandwidth": 424.61026
+      "latency": 76.30269,
+      "peak_bandwidth": 846.1172
     },
     {
       "source_group": "group-06",
       "destination_group": "group-14",
-      "latency": 122.43269,
-      "peak_bandwidth": 829.3629
+      "latency": 106.80163,
+      "peak_bandwidth": 247.00795
+    },
+    {
+      "source_group": "group-06",
+      "destination_group": "group-15",
+      "latency": 185.41508,
+      "peak_bandwidth": 640.7947
     },
     {
       "source_group": "group-06",
       "destination_group": "group-16",
-      "latency": 42.69686,
-      "peak_bandwidth": 32.10472
+      "latency": 22.872402,
+      "peak_bandwidth": 539.9631
     },
     {
       "source_group": "group-06",
       "destination_group": "group-17",
-      "latency": 153.25044,
-      "peak_bandwidth": 797.44934
+      "latency": 182.53922,
+      "peak_bandwidth": 166.53218
     },
     {
       "source_group": "group-06",
       "destination_group": "group-18",
-      "latency": 30.768517,
-      "peak_bandwidth": 252.21178
-    },
-    {
-      "source_group": "group-06",
-      "destination_group": "group-19",
-      "latency": 116.1561,
-      "peak_bandwidth": 711.26953
+      "latency": 124.45825,
+      "peak_bandwidth": 782.3443
     },
     {
       "source_group": "group-07",
+      "destination_group": "group-08",
+      "latency": 55.45471,
+      "peak_bandwidth": 937.0913
+    },
+    {
+      "source_group": "group-07",
+      "destination_group": "group-10",
+      "latency": 44.508057,
+      "peak_bandwidth": 351.86093
+    },
+    {
+      "source_group": "group-07",
+      "destination_group": "group-11",
+      "latency": 85.41305,
+      "peak_bandwidth": 533.6787
+    },
+    {
+      "source_group": "group-07",
+      "destination_group": "group-12",
+      "latency": 36.24996,
+      "peak_bandwidth": 95.17197
+    },
+    {
+      "source_group": "group-07",
+      "destination_group": "group-13",
+      "latency": 108.928696,
+      "peak_bandwidth": 625.0596
+    },
+    {
+      "source_group": "group-07",
+      "destination_group": "group-15",
+      "latency": 148.46288,
+      "peak_bandwidth": 196.72258
+    },
+    {
+      "source_group": "group-07",
+      "destination_group": "group-16",
+      "latency": 85.10424,
+      "peak_bandwidth": 303.38687
+    },
+    {
+      "source_group": "group-07",
+      "destination_group": "group-17",
+      "latency": 103.5179,
+      "peak_bandwidth": 500.2975
+    },
+    {
+      "source_group": "group-07",
+      "destination_group": "group-18",
+      "latency": 85.304306,
+      "peak_bandwidth": 138.10121
+    },
+    {
+      "source_group": "group-07",
+      "destination_group": "group-19",
+      "latency": 95.21657,
+      "peak_bandwidth": 956.1795
+    },
+    {
+      "source_group": "group-08",
       "destination_group": "group-09",
-      "latency": 122.23023,
-      "peak_bandwidth": 917.27155
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-10",
-      "latency": 79.27813,
-      "peak_bandwidth": 86.015015
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-11",
-      "latency": 64.48433,
-      "peak_bandwidth": 577.6051
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-12",
-      "latency": 112.27953,
-      "peak_bandwidth": 903.9833
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-13",
-      "latency": 194.21507,
-      "peak_bandwidth": 909.2797
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-15",
-      "latency": 109.41764,
-      "peak_bandwidth": 696.00037
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-16",
-      "latency": 80.25084,
-      "peak_bandwidth": 307.069
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-17",
-      "latency": 19.772366,
-      "peak_bandwidth": 413.47952
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-18",
-      "latency": 154.52942,
-      "peak_bandwidth": 601.78687
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-19",
-      "latency": 100.72707,
-      "peak_bandwidth": 339.6065
-    },
-    {
-      "source_group": "group-07",
-      "destination_group": "group-20",
-      "latency": 37.175026,
-      "peak_bandwidth": 51.45007
-    },
-    {
-      "source_group": "group-08",
-      "destination_group": "group-09",
-      "latency": 93.30183,
-      "peak_bandwidth": 734.3663
+      "latency": 141.63242,
+      "peak_bandwidth": 680.87714
     },
     {
       "source_group": "group-08",
       "destination_group": "group-10",
-      "latency": 44.72079,
-      "peak_bandwidth": 668.8559
+      "latency": 36.821888,
+      "peak_bandwidth": 545.2813
     },
     {
       "source_group": "group-08",
       "destination_group": "group-11",
-      "latency": 128.17136,
-      "peak_bandwidth": 878.5537
+      "latency": 106.87606,
+      "peak_bandwidth": 203.87132
     },
     {
       "source_group": "group-08",
       "destination_group": "group-12",
-      "latency": 48.978554,
-      "peak_bandwidth": 223.2564
+      "latency": 18.22073,
+      "peak_bandwidth": 457.07767
     },
     {
       "source_group": "group-08",
       "destination_group": "group-13",
-      "latency": 178.9063,
-      "peak_bandwidth": 503.8137
+      "latency": 27.003544,
+      "peak_bandwidth": 681.8669
     },
     {
       "source_group": "group-08",
       "destination_group": "group-14",
-      "latency": 146.77727,
-      "peak_bandwidth": 380.27905
+      "latency": 95.02619,
+      "peak_bandwidth": 520.0379
     },
     {
       "source_group": "group-08",
       "destination_group": "group-15",
-      "latency": 77.48881,
-      "peak_bandwidth": 342.73572
-    },
-    {
-      "source_group": "group-08",
-      "destination_group": "group-16",
-      "latency": 104.86504,
-      "peak_bandwidth": 743.9574
+      "latency": 117.399925,
+      "peak_bandwidth": 354.15485
     },
     {
       "source_group": "group-08",
       "destination_group": "group-17",
-      "latency": 83.738525,
-      "peak_bandwidth": 725.77686
+      "latency": 148.52338,
+      "peak_bandwidth": 837.58
     },
     {
       "source_group": "group-08",
       "destination_group": "group-18",
-      "latency": 119.67526,
-      "peak_bandwidth": 314.54672
+      "latency": 71.271416,
+      "peak_bandwidth": 483.95947
     },
     {
       "source_group": "group-08",
-      "destination_group": "group-20",
-      "latency": 177.84384,
-      "peak_bandwidth": 876.5915
+      "destination_group": "group-19",
+      "latency": 46.334053,
+      "peak_bandwidth": 841.9964
     },
     {
       "source_group": "group-09",
       "destination_group": "group-10",
-      "latency": 102.633835,
-      "peak_bandwidth": 272.94946
-    },
-    {
-      "source_group": "group-09",
-      "destination_group": "group-12",
-      "latency": 53.41498,
-      "peak_bandwidth": 710.58875
+      "latency": 7.318014,
+      "peak_bandwidth": 227.86035
     },
     {
       "source_group": "group-09",
       "destination_group": "group-13",
-      "latency": 188.5437,
-      "peak_bandwidth": 935.8771
+      "latency": 143.72643,
+      "peak_bandwidth": 340.064
     },
     {
       "source_group": "group-09",
       "destination_group": "group-14",
-      "latency": 29.651207,
-      "peak_bandwidth": 811.2789
+      "latency": 74.66764,
+      "peak_bandwidth": 241.2562
     },
     {
       "source_group": "group-09",
       "destination_group": "group-15",
-      "latency": 5.2426167,
-      "peak_bandwidth": 183.61903
+      "latency": 88.68028,
+      "peak_bandwidth": 824.85443
     },
     {
       "source_group": "group-09",
       "destination_group": "group-16",
-      "latency": 176.60286,
-      "peak_bandwidth": 475.53116
-    },
-    {
-      "source_group": "group-09",
-      "destination_group": "group-17",
-      "latency": 46.40601,
-      "peak_bandwidth": 681.4431
+      "latency": 117.04065,
+      "peak_bandwidth": 664.0937
     },
     {
       "source_group": "group-09",
       "destination_group": "group-18",
-      "latency": 10.074479,
-      "peak_bandwidth": 50.444653
+      "latency": 117.57243,
+      "peak_bandwidth": 210.22627
     },
     {
       "source_group": "group-09",
-      "destination_group": "group-20",
-      "latency": 103.78764,
-      "peak_bandwidth": 937.3775
-    },
-    {
-      "source_group": "group-10",
-      "destination_group": "group-11",
-      "latency": 35.541,
-      "peak_bandwidth": 883.6719
+      "destination_group": "group-19",
+      "latency": 65.518135,
+      "peak_bandwidth": 503.13702
     },
     {
       "source_group": "group-10",
       "destination_group": "group-12",
-      "latency": 175.42552,
-      "peak_bandwidth": 834.20703
+      "latency": 84.55089,
+      "peak_bandwidth": 10.669043
     },
     {
       "source_group": "group-10",
       "destination_group": "group-13",
-      "latency": 149.44777,
-      "peak_bandwidth": 710.01917
+      "latency": 10.187163,
+      "peak_bandwidth": 232.40262
     },
     {
       "source_group": "group-10",
       "destination_group": "group-14",
-      "latency": 15.309669,
-      "peak_bandwidth": 724.05634
+      "latency": 15.6317625,
+      "peak_bandwidth": 198.19037
+    },
+    {
+      "source_group": "group-10",
+      "destination_group": "group-16",
+      "latency": 156.4684,
+      "peak_bandwidth": 112.778725
     },
     {
       "source_group": "group-10",
       "destination_group": "group-17",
-      "latency": 21.31348,
-      "peak_bandwidth": 881.7039
+      "latency": 176.67076,
+      "peak_bandwidth": 983.79535
+    },
+    {
+      "source_group": "group-10",
+      "destination_group": "group-18",
+      "latency": 89.945015,
+      "peak_bandwidth": 803.1852
     },
     {
       "source_group": "group-10",
       "destination_group": "group-19",
-      "latency": 187.42137,
-      "peak_bandwidth": 815.1339
-    },
-    {
-      "source_group": "group-10",
-      "destination_group": "group-20",
-      "latency": 189.5082,
-      "peak_bandwidth": 528.9917
+      "latency": 62.43258,
+      "peak_bandwidth": 552.0606
     },
     {
       "source_group": "group-11",
       "destination_group": "group-12",
-      "latency": 16.221613,
-      "peak_bandwidth": 329.44925
+      "latency": 31.359146,
+      "peak_bandwidth": 73.522644
     },
     {
       "source_group": "group-11",
       "destination_group": "group-13",
-      "latency": 173.50493,
-      "peak_bandwidth": 26.103296
+      "latency": 126.36518,
+      "peak_bandwidth": 11.950512
     },
     {
       "source_group": "group-11",
       "destination_group": "group-14",
-      "latency": 188.82518,
-      "peak_bandwidth": 928.2315
+      "latency": 168.19879,
+      "peak_bandwidth": 19.265322
     },
     {
       "source_group": "group-11",
       "destination_group": "group-15",
-      "latency": 106.74814,
-      "peak_bandwidth": 587.52386
-    },
-    {
-      "source_group": "group-11",
-      "destination_group": "group-16",
-      "latency": 22.279774,
-      "peak_bandwidth": 932.2653
+      "latency": 165.31297,
+      "peak_bandwidth": 485.95923
     },
     {
       "source_group": "group-11",
       "destination_group": "group-18",
-      "latency": 116.48457,
-      "peak_bandwidth": 578.29065
+      "latency": 6.041761,
+      "peak_bandwidth": 659.1221
     },
     {
       "source_group": "group-11",
       "destination_group": "group-19",
-      "latency": 150.1008,
-      "peak_bandwidth": 480.09564
-    },
-    {
-      "source_group": "group-12",
-      "destination_group": "group-13",
-      "latency": 72.96283,
-      "peak_bandwidth": 923.26
-    },
-    {
-      "source_group": "group-12",
-      "destination_group": "group-14",
-      "latency": 178.60887,
-      "peak_bandwidth": 799.3456
+      "latency": 129.87701,
+      "peak_bandwidth": 231.21672
     },
     {
       "source_group": "group-12",
       "destination_group": "group-17",
-      "latency": 197.96584,
-      "peak_bandwidth": 490.64798
+      "latency": 111.12935,
+      "peak_bandwidth": 752.2901
     },
     {
       "source_group": "group-12",
       "destination_group": "group-18",
-      "latency": 186.51918,
-      "peak_bandwidth": 785.18097
+      "latency": 177.2973,
+      "peak_bandwidth": 328.60675
     },
     {
       "source_group": "group-12",
       "destination_group": "group-19",
-      "latency": 48.47484,
-      "peak_bandwidth": 253.10577
-    },
-    {
-      "source_group": "group-12",
-      "destination_group": "group-20",
-      "latency": 77.98214,
-      "peak_bandwidth": 358.79327
-    },
-    {
-      "source_group": "group-13",
-      "destination_group": "group-14",
-      "latency": 176.52829,
-      "peak_bandwidth": 567.3954
+      "latency": 102.84003,
+      "peak_bandwidth": 98.007324
     },
     {
       "source_group": "group-13",
       "destination_group": "group-15",
-      "latency": 16.22918,
-      "peak_bandwidth": 445.7178
+      "latency": 75.247635,
+      "peak_bandwidth": 344.34344
     },
     {
       "source_group": "group-13",
       "destination_group": "group-16",
-      "latency": 181.94167,
-      "peak_bandwidth": 910.3592
+      "latency": 172.40498,
+      "peak_bandwidth": 79.53717
     },
     {
       "source_group": "group-13",
       "destination_group": "group-17",
-      "latency": 29.57137,
-      "peak_bandwidth": 821.1074
+      "latency": 17.871288,
+      "peak_bandwidth": 444.92834
     },
     {
       "source_group": "group-13",
-      "destination_group": "group-18",
-      "latency": 179.17368,
-      "peak_bandwidth": 207.11218
-    },
-    {
-      "source_group": "group-13",
-      "destination_group": "group-20",
-      "latency": 14.637423,
-      "peak_bandwidth": 478.56348
+      "destination_group": "group-19",
+      "latency": 178.45934,
+      "peak_bandwidth": 172.27177
     },
     {
       "source_group": "group-14",
       "destination_group": "group-15",
-      "latency": 128.31757,
-      "peak_bandwidth": 61.540394
+      "latency": 69.80952,
+      "peak_bandwidth": 497.2561
     },
     {
       "source_group": "group-14",
       "destination_group": "group-16",
-      "latency": 93.41836,
-      "peak_bandwidth": 3.605036
+      "latency": 165.22914,
+      "peak_bandwidth": 68.76952
     },
     {
       "source_group": "group-14",
       "destination_group": "group-17",
-      "latency": 133.06444,
-      "peak_bandwidth": 769.28296
+      "latency": 68.61675,
+      "peak_bandwidth": 876.7992
     },
     {
       "source_group": "group-14",
       "destination_group": "group-18",
-      "latency": 77.96515,
-      "peak_bandwidth": 311.21622
+      "latency": 49.445026,
+      "peak_bandwidth": 599.46967
     },
     {
       "source_group": "group-14",
       "destination_group": "group-19",
-      "latency": 126.53333,
-      "peak_bandwidth": 912.1029
-    },
-    {
-      "source_group": "group-14",
-      "destination_group": "group-20",
-      "latency": 196.84035,
-      "peak_bandwidth": 316.64908
+      "latency": 108.47349,
+      "peak_bandwidth": 117.75079
     },
     {
       "source_group": "group-15",
-      "destination_group": "group-16",
-      "latency": 80.00894,
-      "peak_bandwidth": 559.9268
+      "destination_group": "group-17",
+      "latency": 78.92327,
+      "peak_bandwidth": 1.704656
+    },
+    {
+      "source_group": "group-15",
+      "destination_group": "group-18",
+      "latency": 152.29387,
+      "peak_bandwidth": 736.831
     },
     {
       "source_group": "group-15",
       "destination_group": "group-19",
-      "latency": 100.29322,
-      "peak_bandwidth": 872.19305
+      "latency": 185.6633,
+      "peak_bandwidth": 535.88104
     },
     {
-      "source_group": "group-15",
-      "destination_group": "group-20",
-      "latency": 161.03969,
-      "peak_bandwidth": 83.71711
+      "source_group": "group-16",
+      "destination_group": "group-17",
+      "latency": 136.821,
+      "peak_bandwidth": 415.25015
+    },
+    {
+      "source_group": "group-16",
+      "destination_group": "group-18",
+      "latency": 15.831211,
+      "peak_bandwidth": 693.9786
     },
     {
       "source_group": "group-16",
       "destination_group": "group-19",
-      "latency": 137.99286,
-      "peak_bandwidth": 259.2812
-    },
-    {
-      "source_group": "group-16",
-      "destination_group": "group-20",
-      "latency": 9.602926,
-      "peak_bandwidth": 567.2186
+      "latency": 164.85776,
+      "peak_bandwidth": 507.36392
     },
     {
       "source_group": "group-17",
       "destination_group": "group-18",
-      "latency": 189.09311,
-      "peak_bandwidth": 741.01996
+      "latency": 142.42572,
+      "peak_bandwidth": 132.91388
     },
     {
       "source_group": "group-17",
       "destination_group": "group-19",
-      "latency": 32.307785,
-      "peak_bandwidth": 250.78299
-    },
-    {
-      "source_group": "group-17",
-      "destination_group": "group-20",
-      "latency": 196.8984,
-      "peak_bandwidth": 84.01597
+      "latency": 159.93967,
+      "peak_bandwidth": 88.82036
     },
     {
       "source_group": "group-18",
       "destination_group": "group-19",
-      "latency": 129.20912,
-      "peak_bandwidth": 313.3125
-    },
-    {
-      "source_group": "group-18",
-      "destination_group": "group-20",
-      "latency": 94.46877,
-      "peak_bandwidth": 822.24255
-    },
-    {
-      "source_group": "group-19",
-      "destination_group": "group-20",
-      "latency": 73.013084,
-      "peak_bandwidth": 997.548
+      "latency": 122.92901,
+      "peak_bandwidth": 766.14557
     }
   ],
   "provision_regions": [
