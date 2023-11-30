@@ -36,7 +36,7 @@ public class UserInfoInit {
         Random random = new Random();
 
         //随机设置单个用户请求中的亲和组个数：2~20
-        int group_num = random.nextInt(2, 21);
+        int group_num = 2 + random.nextInt(19);
         //按照随机设置的亲和组个数，初始化亲和组名的列表，group1-num
         String[] groupID = new String[group_num + 1];
         for (int i = 1; i <= group_num; i++) {
@@ -58,7 +58,7 @@ public class UserInfoInit {
         u.setGreen_level(random.nextInt(3) + 1);
 
         //用户选择了几个数据安全隐私限定区域，具体是哪几个
-        int provision_regions_num = random.nextInt(1, 5);
+        int provision_regions_num = 1 + random.nextInt(5);
         while (u.calSize(u.getProvision_regions()) < provision_regions_num) {
             u.set_provision_regions(PROVISION_AREA[random.nextInt(provision_regions_num)]);
         }
@@ -87,7 +87,7 @@ public class UserInfoInit {
         //可能有1~3组存在跨区域容灾需求的通信亲和组组合
         int dr_combination_num = random.nextInt(2) + 1;
         //每个这样的组合中可能有2~5个通信亲和组
-        int dr_comb_inner_num = random.nextInt(2, Math.min(group_num, 6));
+        int dr_comb_inner_num = 2 + random.nextInt(Math.min(group_num, 5));
         //跨区域容灾：特定的几个亲和组不能放置在同一个Region中，记作一个combination；显然用户的一次请求中可能包含若干个combination,每个combination中有若干个亲和组
         List<List<String>> comp_affinity_group = new ArrayList<List<String>>();
         while (comp_affinity_group.size() < dr_combination_num) {
@@ -132,20 +132,20 @@ public class UserInfoInit {
                     if (crossAzNum > 1) {
                         int az_sum = 0;
                         for (int k = 0; k < crossAzNum; k++) {
-                            int amount = random.nextInt(5, 30);
+                            int amount = 5 + random.nextInt(25);
                             distribution_of_per_az.add(amount);
                             az_sum += amount;
                         }
                         sku_amount.add(az_sum);
                     } else {
-                        sku_amount.add(random.nextInt(5, 100));
+                        sku_amount.add( 5 + random.nextInt(95));
                         distribution_of_per_az.add(0);
                     }
                     az_amount.add(distribution_of_per_az);
 
                 } else {
                     sku.add(sku_of_RegionLevel[random.nextInt(sku_of_RegionLevel.length)]);
-                    int sku_total = random.nextInt(5, 100);
+                    int sku_total = 5 + random.nextInt(95);
                     sku_amount.add(sku_total);
                     az_num.add(1);
                     az_amount.add(new ArrayList<>(sku_total));

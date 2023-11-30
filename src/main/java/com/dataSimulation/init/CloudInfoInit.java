@@ -60,7 +60,7 @@ public class CloudInfoInit {
                 //随机设置区域级别资源池,随机2-5个
                 List<String> shuffledRegionLevelSku = Arrays.asList(sku_of_RegionLevel);
                 Collections.shuffle(shuffledRegionLevelSku);
-                for(int j = 0; j < random.nextInt(4,10); j++ ){
+                for(int j = 0; j < 4 + random.nextInt(6); j++ ){
                     String sku_name = shuffledRegionLevelSku.get(j);
                     String pool_id = r.getRegion_id() + "_" + sku_name +  "_"+"pool";
                     String pool_level = "region";
@@ -69,11 +69,11 @@ public class CloudInfoInit {
                     //东西部的成本差异化，资源余量差异化
                     if(r.getRegion_level().equals("2")){
                         cost =random.nextFloat() * 0.75f;
-                        remain.add(random.nextInt(500,1500)*10);
+                        remain.add((500 + random.nextInt(1000))*10);
                     }
                     else{
                         cost =random.nextFloat();
-                        remain.add(random.nextInt(500,1500));
+                        remain.add((500 + random.nextInt(1000)));
                     }
                     ResourceSku sku = new ResourceSku(sku_name);
                     ArrayList<ResourceSku> sku_list = new ArrayList<>();
@@ -84,7 +84,7 @@ public class CloudInfoInit {
 
                 //随机设置Region到各个接入参考点的时延
                 for(int j = 0; j < ACCESS_POINT.length; j++){
-                    r.setAccess_delaies(ACCESS_POINT[j],random.nextFloat(5.0f + random.nextFloat() * (200.0f - 5.0f)));
+                    r.setAccess_delaies(ACCESS_POINT[j],5.0f + random.nextFloat() * (200.0f - 5.0f));
                 }
 
                 //随机设置Region中的可用区数量
@@ -104,9 +104,9 @@ public class CloudInfoInit {
                         List<String> shuffledAzLevelSku = Arrays.asList(sku_of_AzLevel);
                         Collections.shuffle(shuffledAzLevelSku);
                         ArrayList<ResourcePool> pool_of_az = new ArrayList<>();
-                        Az az = new Az(az_list.get(j).get(k), random.nextInt(1,600),pool_of_az);
+                        Az az = new Az(az_list.get(j).get(k), 1 + random.nextInt(600),pool_of_az);
                         //下面的循环处理每个Az级别资源池中sku的初始化
-                        for(int s = 0; s < random.nextInt(3,10); s++){
+                        for(int s = 0; s < 3 + random.nextInt(7); s++){
                             String sku_name = shuffledAzLevelSku.get(s);
                             String pool_id = az.getAz_id() + "_" + sku_name +  "_"+"pool";
                             String pool_level = "az";
@@ -115,11 +115,11 @@ public class CloudInfoInit {
                             //东西部的成本差异化，资源余量差异化
                             if(r.getRegion_level().equals("2")){
                                 cost =random.nextFloat() * 0.75f;
-                                remain.add(random.nextInt(500,1500)*10);
+                                remain.add(( 500 + random.nextInt(1000)) *10);
                             }
                             else{
                                 cost =random.nextFloat();
-                                remain.add(random.nextInt(500,1500));
+                                remain.add(500 + random.nextInt(1000));
                             }
                             //检查该种资源类型是否有共享资源池的设定：待补充
                             ArrayList<ResourceSku> sku_list = new ArrayList<>();
